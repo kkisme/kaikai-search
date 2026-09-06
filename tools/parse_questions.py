@@ -123,6 +123,25 @@ def is_case_parent_candidate(bucket):
     return True
 
 
+def is_single_line_case_parent(bucket):
+    """判断是否像“62、上海莲花河畔景苑倒楼案”这种单行案例标题。"""
+    lines = bucket["lines"]
+    if not lines or len(lines) > 2:
+        return False
+    first = lines[0]["text"]
+    if not re.match(r"^\d+[、.．]", first):
+        return False
+    if CASE_SUB_RE.match(first):
+        return False
+    joined = "\n".join(x["text"] for x in lines)
+    # 无答案、无选项，才可能是标题
+    if re.search(r"(?:正确答案|答案)\s*[:：]", joined):
+        return False
+    if re.search(r"^[A-H][、.．]\s*", joined, re.M):
+        return False
+    return True
+
+
 def normalize_answer_text(ans_part):
     """归一化 'A，C，E' / 'AB' / '正确' / '错误' / '√' / '×'。"""
     ans_part = ans_part.strip()
@@ -604,6 +623,20 @@ def parse():
             continue
 
         if is_question_start(line):
+            # 单行案例标题（62、xxx）后面跟 ①②…子题时，先建成案例组
+            if CASE_SUB_RE.match(text) and bucket is not None and is_single_line_case_parent(bucket):
+                case_lines = bucket["lines"]
+                case_groups.append({
+                    "id": f"case_{len(case_groups)+1:03d}",
+                    "title": case_lines[0]["text"],
+                    "type": "case",
+                    "chapter": context.get("chapter") or "案例分析题",
+                    "materialText": "\n".join(x["text"] for x in case_lines),
+                    "sourceParagraphStart": case_lines[0]["src"],
+                    "sourceParagraphEnd": case_lines[-1]["src"],
+                    "subQuestionIds": [],
+                })
+                bucket = None
             flush()
             bucket = {"kind": "question", "lines": [line]}
             continue
