@@ -1,10 +1,9 @@
-const CACHE = 'kaikai-search-v0.1';
+const CACHE = 'kaikai-search-v0.2';
 const ASSETS = [
   './',
   './index.html',
-  './questions.json',
-  './search-index.json',
-  './manifest.json'
+  './manifest.json',
+  './sw.js'
 ];
 
 self.addEventListener('install', event => {
@@ -22,14 +21,24 @@ self.addEventListener('activate', event => {
 });
 
 self.addEventListener('fetch', event => {
-  event.respondWith(
-    caches.match(event.request).then(cached => {
-      if (cached) return cached;
-      return fetch(event.request).then(response => {
+  // 页面始终优先联网获取，避免 PWA 缓存旧版
+  if (event.request.mode === 'navigate') {
+    event.respondWith(
+      fetch(event.request).then(response => {
         const copy = response.clone();
         caches.open(CACHE).then(cache => cache.put(event.request, copy));
         return response;
-      }).catch(() => caches.match('./index.html'));
-    })
+      }).catch(() => caches.match(event.request).then(r => r || caches.match('./index.html')))
+    );
+    return;
+  }
+
+  // 其余资源：优先联网，拿不到再用缓存
+  event.respondWith(
+    fetch(event.request).then(response => {
+      const copy = response.clone();
+      caches.open(CACHE).then(cache => cache.put(event.request, copy));
+      return response;
+    }).catch(() => caches.match(event.request).then(r => r || caches.match('./index.html')))
   );
 });
