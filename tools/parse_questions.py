@@ -52,8 +52,8 @@ def split_logical_lines(paragraphs):
         text = para["text"].replace("\r", " ").replace("\n", " ")
         # 选项切分：A.xxxB.xxx
         text = re.sub(r"(?=[A-H][、.．])", "\n", text)
-        # 题目号切分：D.xxx 3、xxx
-        text = re.sub(r"(?<![0-9])(?=\d+[、.．])", "\n", text)
+        # 题目号切分：D.xxx 3、xxx；不切小数点（如 A.1.5年）
+        text = re.sub(r"(?<![0-9.])(?=\d+(?:[、]|[.．](?!\d)))", "\n", text)
         text = re.sub(r"(?<=\S)(?=\d+题[:：])", "\n", text)
         text = re.sub(r"(?<=\S)(?=第\d+题)", "\n", text)
         text = re.sub(r"(?<=\S)(?=[（(]\d+[)）]\s*问[:：]?)", "\n", text)
@@ -64,7 +64,20 @@ def split_logical_lines(paragraphs):
             seg = re.sub(r"\s+", " ", seg).strip()
             if seg:
                 lines.append({"text": seg, "src": para["index"]})
-    return lines
+
+    # 合并被误拆的数值选项：A. + 1.5 年 -> A.1.5 年；B. + 200 -> B.200
+    merged = []
+    for line in lines:
+        if (
+            merged
+            and re.fullmatch(r"[A-H]\.", merged[-1]["text"])
+            and re.match(r"^\d", line["text"])
+            and merged[-1]["src"] == line["src"]
+        ):
+            merged[-1]["text"] = merged[-1]["text"] + line["text"]
+        else:
+            merged.append(line)
+    return merged
 
 
 def is_heading(line):
@@ -171,6 +184,31 @@ def strip_question_prefix(text):
     if not m:
         return text
     return text[m.end():].strip()
+
+
+def infer_question_type(q):
+    """根据答案/选项推断题型，避免被前一个判断题章节污染。"""
+    answer_text = q.get("answerText") or ""
+    letters = [x.upper() for x in q.get("answer") or []]
+    options = q.get("options") or []
+    option_keys = [o["key"] for o in options]
+
+    # 判断题：答案文字是正确/错误，或者 options 是 A.正确 B.错误
+    if answer_text in ("正确", "错误"):
+        return "judge", "判断题"
+    if option_keys and len(option_keys) >= 2 and all(
+        any(k in o["text"] for k in ("正确", "错误")) for o in options
+    ):
+        return "judge", "判断题"
+
+    if len(letters) > 1:
+        return "multiple", "多选题"
+    if len(letters) == 1:
+        return "single", "单选题"
+    if len(option_keys) > 0:
+        # 有选项但答案暂时缺失，按单选处理（后续人工确认）
+        return "single", "单选题"
+    return q.get("type") or "single", q.get("typeName") or "单选题"
 
 
 def build_question(bucket, context, case_group):
@@ -288,10 +326,10 @@ def build_question(bucket, context, case_group):
         q["answerConfidence"] = "low"
         q["verificationStatus"] = "missing" if re.search(r"[（(]\s*[)）]", q["question"]) else "review"
 
-    # 缺失选项标签修复：如果第一个选项不是 A，且前面有孤立文本
+    # 缺失选项标签修复：先补最前面缺的字母，再按答案缺失字母补，最后补剩余候选
+    orphan_pool = []
     if options and orphan_pre:
         first_key_ord = ord(options[0]["key"]) - ord("A")
-        # 第一个选项出现前所有孤立文本按顺序补到 A..first_key-1
         need = max(0, first_key_ord)
         fill = orphan_pre[:need]
         rest_pre = orphan_pre[need:]
@@ -300,32 +338,52 @@ def build_question(bucket, context, case_group):
             for i, txt in enumerate(fill):
                 filled.append({"key": chr(ord("A") + i), "text": txt})
             options = filled + options
-            # 剩余可能属于题干续行，暂时并入题干
-            if rest_pre:
-                q["question"] += " " + " ".join(rest_pre)
+            orphan_pool = list(rest_pre)
         else:
-            q["question"] += " " + " ".join(orphan_pre)
+            orphan_pool = list(orphan_pre)
     elif orphan_pre:
-        # 没有选项时，孤立文本并入题干
-        q["question"] += " " + " ".join(orphan_pre)
+        orphan_pool = list(orphan_pre)
 
-    # 选项后缺失标签的候补：如果文本短、不像完整句子，且选项还没到 H，则按顺序补下一个字母
-    if options and orphan_post:
-        next_ord = ord(options[-1]["key"]) - ord("A") + 1
-        for txt in orphan_post:
+    if orphan_post:
+        orphan_pool.extend(orphan_post)
+
+    # 按答案中缺失的字母补选项（答案来自原文，可信）
+    if options and orphan_pool:
+        answer_keys = [x.upper() for x in q.get("answer") or []]
+        existing_keys = {o["key"] for o in options}
+        missing_answer_keys = sorted([k for k in answer_keys if k not in existing_keys])
+        next_orphan_idx = 0
+        for key in missing_answer_keys:
+            if next_orphan_idx < len(orphan_pool):
+                txt = orphan_pool[next_orphan_idx]
+                if len(txt) <= 60 and not txt.endswith(("。", "；", "：", "）")):
+                    options.append({"key": key, "text": txt})
+                    next_orphan_idx += 1
+                else:
+                    break
+        orphan_pool = orphan_pool[next_orphan_idx:]
+
+    # 剩余 orphan 按后续字母继续补（仅短的、像选项的）
+    if options and orphan_pool:
+        existing = [o["key"] for o in options]
+        next_ord = max([ord(k) for k in existing]) + 1
+        for txt in orphan_pool:
             looks_option = (
                 len(txt) <= 60
-                and not txt.endswith(("。", "；", "；", "："))
-                and next_ord <= ord("H") - ord("A")
+                and not txt.endswith(("。", "；", "："))
+                and next_ord <= ord("H") + 1
             )
             if looks_option:
-                options.append({"key": chr(ord("A") + next_ord), "text": txt})
+                options.append({"key": chr(next_ord), "text": txt})
                 next_ord += 1
             else:
                 q["question"] += " " + txt
-    elif orphan_post:
+    elif orphan_pool:
         # 没有选项时，孤立文本并入题干
-        q["question"] += " " + " ".join(orphan_post)
+        q["question"] += " " + " ".join(orphan_pool)
+
+    # 按 key 排序，保证 A/B/C/D 顺序
+    options.sort(key=lambda o: o["key"])
 
     # 去括号内答案，生成 questionClean（用于展示干净题干）
     if inline_matched and q["question"]:
@@ -335,6 +393,13 @@ def build_question(bucket, context, case_group):
 
     # 把解析出的选项写回题目
     q["options"] = options
+
+    # 按答案/选项推断题型，避免被前一个判断题章节污染
+    if is_case_sub:
+        q["type"] = "case"
+        q["typeName"] = "案例分析题"
+    else:
+        q["type"], q["typeName"] = infer_question_type(q)
 
     # 答案合法性校验
     if q["answer"]:
