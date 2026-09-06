@@ -922,15 +922,29 @@ def parse():
             k["content"] = "\n".join(lines)
             k["title"] = strip_question_prefix(lines[0]) if is_question_start({"text": lines[0]}) else lines[0]
 
-    # ---- 相邻知识卡编号连续时合并（“…选择原则：1、充分性” + “2、适应性…”拆开的情况）----
+    # ---- 相邻知识卡合并：编号连续（1、2、3…），或上一卡未完结且下一卡是
+    # 小编号列表项时并入同一主题（如“155、安全生产管理”+“危险源辨识的步骤：”+列表）。
+    # 已因“未完结”合并过的卡不再继续链式合并，避免把 157、158 等主题吞进来。
+    knowledge_cards.sort(key=lambda k: k["sourceParagraphStart"])
     merged_k = []
     for k in knowledge_cards:
         if merged_k:
             prev = merged_k[-1]
-            prev_no = list_item_number(prev["content"].split("\n")[-1])
-            cur_no = list_item_number(k["content"].split("\n")[0])
-            if prev_no is not None and cur_no is not None and cur_no == prev_no + 1:
+            prev_lines = prev["content"].split("\n")
+            cur_lines = k["content"].split("\n")
+            prev_no = list_item_number(prev_lines[-1])
+            cur_no = list_item_number(cur_lines[0])
+            prev_last = prev_lines[-1].strip()
+            continuous = prev_no is not None and cur_no is not None and cur_no == prev_no + 1
+            cur_list_only = cur_no is not None and cur_no <= 100 and len(cur_lines[0]) <= 40
+            open_merge = (
+                cur_list_only
+                and not prev_last.endswith(("。", "！", "？"))
+                and not prev.get("_merged_by_open")
+            )
+            if continuous or open_merge:
                 prev["content"] += "\n" + k["content"]
+                prev["_merged_by_open"] = True
                 continue
         merged_k.append(k)
     knowledge_cards[:] = merged_k
