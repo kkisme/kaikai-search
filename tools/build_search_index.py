@@ -42,11 +42,6 @@ def pinyin_full(text: str) -> str:
     return "".join(lazy_pinyin(text, style=Style.NORMAL)).replace(" ", "")
 
 
-def pinyin_abbr(text: str) -> str:
-    """首字母，如 '安全生产' -> 'aqsc'。"""
-    return "".join(lazy_pinyin(text, style=Style.FIRST_LETTER)).replace(" ", "")
-
-
 def ngrams(text: str, n: int = 2) -> list[str]:
     """中文/数字 n-gram，用于子串/模糊匹配。"""
     t = re.sub(r"\s+", "", text)
@@ -112,7 +107,6 @@ def make_search_doc(q, case_map=None) -> dict:
         "text": normalized,
         "textRaw": text,
         "pinyin": pinyin_full(normalized),
-        "pinyinAbbr": pinyin_abbr(normalized),
         "grams": ngrams(normalized),
     }
 
@@ -158,7 +152,6 @@ def make_knowledge_doc(k) -> dict:
         "text": normalized,
         "textRaw": text,
         "pinyin": pinyin_full(normalized),
-        "pinyinAbbr": pinyin_abbr(normalized),
         "grams": ngrams(normalized),
     }
 

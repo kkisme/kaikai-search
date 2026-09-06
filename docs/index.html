@@ -207,7 +207,6 @@
       const text = (doc.text || '').toLowerCase();
       const textCompact = text.replace(/\s+/g, '');
       const pinyin = (doc.pinyin || '').toLowerCase();
-      const pinyinAbbr = (doc.pinyinAbbr || '').toLowerCase();
       const answerText = (doc.answerText || '').toLowerCase();
 
       let strong = false;
@@ -216,7 +215,6 @@
       else if (q.startsWith(nq)) { score += 120; strong = true; }
       if (text.includes(nq)) { score += 80; strong = true; }
       if (pinyin.includes(nq)) { score += 60; strong = true; }
-      if (pinyinAbbr.includes(nq)) { score += 50; strong = true; }
       if (answerText && answerText.includes(nq)) { score += 20; strong = true; }
 
       const grams = doc.grams || [];
