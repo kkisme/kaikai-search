@@ -11,7 +11,7 @@
 ## Android APK 下载
 
 - 最新版 APK：  
-  https://github.com/kkisme/kaikai-search/releases/download/v0.3.12/kaikai-search.apk
+  https://github.com/kkisme/kaikai-search/releases/download/v0.3.13/kaikai-search.apk
 - 每次推送 `docs/` 后，GitHub Actions 会自动重新打包 APK。
 
 ## 功能
