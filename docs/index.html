@@ -115,31 +115,30 @@
       const pinyinAbbr = (doc.pinyinAbbr || '').toLowerCase();
       const answerText = (doc.answerText || '').toLowerCase();
 
-      if (q === nq) score += 200;
-      else if (q.startsWith(nq)) score += 120;
-      if (text.includes(nq)) score += 80;
-      if (pinyin.includes(nq)) score += 60;
-      if (pinyinAbbr.includes(nq)) score += 50;
-      if (answerText && answerText.includes(nq)) score += 20;
+      let strong = false;
+
+      if (q === nq) { score += 200; strong = true; }
+      else if (q.startsWith(nq)) { score += 120; strong = true; }
+      if (text.includes(nq)) { score += 80; strong = true; }
+      if (pinyin.includes(nq)) { score += 60; strong = true; }
+      if (pinyinAbbr.includes(nq)) { score += 50; strong = true; }
+      if (answerText && answerText.includes(nq)) { score += 20; strong = true; }
 
       const grams = doc.grams || [];
       for (let i = 0; i < nq.length - 1; i++) {
         const g = nq.slice(i, i + 2);
-        if (grams.includes(g)) score += 15;
+        if (grams.includes(g)) { score += 15; strong = true; }
       }
-      // 字符级容错：如“安去”能因“安”命中“安全”
-      let charHit = 0;
-      for (const ch of nq) {
-        if (text.includes(ch)) charHit++;
-      }
-      score += charHit * 5;
-      return score;
+
+      // 必须至少有一个“强命中”才返回，避免只因为一个常见字就显示大量不相关题
+      return strong ? score : 0;
     }
 
     function search() {
       const nq = normalize(searchInput.value);
       if (!nq) {
-        return docs.slice(0, 50);
+        // 删除关键字后显示全部题
+        return docs;
       }
       const results = [];
       for (const doc of docs) {
