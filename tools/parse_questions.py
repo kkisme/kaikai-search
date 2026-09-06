@@ -142,6 +142,17 @@ def is_single_line_case_parent(bucket):
     return True
 
 
+def line_has_answer_signal(text):
+    """判断一行是否像“试题”：带内嵌答案、答案行、或选项。"""
+    if re.search(r"[（(]\s*[A-H√×]+\s*[)）]", text):
+        return True
+    if re.search(r"(?:正确答案|答案)\s*[:：]", text):
+        return True
+    if re.search(r"^[A-H][、.．]\s*", text, re.M):
+        return True
+    return False
+
+
 def normalize_answer_text(ans_part):
     """归一化 'A，C，E' / 'AB' / '正确' / '错误' / '√' / '×'。"""
     ans_part = ans_part.strip()
@@ -623,20 +634,31 @@ def parse():
             continue
 
         if is_question_start(line):
+            # 知识卡片里经常用 ①②③ 做列表项：没有答案/选项信号时，归并到当前卡片
+            if CASE_SUB_RE.match(text) and not line_has_answer_signal(text):
+                if bucket is not None and bucket.get("kind") == "unknown":
+                    bucket["lines"].append(line)
+                    continue
             # 单行案例标题（62、xxx）后面跟 ①②…子题时，先建成案例组
             if CASE_SUB_RE.match(text) and bucket is not None and is_single_line_case_parent(bucket):
-                case_lines = bucket["lines"]
-                case_groups.append({
-                    "id": f"case_{len(case_groups)+1:03d}",
-                    "title": case_lines[0]["text"],
-                    "type": "case",
-                    "chapter": context.get("chapter") or "案例分析题",
-                    "materialText": "\n".join(x["text"] for x in case_lines),
-                    "sourceParagraphStart": case_lines[0]["src"],
-                    "sourceParagraphEnd": case_lines[-1]["src"],
-                    "subQuestionIds": [],
-                })
-                bucket = None
+                if line_has_answer_signal(text):
+                    case_lines = bucket["lines"]
+                    case_groups.append({
+                        "id": f"case_{len(case_groups)+1:03d}",
+                        "title": case_lines[0]["text"],
+                        "type": "case",
+                        "chapter": context.get("chapter") or "案例分析题",
+                        "materialText": "\n".join(x["text"] for x in case_lines),
+                        "sourceParagraphStart": case_lines[0]["src"],
+                        "sourceParagraphEnd": case_lines[-1]["src"],
+                        "subQuestionIds": [],
+                    })
+                    bucket = None
+                else:
+                    # 不是案例小题，而是知识卡片的编号列表项，归并到当前卡片
+                    bucket["kind"] = "unknown"
+                    bucket["lines"].append(line)
+                    continue
             flush()
             bucket = {"kind": "question", "lines": [line]}
             continue

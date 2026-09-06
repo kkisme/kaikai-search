@@ -1463,29 +1463,6 @@
       "chapter": "一、综合知识和能力",
       "section": "一、综合知识和能力",
       "sourceNo": "",
-      "sourceParagraphStart": 114,
-      "sourceParagraphEnd": 115,
-      "rawText": "① 2017 年上半年全国建筑业共发生生产安全事故 1606 起死亡 1727\n人，事故总量已连续 8 年排在工矿商贸事故第一位。（ √ ）",
-      "question": "2017 年上半年全国建筑业共发生生产安全事故 1606 起死亡 1727 人，事故总量已连续 8 年排在工矿商贸事故第一位。（ √ ）",
-      "questionClean": "2017 年上半年全国建筑业共发生生产安全事故 1606 起死亡 1727 人，事故总量已连续 8 年排在工矿商贸事故第一位。（ ）",
-      "options": [],
-      "answer": [],
-      "answerText": "正确",
-      "answerRaw": "√",
-      "answerSource": "inline_paren",
-      "answerConfidence": "high",
-      "verificationStatus": "verified",
-      "note": "",
-      "caseId": "case_002",
-      "materialText": ""
-    },
-    {
-      "id": "q_000037",
-      "type": "case",
-      "typeName": "案例分析题",
-      "chapter": "一、综合知识和能力",
-      "section": "一、综合知识和能力",
-      "sourceNo": "",
       "sourceParagraphStart": 116,
       "sourceParagraphEnd": 116,
       "rawText": "② 2018 年上半年部分行业领域建筑业较大事故多发，按排序依为房屋建筑工程领域、交通建设工程领域、市政工程领域和电力建设工程领域。（ × ）",
@@ -1499,11 +1476,11 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_002",
+      "caseId": "case_001",
       "materialText": ""
     },
     {
-      "id": "q_000038",
+      "id": "q_000037",
       "type": "case",
       "typeName": "案例分析题",
       "chapter": "一、综合知识和能力",
@@ -1541,11 +1518,11 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_002",
+      "caseId": "case_001",
       "materialText": ""
     },
     {
-      "id": "q_000039",
+      "id": "q_000038",
       "type": "case",
       "typeName": "案例分析题",
       "chapter": "一、综合知识和能力",
@@ -1583,11 +1560,11 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_002",
+      "caseId": "case_001",
       "materialText": ""
     },
     {
-      "id": "q_000040",
+      "id": "q_000039",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -1633,7 +1610,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000041",
+      "id": "q_000040",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -1675,7 +1652,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000042",
+      "id": "q_000041",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -1717,7 +1694,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000043",
+      "id": "q_000042",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -1759,7 +1736,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000044",
+      "id": "q_000043",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -1801,7 +1778,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000045",
+      "id": "q_000044",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -1843,7 +1820,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000046",
+      "id": "q_000045",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -1885,7 +1862,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000047",
+      "id": "q_000046",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -1927,7 +1904,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000048",
+      "id": "q_000047",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -1976,7 +1953,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000049",
+      "id": "q_000048",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -2023,7 +2000,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000050",
+      "id": "q_000049",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -2072,7 +2049,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000051",
+      "id": "q_000050",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -2121,7 +2098,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000052",
+      "id": "q_000051",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -2168,7 +2145,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000053",
+      "id": "q_000052",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -2216,7 +2193,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000054",
+      "id": "q_000053",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -2264,7 +2241,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000055",
+      "id": "q_000054",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -2313,7 +2290,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000056",
+      "id": "q_000055",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -2355,7 +2332,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000057",
+      "id": "q_000056",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -2405,7 +2382,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000058",
+      "id": "q_000057",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -2454,7 +2431,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000059",
+      "id": "q_000058",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -2502,7 +2479,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000060",
+      "id": "q_000059",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -2544,7 +2521,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000061",
+      "id": "q_000060",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -2597,7 +2574,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000062",
+      "id": "q_000061",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -2646,7 +2623,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000063",
+      "id": "q_000062",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -2694,7 +2671,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000064",
+      "id": "q_000063",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -2742,7 +2719,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000065",
+      "id": "q_000064",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -2790,7 +2767,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000066",
+      "id": "q_000065",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -2837,7 +2814,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000067",
+      "id": "q_000066",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -2885,7 +2862,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000068",
+      "id": "q_000067",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -2934,7 +2911,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000069",
+      "id": "q_000068",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -2983,7 +2960,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000070",
+      "id": "q_000069",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -3030,7 +3007,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000071",
+      "id": "q_000070",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -3078,7 +3055,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000072",
+      "id": "q_000071",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -3125,7 +3102,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000073",
+      "id": "q_000072",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -3174,7 +3151,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000074",
+      "id": "q_000073",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -3216,7 +3193,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000075",
+      "id": "q_000074",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -3258,7 +3235,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000076",
+      "id": "q_000075",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -3300,7 +3277,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000077",
+      "id": "q_000076",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -3342,7 +3319,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000080",
+      "id": "q_000079",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -3390,7 +3367,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000081",
+      "id": "q_000080",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -3432,7 +3409,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000082",
+      "id": "q_000081",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -3455,7 +3432,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000083",
+      "id": "q_000082",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -3503,7 +3480,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000084",
+      "id": "q_000083",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -3551,7 +3528,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000085",
+      "id": "q_000084",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -3600,7 +3577,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000086",
+      "id": "q_000085",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -3649,7 +3626,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000087",
+      "id": "q_000086",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -3697,7 +3674,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000088",
+      "id": "q_000087",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -3739,7 +3716,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000089",
+      "id": "q_000088",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -3781,7 +3758,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000090",
+      "id": "q_000089",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -3828,7 +3805,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000091",
+      "id": "q_000090",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -3877,7 +3854,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000092",
+      "id": "q_000091",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -3924,7 +3901,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000093",
+      "id": "q_000092",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -3971,7 +3948,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000094",
+      "id": "q_000093",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -4017,7 +3994,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000095",
+      "id": "q_000094",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -4065,7 +4042,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000096",
+      "id": "q_000095",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -4112,7 +4089,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000097",
+      "id": "q_000096",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -4160,7 +4137,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000098",
+      "id": "q_000097",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -4198,7 +4175,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000099",
+      "id": "q_000098",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -4240,7 +4217,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000101",
+      "id": "q_000100",
       "type": "case",
       "typeName": "案例分析题",
       "chapter": "二、法律体系及安全法律法规",
@@ -4259,11 +4236,11 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_003",
+      "caseId": "case_002",
       "materialText": ""
     },
     {
-      "id": "q_000102",
+      "id": "q_000101",
       "type": "case",
       "typeName": "案例分析题",
       "chapter": "二、法律体系及安全法律法规",
@@ -4282,11 +4259,11 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_003",
+      "caseId": "case_002",
       "materialText": ""
     },
     {
-      "id": "q_000103",
+      "id": "q_000102",
       "type": "case",
       "typeName": "案例分析题",
       "chapter": "二、法律体系及安全法律法规",
@@ -4324,11 +4301,11 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_003",
+      "caseId": "case_002",
       "materialText": ""
     },
     {
-      "id": "q_000104",
+      "id": "q_000103",
       "type": "case",
       "typeName": "案例分析题",
       "chapter": "二、法律体系及安全法律法规",
@@ -4366,11 +4343,11 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_003",
+      "caseId": "case_002",
       "materialText": ""
     },
     {
-      "id": "q_000105",
+      "id": "q_000104",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -4418,7 +4395,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000106",
+      "id": "q_000105",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -4465,7 +4442,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000107",
+      "id": "q_000106",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -4507,7 +4484,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000108",
+      "id": "q_000107",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -4556,7 +4533,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000109",
+      "id": "q_000108",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -4604,7 +4581,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000110",
+      "id": "q_000109",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -4651,7 +4628,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000111",
+      "id": "q_000110",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -4674,7 +4651,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000112",
+      "id": "q_000111",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -4716,7 +4693,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000113",
+      "id": "q_000112",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -4758,7 +4735,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000114",
+      "id": "q_000113",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -4806,7 +4783,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000115",
+      "id": "q_000114",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -4854,7 +4831,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000116",
+      "id": "q_000115",
       "type": "case",
       "typeName": "案例分析题",
       "chapter": "二、法律体系及安全法律法规",
@@ -4873,11 +4850,11 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_013",
+      "caseId": "case_012",
       "materialText": ""
     },
     {
-      "id": "q_000117",
+      "id": "q_000116",
       "type": "case",
       "typeName": "案例分析题",
       "chapter": "二、法律体系及安全法律法规",
@@ -4896,11 +4873,11 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_013",
+      "caseId": "case_012",
       "materialText": ""
     },
     {
-      "id": "q_000118",
+      "id": "q_000117",
       "type": "case",
       "typeName": "案例分析题",
       "chapter": "二、法律体系及安全法律法规",
@@ -4938,11 +4915,11 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_013",
+      "caseId": "case_012",
       "materialText": ""
     },
     {
-      "id": "q_000119",
+      "id": "q_000118",
       "type": "case",
       "typeName": "案例分析题",
       "chapter": "二、法律体系及安全法律法规",
@@ -4980,11 +4957,11 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_013",
+      "caseId": "case_012",
       "materialText": ""
     },
     {
-      "id": "q_000120",
+      "id": "q_000119",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -5033,7 +5010,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000121",
+      "id": "q_000120",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -5083,7 +5060,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000122",
+      "id": "q_000121",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -5132,7 +5109,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000123",
+      "id": "q_000122",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -5181,7 +5158,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000124",
+      "id": "q_000123",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -5229,7 +5206,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000125",
+      "id": "q_000124",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -5277,7 +5254,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000126",
+      "id": "q_000125",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -5328,7 +5305,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000127",
+      "id": "q_000126",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -5351,7 +5328,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000128",
+      "id": "q_000127",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -5400,7 +5377,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000129",
+      "id": "q_000128",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -5449,7 +5426,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000130",
+      "id": "q_000129",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -5498,7 +5475,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000131",
+      "id": "q_000130",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -5547,7 +5524,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000132",
+      "id": "q_000131",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -5570,7 +5547,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000133",
+      "id": "q_000132",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -5593,7 +5570,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000134",
+      "id": "q_000133",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -5635,7 +5612,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000135",
+      "id": "q_000134",
       "type": "case",
       "typeName": "案例分析题",
       "chapter": "二、法律体系及安全法律法规",
@@ -5654,11 +5631,11 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_014",
+      "caseId": "case_013",
       "materialText": ""
     },
     {
-      "id": "q_000136",
+      "id": "q_000135",
       "type": "case",
       "typeName": "案例分析题",
       "chapter": "二、法律体系及安全法律法规",
@@ -5696,11 +5673,11 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_014",
+      "caseId": "case_013",
       "materialText": ""
     },
     {
-      "id": "q_000137",
+      "id": "q_000136",
       "type": "case",
       "typeName": "案例分析题",
       "chapter": "二、法律体系及安全法律法规",
@@ -5719,11 +5696,11 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_014",
+      "caseId": "case_013",
       "materialText": ""
     },
     {
-      "id": "q_000138",
+      "id": "q_000137",
       "type": "case",
       "typeName": "案例分析题",
       "chapter": "二、法律体系及安全法律法规",
@@ -5742,11 +5719,11 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_014",
+      "caseId": "case_013",
       "materialText": ""
     },
     {
-      "id": "q_000139",
+      "id": "q_000138",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -5788,7 +5765,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000140",
+      "id": "q_000139",
       "type": "case",
       "typeName": "案例分析题",
       "chapter": "二、法律体系及安全法律法规",
@@ -5807,11 +5784,11 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_015",
+      "caseId": "case_014",
       "materialText": ""
     },
     {
-      "id": "q_000141",
+      "id": "q_000140",
       "type": "case",
       "typeName": "案例分析题",
       "chapter": "二、法律体系及安全法律法规",
@@ -5830,11 +5807,11 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_015",
+      "caseId": "case_014",
       "materialText": ""
     },
     {
-      "id": "q_000142",
+      "id": "q_000141",
       "type": "case",
       "typeName": "案例分析题",
       "chapter": "二、法律体系及安全法律法规",
@@ -5872,11 +5849,11 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_015",
+      "caseId": "case_014",
       "materialText": ""
     },
     {
-      "id": "q_000143",
+      "id": "q_000142",
       "type": "case",
       "typeName": "案例分析题",
       "chapter": "二、法律体系及安全法律法规",
@@ -5914,11 +5891,11 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_015",
+      "caseId": "case_014",
       "materialText": ""
     },
     {
-      "id": "q_000144",
+      "id": "q_000143",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -5968,7 +5945,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000145",
+      "id": "q_000144",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -6016,7 +5993,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000147",
+      "id": "q_000146",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -6064,7 +6041,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000148",
+      "id": "q_000147",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -6113,7 +6090,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000149",
+      "id": "q_000148",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -6162,7 +6139,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000150",
+      "id": "q_000149",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -6204,7 +6181,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000151",
+      "id": "q_000150",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -6251,7 +6228,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000152",
+      "id": "q_000151",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -6300,7 +6277,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000153",
+      "id": "q_000152",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -6349,7 +6326,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000154",
+      "id": "q_000153",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -6372,7 +6349,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000155",
+      "id": "q_000154",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -6395,7 +6372,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000156",
+      "id": "q_000155",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -6437,7 +6414,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000157",
+      "id": "q_000156",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -6460,7 +6437,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000158",
+      "id": "q_000157",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -6502,7 +6479,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000159",
+      "id": "q_000158",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -6551,7 +6528,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000160",
+      "id": "q_000159",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -6600,7 +6577,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000161",
+      "id": "q_000160",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -6652,7 +6629,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000162",
+      "id": "q_000161",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -6701,7 +6678,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000163",
+      "id": "q_000162",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -6743,7 +6720,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000164",
+      "id": "q_000163",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -6785,7 +6762,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000165",
+      "id": "q_000164",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -6827,7 +6804,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000166",
+      "id": "q_000165",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -6869,7 +6846,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000167",
+      "id": "q_000166",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -6892,7 +6869,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000168",
+      "id": "q_000167",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -6915,7 +6892,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000169",
+      "id": "q_000168",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -6961,7 +6938,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000170",
+      "id": "q_000169",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -7027,7 +7004,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000171",
+      "id": "q_000170",
       "type": "case",
       "typeName": "案例分析题",
       "chapter": "二、法律体系及安全法律法规",
@@ -7073,11 +7050,11 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_018",
+      "caseId": "case_016",
       "materialText": ""
     },
     {
-      "id": "q_000172",
+      "id": "q_000171",
       "type": "case",
       "typeName": "案例分析题",
       "chapter": "二、法律体系及安全法律法规",
@@ -7096,11 +7073,11 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_018",
+      "caseId": "case_016",
       "materialText": ""
     },
     {
-      "id": "q_000173",
+      "id": "q_000172",
       "type": "case",
       "typeName": "案例分析题",
       "chapter": "二、法律体系及安全法律法规",
@@ -7144,11 +7121,11 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_018",
+      "caseId": "case_016",
       "materialText": ""
     },
     {
-      "id": "q_000174",
+      "id": "q_000173",
       "type": "case",
       "typeName": "案例分析题",
       "chapter": "二、法律体系及安全法律法规",
@@ -7192,11 +7169,11 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_018",
+      "caseId": "case_016",
       "materialText": ""
     },
     {
-      "id": "q_000175",
+      "id": "q_000174",
       "type": "case",
       "typeName": "案例分析题",
       "chapter": "二、法律体系及安全法律法规",
@@ -7241,11 +7218,11 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_018",
+      "caseId": "case_016",
       "materialText": ""
     },
     {
-      "id": "q_000176",
+      "id": "q_000175",
       "type": "case",
       "typeName": "案例分析题",
       "chapter": "二、法律体系及安全法律法规",
@@ -7288,11 +7265,11 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_018",
+      "caseId": "case_016",
       "materialText": ""
     },
     {
-      "id": "q_000177",
+      "id": "q_000176",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -7334,7 +7311,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000178",
+      "id": "q_000177",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -7376,7 +7353,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000179",
+      "id": "q_000178",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -7399,7 +7376,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000180",
+      "id": "q_000179",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -7422,7 +7399,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000181",
+      "id": "q_000180",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -7471,7 +7448,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000182",
+      "id": "q_000181",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -7521,7 +7498,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000183",
+      "id": "q_000182",
       "type": "case",
       "typeName": "案例分析题",
       "chapter": "二、法律体系及安全法律法规",
@@ -7540,11 +7517,11 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_019",
+      "caseId": "case_017",
       "materialText": ""
     },
     {
-      "id": "q_000184",
+      "id": "q_000183",
       "type": "case",
       "typeName": "案例分析题",
       "chapter": "二、法律体系及安全法律法规",
@@ -7593,11 +7570,11 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_020",
+      "caseId": "case_018",
       "materialText": ""
     },
     {
-      "id": "q_000185",
+      "id": "q_000184",
       "type": "case",
       "typeName": "案例分析题",
       "chapter": "二、法律体系及安全法律法规",
@@ -7642,11 +7619,11 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_020",
+      "caseId": "case_018",
       "materialText": ""
     },
     {
-      "id": "q_000186",
+      "id": "q_000185",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -7696,7 +7673,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000187",
+      "id": "q_000186",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -7746,7 +7723,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000188",
+      "id": "q_000187",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -7796,7 +7773,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000189",
+      "id": "q_000188",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -7844,7 +7821,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000190",
+      "id": "q_000189",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -7894,7 +7871,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000191",
+      "id": "q_000190",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -7936,7 +7913,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000192",
+      "id": "q_000191",
       "type": "case",
       "typeName": "案例分析题",
       "chapter": "二、法律体系及安全法律法规",
@@ -7981,11 +7958,11 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_021",
+      "caseId": "case_018",
       "materialText": ""
     },
     {
-      "id": "q_000193",
+      "id": "q_000192",
       "type": "case",
       "typeName": "案例分析题",
       "chapter": "二、法律体系及安全法律法规",
@@ -8030,11 +8007,11 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_021",
+      "caseId": "case_018",
       "materialText": ""
     },
     {
-      "id": "q_000194",
+      "id": "q_000193",
       "type": "case",
       "typeName": "案例分析题",
       "chapter": "二、法律体系及安全法律法规",
@@ -8078,11 +8055,11 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_021",
+      "caseId": "case_018",
       "materialText": ""
     },
     {
-      "id": "q_000195",
+      "id": "q_000194",
       "type": "case",
       "typeName": "案例分析题",
       "chapter": "二、法律体系及安全法律法规",
@@ -8101,11 +8078,11 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_021",
+      "caseId": "case_018",
       "materialText": ""
     },
     {
-      "id": "q_000196",
+      "id": "q_000195",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -8154,7 +8131,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000197",
+      "id": "q_000196",
       "type": "case",
       "typeName": "案例分析题",
       "chapter": "二、法律体系及安全法律法规",
@@ -8198,11 +8175,11 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_022",
+      "caseId": "case_019",
       "materialText": ""
     },
     {
-      "id": "q_000198",
+      "id": "q_000197",
       "type": "case",
       "typeName": "案例分析题",
       "chapter": "二、法律体系及安全法律法规",
@@ -8247,11 +8224,11 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_022",
+      "caseId": "case_019",
       "materialText": ""
     },
     {
-      "id": "q_000199",
+      "id": "q_000198",
       "type": "case",
       "typeName": "案例分析题",
       "chapter": "二、法律体系及安全法律法规",
@@ -8296,11 +8273,11 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_022",
+      "caseId": "case_019",
       "materialText": ""
     },
     {
-      "id": "q_000200",
+      "id": "q_000199",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -8349,7 +8326,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000201",
+      "id": "q_000200",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -8398,7 +8375,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000202",
+      "id": "q_000201",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -8446,7 +8423,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000203",
+      "id": "q_000202",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -8496,7 +8473,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000204",
+      "id": "q_000203",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -8546,7 +8523,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000205",
+      "id": "q_000204",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -8595,7 +8572,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000206",
+      "id": "q_000205",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -8643,7 +8620,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000207",
+      "id": "q_000206",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -8666,7 +8643,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000208",
+      "id": "q_000207",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -8714,7 +8691,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000209",
+      "id": "q_000208",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -8764,7 +8741,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000210",
+      "id": "q_000209",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -8812,7 +8789,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000211",
+      "id": "q_000210",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -8861,7 +8838,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000212",
+      "id": "q_000211",
       "type": "case",
       "typeName": "案例分析题",
       "chapter": "二、法律体系及安全法律法规",
@@ -8905,11 +8882,11 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_025",
+      "caseId": "case_022",
       "materialText": ""
     },
     {
-      "id": "q_000213",
+      "id": "q_000212",
       "type": "case",
       "typeName": "案例分析题",
       "chapter": "二、法律体系及安全法律法规",
@@ -8955,11 +8932,11 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_025",
+      "caseId": "case_022",
       "materialText": ""
     },
     {
-      "id": "q_000214",
+      "id": "q_000213",
       "type": "case",
       "typeName": "案例分析题",
       "chapter": "二、法律体系及安全法律法规",
@@ -9004,11 +8981,11 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_025",
+      "caseId": "case_022",
       "materialText": ""
     },
     {
-      "id": "q_000215",
+      "id": "q_000214",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -9057,7 +9034,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000216",
+      "id": "q_000215",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -9106,7 +9083,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000217",
+      "id": "q_000216",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -9155,7 +9132,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000218",
+      "id": "q_000217",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -9203,7 +9180,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000219",
+      "id": "q_000218",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -9253,7 +9230,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000220",
+      "id": "q_000219",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -9302,7 +9279,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000221",
+      "id": "q_000220",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -9354,7 +9331,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000222",
+      "id": "q_000221",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -9404,7 +9381,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000223",
+      "id": "q_000222",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -9453,7 +9430,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000224",
+      "id": "q_000223",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -9501,7 +9478,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000225",
+      "id": "q_000224",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -9549,7 +9526,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000226",
+      "id": "q_000225",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -9597,7 +9574,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000227",
+      "id": "q_000226",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -9645,7 +9622,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000228",
+      "id": "q_000227",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -9694,7 +9671,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000229",
+      "id": "q_000228",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -9741,7 +9718,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000230",
+      "id": "q_000229",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -9791,7 +9768,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000231",
+      "id": "q_000230",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -9840,7 +9817,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000232",
+      "id": "q_000231",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -9888,7 +9865,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000233",
+      "id": "q_000232",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -9935,7 +9912,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000234",
+      "id": "q_000233",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -9984,7 +9961,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000235",
+      "id": "q_000234",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -10033,7 +10010,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000236",
+      "id": "q_000235",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -10075,7 +10052,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000237",
+      "id": "q_000236",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -10124,7 +10101,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000239",
+      "id": "q_000238",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -10172,7 +10149,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000240",
+      "id": "q_000239",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -10221,7 +10198,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000241",
+      "id": "q_000240",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -10244,7 +10221,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000242",
+      "id": "q_000241",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -10267,7 +10244,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000243",
+      "id": "q_000242",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -10309,7 +10286,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000244",
+      "id": "q_000243",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -10351,7 +10328,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000245",
+      "id": "q_000244",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -10393,7 +10370,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000246",
+      "id": "q_000245",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -10435,7 +10412,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000247",
+      "id": "q_000246",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -10477,7 +10454,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000248",
+      "id": "q_000247",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -10519,7 +10496,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000249",
+      "id": "q_000248",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -10561,7 +10538,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000250",
+      "id": "q_000249",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -10603,7 +10580,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000251",
+      "id": "q_000250",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -10626,7 +10603,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000252",
+      "id": "q_000251",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -10649,7 +10626,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000253",
+      "id": "q_000252",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -10672,7 +10649,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000254",
+      "id": "q_000253",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -10695,7 +10672,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000255",
+      "id": "q_000254",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -10751,7 +10728,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000256",
+      "id": "q_000255",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -10799,7 +10776,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000257",
+      "id": "q_000256",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -10849,7 +10826,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000258",
+      "id": "q_000257",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -10899,7 +10876,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000259",
+      "id": "q_000258",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -10949,7 +10926,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000260",
+      "id": "q_000259",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -10999,7 +10976,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000261",
+      "id": "q_000260",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -11049,7 +11026,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000262",
+      "id": "q_000261",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -11098,7 +11075,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000263",
+      "id": "q_000262",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -11147,7 +11124,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000264",
+      "id": "q_000263",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -11201,7 +11178,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000265",
+      "id": "q_000264",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -11251,7 +11228,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000266",
+      "id": "q_000265",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -11299,7 +11276,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000267",
+      "id": "q_000266",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -11349,7 +11326,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000268",
+      "id": "q_000267",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -11397,7 +11374,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000269",
+      "id": "q_000268",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -11446,7 +11423,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000270",
+      "id": "q_000269",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -11495,7 +11472,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000271",
+      "id": "q_000270",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -11545,7 +11522,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000272",
+      "id": "q_000271",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -11595,7 +11572,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000273",
+      "id": "q_000272",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -11644,7 +11621,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000274",
+      "id": "q_000273",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -11693,7 +11670,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000275",
+      "id": "q_000274",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -11743,7 +11720,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000276",
+      "id": "q_000275",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -11792,7 +11769,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000277",
+      "id": "q_000276",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -11840,7 +11817,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000278",
+      "id": "q_000277",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -11888,7 +11865,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000279",
+      "id": "q_000278",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -11935,7 +11912,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000280",
+      "id": "q_000279",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -11984,7 +11961,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000281",
+      "id": "q_000280",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -12034,7 +12011,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000283",
+      "id": "q_000282",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -12087,7 +12064,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000284",
+      "id": "q_000283",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -12136,7 +12113,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000285",
+      "id": "q_000284",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -12185,7 +12162,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000286",
+      "id": "q_000285",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -12240,7 +12217,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000287",
+      "id": "q_000286",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -12289,7 +12266,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000288",
+      "id": "q_000287",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -12337,7 +12314,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000289",
+      "id": "q_000288",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -12385,7 +12362,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000290",
+      "id": "q_000289",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -12439,7 +12416,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000291",
+      "id": "q_000290",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -12487,7 +12464,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000292",
+      "id": "q_000291",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -12536,7 +12513,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000293",
+      "id": "q_000292",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -12584,7 +12561,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000294",
+      "id": "q_000293",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -12630,7 +12607,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000295",
+      "id": "q_000294",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -12680,7 +12657,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000296",
+      "id": "q_000295",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -12722,7 +12699,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000297",
+      "id": "q_000296",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -12764,7 +12741,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000298",
+      "id": "q_000297",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -12806,7 +12783,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000299",
+      "id": "q_000298",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -12848,7 +12825,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000300",
+      "id": "q_000299",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -12890,7 +12867,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000301",
+      "id": "q_000300",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -12932,7 +12909,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000302",
+      "id": "q_000301",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -12974,7 +12951,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000303",
+      "id": "q_000302",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -13016,7 +12993,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000304",
+      "id": "q_000303",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -13058,7 +13035,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000305",
+      "id": "q_000304",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -13096,7 +13073,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000306",
+      "id": "q_000305",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -13138,7 +13115,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000307",
+      "id": "q_000306",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -13180,7 +13157,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000308",
+      "id": "q_000307",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -13222,7 +13199,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000309",
+      "id": "q_000308",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -13245,7 +13222,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000310",
+      "id": "q_000309",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -13268,7 +13245,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000311",
+      "id": "q_000310",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -13291,7 +13268,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000312",
+      "id": "q_000311",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -13314,7 +13291,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000313",
+      "id": "q_000312",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -13337,7 +13314,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000314",
+      "id": "q_000313",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -13360,7 +13337,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000315",
+      "id": "q_000314",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -13383,7 +13360,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000316",
+      "id": "q_000315",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -13406,7 +13383,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000317",
+      "id": "q_000316",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -13429,7 +13406,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000318",
+      "id": "q_000317",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -13452,7 +13429,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000319",
+      "id": "q_000318",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -13475,7 +13452,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000320",
+      "id": "q_000319",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -13498,7 +13475,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000321",
+      "id": "q_000320",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -13521,7 +13498,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000322",
+      "id": "q_000321",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -13544,7 +13521,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000323",
+      "id": "q_000322",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -13567,7 +13544,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000324",
+      "id": "q_000323",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -13590,7 +13567,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000325",
+      "id": "q_000324",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -13613,7 +13590,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000326",
+      "id": "q_000325",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -13669,7 +13646,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000327",
+      "id": "q_000326",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -13717,7 +13694,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000328",
+      "id": "q_000327",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -13765,7 +13742,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000329",
+      "id": "q_000328",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -13813,7 +13790,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000330",
+      "id": "q_000329",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -13865,7 +13842,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000331",
+      "id": "q_000330",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -13912,7 +13889,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000332",
+      "id": "q_000331",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -13964,7 +13941,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000333",
+      "id": "q_000332",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -14012,7 +13989,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000334",
+      "id": "q_000333",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -14061,7 +14038,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000335",
+      "id": "q_000334",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -14109,7 +14086,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000336",
+      "id": "q_000335",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -14162,7 +14139,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000337",
+      "id": "q_000336",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -14215,7 +14192,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000338",
+      "id": "q_000337",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -14265,7 +14242,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000339",
+      "id": "q_000338",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -14313,7 +14290,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000340",
+      "id": "q_000339",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -14365,7 +14342,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000341",
+      "id": "q_000340",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -14414,7 +14391,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000342",
+      "id": "q_000341",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -14463,7 +14440,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000344",
+      "id": "q_000343",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -14512,7 +14489,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000345",
+      "id": "q_000344",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -14560,7 +14537,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000346",
+      "id": "q_000345",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -14609,7 +14586,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000347",
+      "id": "q_000346",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -14656,7 +14633,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000348",
+      "id": "q_000347",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -14704,7 +14681,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000349",
+      "id": "q_000348",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -14753,7 +14730,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000350",
+      "id": "q_000349",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -14802,7 +14779,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000351",
+      "id": "q_000350",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -14853,7 +14830,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000352",
+      "id": "q_000351",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -14902,7 +14879,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000354",
+      "id": "q_000353",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -14949,7 +14926,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000355",
+      "id": "q_000354",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -15005,7 +14982,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000356",
+      "id": "q_000355",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -15053,7 +15030,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000357",
+      "id": "q_000356",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -15101,7 +15078,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000359",
+      "id": "q_000358",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -15149,7 +15126,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000361",
+      "id": "q_000360",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -15193,7 +15170,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000362",
+      "id": "q_000361",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -15240,7 +15217,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000363",
+      "id": "q_000362",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -15289,7 +15266,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000364",
+      "id": "q_000363",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -15340,7 +15317,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000365",
+      "id": "q_000364",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -15388,7 +15365,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000366",
+      "id": "q_000365",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -15436,7 +15413,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000369",
+      "id": "q_000368",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -15485,7 +15462,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000370",
+      "id": "q_000369",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -15534,7 +15511,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000371",
+      "id": "q_000370",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -15576,7 +15553,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000372",
+      "id": "q_000371",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -15618,7 +15595,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000373",
+      "id": "q_000372",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -15660,7 +15637,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000374",
+      "id": "q_000373",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -15702,7 +15679,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000375",
+      "id": "q_000374",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -15744,7 +15721,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000376",
+      "id": "q_000375",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -15786,7 +15763,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000377",
+      "id": "q_000376",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -15828,7 +15805,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000378",
+      "id": "q_000377",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -15870,7 +15847,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000379",
+      "id": "q_000378",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -15912,7 +15889,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000380",
+      "id": "q_000379",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -15954,7 +15931,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000381",
+      "id": "q_000380",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -15996,7 +15973,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000382",
+      "id": "q_000381",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -16038,7 +16015,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000383",
+      "id": "q_000382",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -16080,7 +16057,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000384",
+      "id": "q_000383",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -16126,7 +16103,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000385",
+      "id": "q_000384",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -16168,7 +16145,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000386",
+      "id": "q_000385",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -16214,7 +16191,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000387",
+      "id": "q_000386",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -16264,7 +16241,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000388",
+      "id": "q_000387",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -16306,7 +16283,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000389",
+      "id": "q_000388",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -16348,7 +16325,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000390",
+      "id": "q_000389",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -16394,7 +16371,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000391",
+      "id": "q_000390",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -16436,7 +16413,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000392",
+      "id": "q_000391",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -16478,7 +16455,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000393",
+      "id": "q_000392",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -16520,7 +16497,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000394",
+      "id": "q_000393",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -16562,7 +16539,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000395",
+      "id": "q_000394",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -16585,7 +16562,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000396",
+      "id": "q_000395",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -16608,7 +16585,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000397",
+      "id": "q_000396",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -16631,7 +16608,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000398",
+      "id": "q_000397",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -16654,7 +16631,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000399",
+      "id": "q_000398",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -16677,7 +16654,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000400",
+      "id": "q_000399",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -16700,7 +16677,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000401",
+      "id": "q_000400",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -16723,7 +16700,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000402",
+      "id": "q_000401",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -16746,7 +16723,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000403",
+      "id": "q_000402",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -16769,7 +16746,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000404",
+      "id": "q_000403",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -16792,7 +16769,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000405",
+      "id": "q_000404",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -16815,7 +16792,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000406",
+      "id": "q_000405",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -16838,7 +16815,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000407",
+      "id": "q_000406",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -16861,7 +16838,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000408",
+      "id": "q_000407",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -16884,7 +16861,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000409",
+      "id": "q_000408",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -16907,7 +16884,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000410",
+      "id": "q_000409",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -16930,7 +16907,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000411",
+      "id": "q_000410",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -16953,7 +16930,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000412",
+      "id": "q_000411",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -17023,7 +17000,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000413",
+      "id": "q_000412",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -17076,7 +17053,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000414",
+      "id": "q_000413",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -17125,7 +17102,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000415",
+      "id": "q_000414",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -17174,7 +17151,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000416",
+      "id": "q_000415",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -17230,7 +17207,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000417",
+      "id": "q_000416",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -17277,7 +17254,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000418",
+      "id": "q_000417",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -17325,7 +17302,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000419",
+      "id": "q_000418",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -17373,7 +17350,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000420",
+      "id": "q_000419",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -17421,7 +17398,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000421",
+      "id": "q_000420",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -17472,7 +17449,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000422",
+      "id": "q_000421",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -17521,7 +17498,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000423",
+      "id": "q_000422",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -17569,7 +17546,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000424",
+      "id": "q_000423",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -17616,7 +17593,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000425",
+      "id": "q_000424",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -17665,7 +17642,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000426",
+      "id": "q_000425",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -17712,7 +17689,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000427",
+      "id": "q_000426",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -17761,7 +17738,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000428",
+      "id": "q_000427",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -17811,7 +17788,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000429",
+      "id": "q_000428",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -17859,7 +17836,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000430",
+      "id": "q_000429",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -17907,7 +17884,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000431",
+      "id": "q_000430",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -17959,7 +17936,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000432",
+      "id": "q_000431",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -18001,7 +17978,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000433",
+      "id": "q_000432",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -18043,7 +18020,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000434",
+      "id": "q_000433",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -18089,7 +18066,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000435",
+      "id": "q_000434",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -18131,7 +18108,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000436",
+      "id": "q_000435",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -18173,7 +18150,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000437",
+      "id": "q_000436",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -18215,7 +18192,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000438",
+      "id": "q_000437",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -18257,7 +18234,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000439",
+      "id": "q_000438",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -18299,7 +18276,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000440",
+      "id": "q_000439",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -18341,7 +18318,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000441",
+      "id": "q_000440",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -18383,7 +18360,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000442",
+      "id": "q_000441",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -18425,7 +18402,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000443",
+      "id": "q_000442",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -18467,7 +18444,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000444",
+      "id": "q_000443",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -18509,7 +18486,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000445",
+      "id": "q_000444",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -18551,7 +18528,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000446",
+      "id": "q_000445",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -18574,7 +18551,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000447",
+      "id": "q_000446",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -18597,7 +18574,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000448",
+      "id": "q_000447",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -18620,7 +18597,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000449",
+      "id": "q_000448",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -18643,7 +18620,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000450",
+      "id": "q_000449",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -18666,7 +18643,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000451",
+      "id": "q_000450",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -18689,7 +18666,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000452",
+      "id": "q_000451",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -18712,7 +18689,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000453",
+      "id": "q_000452",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -18735,7 +18712,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000454",
+      "id": "q_000453",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -18784,7 +18761,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000455",
+      "id": "q_000454",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -18833,7 +18810,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000456",
+      "id": "q_000455",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -18888,7 +18865,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000457",
+      "id": "q_000456",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -18937,7 +18914,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000458",
+      "id": "q_000457",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -18986,7 +18963,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000459",
+      "id": "q_000458",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -19035,7 +19012,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000460",
+      "id": "q_000459",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -19082,7 +19059,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000461",
+      "id": "q_000460",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -19131,7 +19108,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000462",
+      "id": "q_000461",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -19180,7 +19157,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000463",
+      "id": "q_000462",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -19233,7 +19210,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000464",
+      "id": "q_000463",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -19283,7 +19260,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000465",
+      "id": "q_000464",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -19332,7 +19309,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000466",
+      "id": "q_000465",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -19385,7 +19362,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000467",
+      "id": "q_000466",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -19434,7 +19411,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000468",
+      "id": "q_000467",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -19484,7 +19461,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000469",
+      "id": "q_000468",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -19532,7 +19509,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000470",
+      "id": "q_000469",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -19581,7 +19558,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000471",
+      "id": "q_000470",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -19623,7 +19600,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000472",
+      "id": "q_000471",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -19665,7 +19642,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000473",
+      "id": "q_000472",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -19707,7 +19684,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000474",
+      "id": "q_000473",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -19753,7 +19730,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000475",
+      "id": "q_000474",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -19795,7 +19772,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000476",
+      "id": "q_000475",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -19837,7 +19814,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000478",
+      "id": "q_000477",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -19879,7 +19856,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000479",
+      "id": "q_000478",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -19921,7 +19898,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000480",
+      "id": "q_000479",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -19963,7 +19940,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000481",
+      "id": "q_000480",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -20009,7 +19986,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000482",
+      "id": "q_000481",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -20051,7 +20028,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000483",
+      "id": "q_000482",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -20093,7 +20070,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000484",
+      "id": "q_000483",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -20139,7 +20116,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000485",
+      "id": "q_000484",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -20181,7 +20158,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000486",
+      "id": "q_000485",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -20223,7 +20200,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000487",
+      "id": "q_000486",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -20265,7 +20242,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000488",
+      "id": "q_000487",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -20307,7 +20284,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000489",
+      "id": "q_000488",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -20349,7 +20326,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000490",
+      "id": "q_000489",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -20372,7 +20349,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000491",
+      "id": "q_000490",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -20395,7 +20372,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000492",
+      "id": "q_000491",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -20418,7 +20395,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000493",
+      "id": "q_000492",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -20441,7 +20418,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000494",
+      "id": "q_000493",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -20464,7 +20441,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000495",
+      "id": "q_000494",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -20487,7 +20464,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000496",
+      "id": "q_000495",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -20510,7 +20487,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000497",
+      "id": "q_000496",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -20533,7 +20510,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000498",
+      "id": "q_000497",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -20556,7 +20533,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000499",
+      "id": "q_000498",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -20579,7 +20556,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000500",
+      "id": "q_000499",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -20602,7 +20579,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000501",
+      "id": "q_000500",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -20625,7 +20602,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000502",
+      "id": "q_000501",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -20648,7 +20625,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000503",
+      "id": "q_000502",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -20671,7 +20648,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000504",
+      "id": "q_000503",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -20694,7 +20671,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000505",
+      "id": "q_000504",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -20717,7 +20694,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000506",
+      "id": "q_000505",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -20791,7 +20768,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000507",
+      "id": "q_000506",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -20847,7 +20824,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000508",
+      "id": "q_000507",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -20905,7 +20882,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000509",
+      "id": "q_000508",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -20961,7 +20938,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000510",
+      "id": "q_000509",
       "type": "case",
       "typeName": "案例分析题",
       "chapter": "二、法律体系及安全法律法规",
@@ -20999,11 +20976,11 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_030",
+      "caseId": "case_025",
       "materialText": ""
     },
     {
-      "id": "q_000511",
+      "id": "q_000510",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -21053,7 +21030,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000512",
+      "id": "q_000511",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -21103,7 +21080,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000513",
+      "id": "q_000512",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -21153,7 +21130,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000514",
+      "id": "q_000513",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -21202,7 +21179,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000515",
+      "id": "q_000514",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -21252,7 +21229,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000516",
+      "id": "q_000515",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -21306,7 +21283,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000517",
+      "id": "q_000516",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -21354,7 +21331,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000518",
+      "id": "q_000517",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -21401,7 +21378,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000519",
+      "id": "q_000518",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -21459,7 +21436,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000520",
+      "id": "q_000519",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -21512,7 +21489,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000521",
+      "id": "q_000520",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -21565,7 +21542,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000522",
+      "id": "q_000521",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -21612,7 +21589,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000523",
+      "id": "q_000522",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -21661,7 +21638,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000524",
+      "id": "q_000523",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -21709,7 +21686,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000525",
+      "id": "q_000524",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -21762,7 +21739,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000526",
+      "id": "q_000525",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -21809,7 +21786,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000527",
+      "id": "q_000526",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -21858,7 +21835,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000528",
+      "id": "q_000527",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -21908,7 +21885,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000529",
+      "id": "q_000528",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -21961,7 +21938,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000530",
+      "id": "q_000529",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -22010,7 +21987,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000531",
+      "id": "q_000530",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -22059,7 +22036,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000532",
+      "id": "q_000531",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -22108,7 +22085,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000533",
+      "id": "q_000532",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -22156,7 +22133,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000534",
+      "id": "q_000533",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -22204,7 +22181,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000535",
+      "id": "q_000534",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -22253,7 +22230,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000536",
+      "id": "q_000535",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -22306,7 +22283,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000537",
+      "id": "q_000536",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -22356,7 +22333,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000538",
+      "id": "q_000537",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -22406,7 +22383,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000539",
+      "id": "q_000538",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -22456,7 +22433,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000540",
+      "id": "q_000539",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -22513,7 +22490,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000541",
+      "id": "q_000540",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -22563,7 +22540,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000542",
+      "id": "q_000541",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -22613,7 +22590,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000543",
+      "id": "q_000542",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -22663,7 +22640,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000544",
+      "id": "q_000543",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -22713,7 +22690,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000545",
+      "id": "q_000544",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -22760,7 +22737,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000546",
+      "id": "q_000545",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -22802,7 +22779,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000547",
+      "id": "q_000546",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -22844,7 +22821,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000548",
+      "id": "q_000547",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -22886,7 +22863,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000549",
+      "id": "q_000548",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -22928,7 +22905,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000550",
+      "id": "q_000549",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -22974,7 +22951,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000551",
+      "id": "q_000550",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -23016,7 +22993,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000552",
+      "id": "q_000551",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -23058,7 +23035,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000553",
+      "id": "q_000552",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -23104,7 +23081,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000554",
+      "id": "q_000553",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -23146,7 +23123,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000555",
+      "id": "q_000554",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -23188,7 +23165,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000556",
+      "id": "q_000555",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -23230,7 +23207,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000557",
+      "id": "q_000556",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -23272,7 +23249,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000558",
+      "id": "q_000557",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -23314,7 +23291,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000559",
+      "id": "q_000558",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -23356,7 +23333,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000560",
+      "id": "q_000559",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -23398,7 +23375,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000561",
+      "id": "q_000560",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -23440,7 +23417,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000563",
+      "id": "q_000562",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -23482,7 +23459,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000564",
+      "id": "q_000563",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -23524,7 +23501,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000565",
+      "id": "q_000564",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -23566,7 +23543,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000566",
+      "id": "q_000565",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -23608,7 +23585,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000567",
+      "id": "q_000566",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -23650,7 +23627,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000568",
+      "id": "q_000567",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -23692,7 +23669,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000569",
+      "id": "q_000568",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -23734,7 +23711,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000570",
+      "id": "q_000569",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -23776,7 +23753,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000571",
+      "id": "q_000570",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -23818,7 +23795,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000572",
+      "id": "q_000571",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -23860,7 +23837,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000573",
+      "id": "q_000572",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -23902,7 +23879,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000574",
+      "id": "q_000573",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -23944,7 +23921,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000575",
+      "id": "q_000574",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -23967,7 +23944,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000576",
+      "id": "q_000575",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -23990,7 +23967,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000577",
+      "id": "q_000576",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -24013,7 +23990,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000578",
+      "id": "q_000577",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -24036,7 +24013,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000579",
+      "id": "q_000578",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -24059,7 +24036,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000580",
+      "id": "q_000579",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -24082,7 +24059,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000581",
+      "id": "q_000580",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -24105,7 +24082,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000582",
+      "id": "q_000581",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -24128,7 +24105,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000583",
+      "id": "q_000582",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -24151,7 +24128,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000584",
+      "id": "q_000583",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -24174,7 +24151,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000585",
+      "id": "q_000584",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -24197,7 +24174,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000586",
+      "id": "q_000585",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -24220,7 +24197,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000587",
+      "id": "q_000586",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -24243,7 +24220,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000588",
+      "id": "q_000587",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -24266,7 +24243,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000589",
+      "id": "q_000588",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -24289,7 +24266,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000590",
+      "id": "q_000589",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -24312,7 +24289,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000591",
+      "id": "q_000590",
       "type": "case",
       "typeName": "案例分析题",
       "chapter": "二、法律体系及安全法律法规",
@@ -24352,11 +24329,11 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_031",
+      "caseId": "case_026",
       "materialText": ""
     },
     {
-      "id": "q_000592",
+      "id": "q_000591",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -24408,7 +24385,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000593",
+      "id": "q_000592",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -24457,7 +24434,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000594",
+      "id": "q_000593",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -24505,7 +24482,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000595",
+      "id": "q_000594",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -24547,7 +24524,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000596",
+      "id": "q_000595",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -24589,7 +24566,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000597",
+      "id": "q_000596",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -24631,7 +24608,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000598",
+      "id": "q_000597",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -24673,7 +24650,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000599",
+      "id": "q_000598",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -24696,7 +24673,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000600",
+      "id": "q_000599",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -24719,7 +24696,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000601",
+      "id": "q_000600",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -24742,7 +24719,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000602",
+      "id": "q_000601",
       "type": "case",
       "typeName": "案例分析题",
       "chapter": "二、法律体系及安全法律法规",
@@ -24780,11 +24757,11 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_031",
+      "caseId": "case_026",
       "materialText": ""
     },
     {
-      "id": "q_000603",
+      "id": "q_000602",
       "type": "case",
       "typeName": "案例分析题",
       "chapter": "二、法律体系及安全法律法规",
@@ -24822,11 +24799,11 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_031",
+      "caseId": "case_026",
       "materialText": ""
     },
     {
-      "id": "q_000604",
+      "id": "q_000603",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -24876,7 +24853,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000605",
+      "id": "q_000604",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -24926,7 +24903,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000606",
+      "id": "q_000605",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -24976,7 +24953,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000607",
+      "id": "q_000606",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -25024,7 +25001,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000608",
+      "id": "q_000607",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -25074,7 +25051,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000609",
+      "id": "q_000608",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -25124,7 +25101,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000610",
+      "id": "q_000609",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -25166,7 +25143,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000611",
+      "id": "q_000610",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -25208,7 +25185,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000612",
+      "id": "q_000611",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -25231,7 +25208,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000613",
+      "id": "q_000612",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -25254,7 +25231,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000614",
+      "id": "q_000613",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -25277,7 +25254,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000615",
+      "id": "q_000614",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -25300,7 +25277,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000616",
+      "id": "q_000615",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -25323,7 +25300,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000617",
+      "id": "q_000616",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -25346,7 +25323,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000618",
+      "id": "q_000617",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -25369,7 +25346,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000620",
+      "id": "q_000619",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -25417,7 +25394,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000622",
+      "id": "q_000621",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -25467,7 +25444,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000635",
+      "id": "q_000634",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -25533,7 +25510,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000637",
+      "id": "q_000636",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -25586,7 +25563,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000642",
+      "id": "q_000641",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -25637,7 +25614,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000644",
+      "id": "q_000643",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -25691,7 +25668,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000645",
+      "id": "q_000644",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -25744,7 +25721,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000646",
+      "id": "q_000645",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -25797,7 +25774,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000647",
+      "id": "q_000646",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -25850,7 +25827,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000648",
+      "id": "q_000647",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -25903,7 +25880,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000649",
+      "id": "q_000648",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -25954,7 +25931,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000650",
+      "id": "q_000649",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -26007,7 +25984,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000651",
+      "id": "q_000650",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -26059,7 +26036,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000652",
+      "id": "q_000651",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -26111,7 +26088,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000653",
+      "id": "q_000652",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -26165,7 +26142,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000654",
+      "id": "q_000653",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -26217,7 +26194,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000659",
+      "id": "q_000658",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -26259,7 +26236,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000661",
+      "id": "q_000660",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -26301,7 +26278,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000666",
+      "id": "q_000665",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -26324,7 +26301,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000667",
+      "id": "q_000666",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -26347,7 +26324,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000668",
+      "id": "q_000667",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -26370,7 +26347,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000671",
+      "id": "q_000670",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -26393,7 +26370,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000676",
+      "id": "q_000675",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -26416,7 +26393,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000677",
+      "id": "q_000676",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -26439,7 +26416,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000679",
+      "id": "q_000678",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -26462,7 +26439,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000680",
+      "id": "q_000679",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -26485,7 +26462,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000686",
+      "id": "q_000685",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
@@ -26508,7 +26485,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000688",
+      "id": "q_000687",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "（四）案例分析题",
@@ -26542,7 +26519,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000689",
+      "id": "q_000688",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "（四）案例分析题",
@@ -26576,7 +26553,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000690",
+      "id": "q_000689",
       "type": "single",
       "typeName": "单选题",
       "chapter": "（四）案例分析题",
@@ -26618,7 +26595,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000691",
+      "id": "q_000690",
       "type": "single",
       "typeName": "单选题",
       "chapter": "（四）案例分析题",
@@ -26660,7 +26637,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000694",
+      "id": "q_000693",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "（四）案例分析题",
@@ -26708,7 +26685,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000697",
+      "id": "q_000696",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "（四）案例分析题",
@@ -26756,7 +26733,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000702",
+      "id": "q_000701",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "（四）案例分析题",
@@ -26809,7 +26786,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000707",
+      "id": "q_000706",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "（四）案例分析题",
@@ -26862,7 +26839,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000709",
+      "id": "q_000708",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "（四）案例分析题",
@@ -26915,7 +26892,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000716",
+      "id": "q_000715",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "（四）案例分析题",
@@ -26966,7 +26943,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000719",
+      "id": "q_000718",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "（四）案例分析题",
@@ -27017,7 +26994,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000726",
+      "id": "q_000725",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "（四）案例分析题",
@@ -27069,7 +27046,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000734",
+      "id": "q_000733",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "（四）案例分析题",
@@ -27122,7 +27099,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000735",
+      "id": "q_000734",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "（四）案例分析题",
@@ -27171,7 +27148,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000738",
+      "id": "q_000737",
       "type": "single",
       "typeName": "单选题",
       "chapter": "（四）案例分析题",
@@ -27213,7 +27190,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000748",
+      "id": "q_000747",
       "type": "single",
       "typeName": "单选题",
       "chapter": "（四）案例分析题",
@@ -27259,7 +27236,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000751",
+      "id": "q_000750",
       "type": "single",
       "typeName": "单选题",
       "chapter": "（四）案例分析题",
@@ -27305,7 +27282,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000756",
+      "id": "q_000755",
       "type": "single",
       "typeName": "单选题",
       "chapter": "（四）案例分析题",
@@ -27351,7 +27328,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000767",
+      "id": "q_000766",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "（四）案例分析题",
@@ -27374,7 +27351,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000769",
+      "id": "q_000768",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "（四）案例分析题",
@@ -27397,7 +27374,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000770",
+      "id": "q_000769",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "（四）案例分析题",
@@ -27420,7 +27397,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000771",
+      "id": "q_000770",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "（四）案例分析题",
@@ -27443,7 +27420,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000772",
+      "id": "q_000771",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "（四）案例分析题",
@@ -27466,7 +27443,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000773",
+      "id": "q_000772",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "（四）案例分析题",
@@ -27489,7 +27466,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000774",
+      "id": "q_000773",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "（四）案例分析题",
@@ -27512,7 +27489,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000775",
+      "id": "q_000774",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "（四）案例分析题",
@@ -27535,7 +27512,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000776",
+      "id": "q_000775",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "（四）案例分析题",
@@ -27558,7 +27535,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000777",
+      "id": "q_000776",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "（四）案例分析题",
@@ -27581,7 +27558,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000778",
+      "id": "q_000777",
       "type": "case",
       "typeName": "案例分析题",
       "chapter": "（四）案例分析题",
@@ -27619,11 +27596,11 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_034",
+      "caseId": "case_029",
       "materialText": ""
     },
     {
-      "id": "q_000779",
+      "id": "q_000778",
       "type": "case",
       "typeName": "案例分析题",
       "chapter": "（四）案例分析题",
@@ -27653,11 +27630,11 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_034",
+      "caseId": "case_029",
       "materialText": ""
     },
     {
-      "id": "q_000780",
+      "id": "q_000779",
       "type": "case",
       "typeName": "案例分析题",
       "chapter": "（四）案例分析题",
@@ -27695,11 +27672,11 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_034",
+      "caseId": "case_029",
       "materialText": ""
     },
     {
-      "id": "q_000781",
+      "id": "q_000780",
       "type": "case",
       "typeName": "案例分析题",
       "chapter": "（四）案例分析题",
@@ -27733,11 +27710,11 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_034",
+      "caseId": "case_029",
       "materialText": ""
     },
     {
-      "id": "q_000782",
+      "id": "q_000781",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "（四）案例分析题",
@@ -27785,7 +27762,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000800",
+      "id": "q_000799",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "（四）案例分析题",
@@ -27838,7 +27815,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000818",
+      "id": "q_000817",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "（四）案例分析题",
@@ -27889,7 +27866,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000822",
+      "id": "q_000821",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "（四）案例分析题",
@@ -27943,7 +27920,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000823",
+      "id": "q_000822",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "（四）案例分析题",
@@ -27995,7 +27972,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000827",
+      "id": "q_000826",
       "type": "single",
       "typeName": "单选题",
       "chapter": "（四）案例分析题",
@@ -28037,7 +28014,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000828",
+      "id": "q_000827",
       "type": "single",
       "typeName": "单选题",
       "chapter": "（四）案例分析题",
@@ -28079,7 +28056,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000831",
+      "id": "q_000830",
       "type": "single",
       "typeName": "单选题",
       "chapter": "（四）案例分析题",
@@ -28121,7 +28098,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000832",
+      "id": "q_000831",
       "type": "single",
       "typeName": "单选题",
       "chapter": "（四）案例分析题",
@@ -28163,7 +28140,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000847",
+      "id": "q_000846",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "（四）案例分析题",
@@ -28186,7 +28163,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000851",
+      "id": "q_000850",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "（四）案例分析题",
@@ -28235,7 +28212,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000853",
+      "id": "q_000852",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "（四）案例分析题",
@@ -28284,7 +28261,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000854",
+      "id": "q_000853",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "（四）案例分析题",
@@ -28331,7 +28308,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000855",
+      "id": "q_000854",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "（四）案例分析题",
@@ -28380,7 +28357,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000861",
+      "id": "q_000860",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "（四）案例分析题",
@@ -28433,7 +28410,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000864",
+      "id": "q_000863",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "（四）案例分析题",
@@ -28486,7 +28463,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000870",
+      "id": "q_000869",
       "type": "single",
       "typeName": "单选题",
       "chapter": "（四）案例分析题",
@@ -28528,7 +28505,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000871",
+      "id": "q_000870",
       "type": "single",
       "typeName": "单选题",
       "chapter": "（四）案例分析题",
@@ -28570,7 +28547,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000881",
+      "id": "q_000880",
       "type": "single",
       "typeName": "单选题",
       "chapter": "（四）案例分析题",
@@ -28616,7 +28593,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000884",
+      "id": "q_000883",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "（四）案例分析题",
@@ -28639,7 +28616,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000890",
+      "id": "q_000889",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "（四）案例分析题",
@@ -28662,7 +28639,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000892",
+      "id": "q_000891",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "（四）案例分析题",
@@ -28685,7 +28662,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000893",
+      "id": "q_000892",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "（四）案例分析题",
@@ -28708,7 +28685,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000894",
+      "id": "q_000893",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "（四）案例分析题",
@@ -28731,7 +28708,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000895",
+      "id": "q_000894",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "（四）案例分析题",
@@ -28754,7 +28731,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000896",
+      "id": "q_000895",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "（四）案例分析题",
@@ -28777,7 +28754,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000897",
+      "id": "q_000896",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "（四）案例分析题",
@@ -28800,7 +28777,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000898",
+      "id": "q_000897",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "（四）案例分析题",
@@ -28823,7 +28800,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000899",
+      "id": "q_000898",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "（四）案例分析题",
@@ -28846,7 +28823,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000900",
+      "id": "q_000899",
       "type": "case",
       "typeName": "案例分析题",
       "chapter": "（四）案例分析题",
@@ -28884,11 +28861,11 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_036",
+      "caseId": "case_031",
       "materialText": ""
     },
     {
-      "id": "q_000903",
+      "id": "q_000902",
       "type": "case",
       "typeName": "案例分析题",
       "chapter": "（四）案例分析题",
@@ -28918,11 +28895,11 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_036",
+      "caseId": "case_031",
       "materialText": ""
     },
     {
-      "id": "q_000904",
+      "id": "q_000903",
       "type": "case",
       "typeName": "案例分析题",
       "chapter": "（四）案例分析题",
@@ -28952,11 +28929,11 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_038",
+      "caseId": "case_033",
       "materialText": ""
     },
     {
-      "id": "q_000905",
+      "id": "q_000904",
       "type": "case",
       "typeName": "案例分析题",
       "chapter": "（四）案例分析题",
@@ -28986,11 +28963,11 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_038",
+      "caseId": "case_033",
       "materialText": ""
     },
     {
-      "id": "q_000906",
+      "id": "q_000905",
       "type": "case",
       "typeName": "案例分析题",
       "chapter": "（四）案例分析题",
@@ -29020,11 +28997,11 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_038",
+      "caseId": "case_033",
       "materialText": ""
     },
     {
-      "id": "q_000909",
+      "id": "q_000908",
       "type": "case",
       "typeName": "案例分析题",
       "chapter": "（四）案例分析题",
@@ -29054,11 +29031,11 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_039",
+      "caseId": "case_034",
       "materialText": ""
     },
     {
-      "id": "q_000910",
+      "id": "q_000909",
       "type": "case",
       "typeName": "案例分析题",
       "chapter": "（四）案例分析题",
@@ -29088,11 +29065,11 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_039",
+      "caseId": "case_034",
       "materialText": ""
     },
     {
-      "id": "q_000911",
+      "id": "q_000910",
       "type": "case",
       "typeName": "案例分析题",
       "chapter": "（四）案例分析题",
@@ -29122,11 +29099,11 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_039",
+      "caseId": "case_034",
       "materialText": ""
     },
     {
-      "id": "q_000912",
+      "id": "q_000911",
       "type": "case",
       "typeName": "案例分析题",
       "chapter": "（四）案例分析题",
@@ -29156,11 +29133,11 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_040",
+      "caseId": "case_035",
       "materialText": ""
     },
     {
-      "id": "q_000913",
+      "id": "q_000912",
       "type": "case",
       "typeName": "案例分析题",
       "chapter": "（四）案例分析题",
@@ -29198,11 +29175,11 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_040",
+      "caseId": "case_035",
       "materialText": ""
     },
     {
-      "id": "q_000923",
+      "id": "q_000922",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "（四）案例分析题",
@@ -29256,7 +29233,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000924",
+      "id": "q_000923",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "（四）案例分析题",
@@ -29308,7 +29285,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000927",
+      "id": "q_000926",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "（四）案例分析题",
@@ -29359,7 +29336,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000935",
+      "id": "q_000934",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "（四）案例分析题",
@@ -29412,7 +29389,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000936",
+      "id": "q_000935",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "（四）案例分析题",
@@ -29465,7 +29442,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000940",
+      "id": "q_000939",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "（四）案例分析题",
@@ -29518,7 +29495,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000945",
+      "id": "q_000944",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "（四）案例分析题",
@@ -29571,7 +29548,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000950",
+      "id": "q_000949",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "（四）案例分析题",
@@ -29622,7 +29599,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000960",
+      "id": "q_000959",
       "type": "single",
       "typeName": "单选题",
       "chapter": "（四）案例分析题",
@@ -29668,7 +29645,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000963",
+      "id": "q_000962",
       "type": "single",
       "typeName": "单选题",
       "chapter": "（四）案例分析题",
@@ -29714,7 +29691,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000967",
+      "id": "q_000966",
       "type": "single",
       "typeName": "单选题",
       "chapter": "（四）案例分析题",
@@ -29760,7 +29737,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000968",
+      "id": "q_000967",
       "type": "single",
       "typeName": "单选题",
       "chapter": "（四）案例分析题",
@@ -29806,7 +29783,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000971",
+      "id": "q_000970",
       "type": "single",
       "typeName": "单选题",
       "chapter": "（四）案例分析题",
@@ -29852,7 +29829,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000973",
+      "id": "q_000972",
       "type": "single",
       "typeName": "单选题",
       "chapter": "（四）案例分析题",
@@ -29898,7 +29875,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000974",
+      "id": "q_000973",
       "type": "single",
       "typeName": "单选题",
       "chapter": "（四）案例分析题",
@@ -29944,7 +29921,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000975",
+      "id": "q_000974",
       "type": "single",
       "typeName": "单选题",
       "chapter": "（四）案例分析题",
@@ -29990,7 +29967,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000984",
+      "id": "q_000983",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "第六章 隧道工程判断题：",
@@ -30013,7 +29990,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000988",
+      "id": "q_000987",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "第六章 隧道工程判断题：",
@@ -30036,7 +30013,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000989",
+      "id": "q_000988",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "第六章 隧道工程判断题：",
@@ -30059,7 +30036,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000990",
+      "id": "q_000989",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "第六章 隧道工程判断题：",
@@ -30082,7 +30059,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000991",
+      "id": "q_000990",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "第六章 隧道工程判断题：",
@@ -30105,7 +30082,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000992",
+      "id": "q_000991",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "第六章 隧道工程判断题：",
@@ -30128,7 +30105,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000993",
+      "id": "q_000992",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "第六章 隧道工程判断题：",
@@ -30151,7 +30128,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000994",
+      "id": "q_000993",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "第六章 隧道工程判断题：",
@@ -30174,7 +30151,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000996",
+      "id": "q_000995",
       "type": "case",
       "typeName": "案例分析题",
       "chapter": "第六章 隧道工程案例分析题：",
@@ -30204,11 +30181,11 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_042",
+      "caseId": "case_037",
       "materialText": ""
     },
     {
-      "id": "q_000997",
+      "id": "q_000996",
       "type": "case",
       "typeName": "案例分析题",
       "chapter": "第六章 隧道工程案例分析题：",
@@ -30238,11 +30215,11 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_042",
+      "caseId": "case_037",
       "materialText": ""
     },
     {
-      "id": "q_000998",
+      "id": "q_000997",
       "type": "case",
       "typeName": "案例分析题",
       "chapter": "第六章 隧道工程案例分析题：",
@@ -30280,11 +30257,11 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_042",
+      "caseId": "case_037",
       "materialText": ""
     },
     {
-      "id": "q_000999",
+      "id": "q_000998",
       "type": "case",
       "typeName": "案例分析题",
       "chapter": "第六章 隧道工程案例分析题：",
@@ -30326,11 +30303,11 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_042",
+      "caseId": "case_037",
       "materialText": ""
     },
     {
-      "id": "q_001000",
+      "id": "q_000999",
       "type": "case",
       "typeName": "案例分析题",
       "chapter": "第六章 隧道工程案例分析题：",
@@ -30360,11 +30337,11 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_043",
+      "caseId": "case_038",
       "materialText": ""
     },
     {
-      "id": "q_001001",
+      "id": "q_001000",
       "type": "case",
       "typeName": "案例分析题",
       "chapter": "第六章 隧道工程案例分析题：",
@@ -30394,11 +30371,11 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_043",
+      "caseId": "case_038",
       "materialText": ""
     },
     {
-      "id": "q_001004",
+      "id": "q_001003",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "第六章 隧道工程案例分析题：",
@@ -30447,7 +30424,7 @@
       "materialText": ""
     },
     {
-      "id": "q_001005",
+      "id": "q_001004",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "第六章 隧道工程案例分析题：",
@@ -30499,7 +30476,7 @@
       "materialText": ""
     },
     {
-      "id": "q_001006",
+      "id": "q_001005",
       "type": "single",
       "typeName": "单选题",
       "chapter": "第六章 隧道工程案例分析题：",
@@ -30541,7 +30518,7 @@
       "materialText": ""
     },
     {
-      "id": "q_001012",
+      "id": "q_001011",
       "type": "case",
       "typeName": "案例分析题",
       "chapter": "（四）案例分析题",
@@ -30571,11 +30548,11 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_045",
+      "caseId": "case_040",
       "materialText": ""
     },
     {
-      "id": "q_001013",
+      "id": "q_001012",
       "type": "case",
       "typeName": "案例分析题",
       "chapter": "（四）案例分析题",
@@ -30605,11 +30582,11 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_045",
+      "caseId": "case_040",
       "materialText": ""
     },
     {
-      "id": "q_001014",
+      "id": "q_001013",
       "type": "case",
       "typeName": "案例分析题",
       "chapter": "（四）案例分析题",
@@ -30647,11 +30624,11 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_045",
+      "caseId": "case_040",
       "materialText": ""
     },
     {
-      "id": "q_001019",
+      "id": "q_001018",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "（四）案例分析题",
@@ -30699,7 +30676,7 @@
       "materialText": ""
     },
     {
-      "id": "q_001029",
+      "id": "q_001028",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "（四）案例分析题",
@@ -30722,7 +30699,7 @@
       "materialText": ""
     },
     {
-      "id": "q_001030",
+      "id": "q_001029",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "（四）案例分析题",
@@ -30745,7 +30722,7 @@
       "materialText": ""
     },
     {
-      "id": "q_001034",
+      "id": "q_001033",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "（四）案例分析题",
@@ -30794,7 +30771,7 @@
       "materialText": ""
     },
     {
-      "id": "q_001041",
+      "id": "q_001040",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "（四）综合知识和能力",
@@ -30841,7 +30818,7 @@
       "materialText": ""
     },
     {
-      "id": "q_001048",
+      "id": "q_001047",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "（四）综合知识和能力",
@@ -30890,7 +30867,7 @@
       "materialText": ""
     },
     {
-      "id": "q_001050",
+      "id": "q_001049",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "（四）综合知识和能力",
@@ -30942,7 +30919,41 @@
       "materialText": ""
     },
     {
-      "id": "q_001052",
+      "id": "q_001050",
+      "type": "case",
+      "typeName": "案例分析题",
+      "chapter": "（四）综合知识和能力",
+      "section": "案例分析题",
+      "sourceNo": "",
+      "sourceParagraphStart": 4082,
+      "sourceParagraphEnd": 4083,
+      "rawText": "（1）2017年上半年全国建筑业共发生生产安全事故1606起死亡1727人，事故总量已连续8年排在工矿商贸事故第一位。(A)\nA.正确\nB.错误",
+      "question": "2017年上半年全国建筑业共发生生产安全事故1606起死亡1727人，事故总量已连续8年排在工矿商贸事故第一位。(A)",
+      "questionClean": "2017年上半年全国建筑业共发生生产安全事故1606起死亡1727人，事故总量已连续8年排在工矿商贸事故第一位。（ ）",
+      "options": [
+        {
+          "key": "A",
+          "text": "正确"
+        },
+        {
+          "key": "B",
+          "text": "错误"
+        }
+      ],
+      "answer": [
+        "A"
+      ],
+      "answerText": "A",
+      "answerRaw": "A",
+      "answerSource": "inline_paren",
+      "answerConfidence": "high",
+      "verificationStatus": "verified",
+      "note": "",
+      "caseId": "case_041",
+      "materialText": ""
+    },
+    {
+      "id": "q_001051",
       "type": "case",
       "typeName": "案例分析题",
       "chapter": "（四）综合知识和能力",
@@ -30972,11 +30983,11 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_046",
+      "caseId": "case_041",
       "materialText": ""
     },
     {
-      "id": "q_001055",
+      "id": "q_001054",
       "type": "single",
       "typeName": "单选题",
       "chapter": "（四）综合知识和能力",
@@ -31018,7 +31029,7 @@
       "materialText": ""
     },
     {
-      "id": "q_001057",
+      "id": "q_001056",
       "type": "single",
       "typeName": "单选题",
       "chapter": "（四）综合知识和能力",
@@ -31060,7 +31071,7 @@
       "materialText": ""
     },
     {
-      "id": "q_001060",
+      "id": "q_001059",
       "type": "single",
       "typeName": "单选题",
       "chapter": "（四）综合知识和能力",
@@ -31102,7 +31113,7 @@
       "materialText": ""
     },
     {
-      "id": "q_001065",
+      "id": "q_001064",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "（四）综合知识和能力",
@@ -31151,7 +31162,7 @@
       "materialText": ""
     },
     {
-      "id": "q_001071",
+      "id": "q_001070",
       "type": "single",
       "typeName": "单选题",
       "chapter": "（四）综合知识和能力",
@@ -31193,7 +31204,7 @@
       "materialText": ""
     },
     {
-      "id": "q_001072",
+      "id": "q_001071",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "（四）综合知识和能力",
@@ -31243,7 +31254,7 @@
       "materialText": ""
     },
     {
-      "id": "q_001074",
+      "id": "q_001073",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "（四）综合知识和能力",
@@ -31291,7 +31302,7 @@
       "materialText": ""
     },
     {
-      "id": "q_001078",
+      "id": "q_001077",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "（四）综合知识和能力",
@@ -31339,7 +31350,7 @@
       "materialText": ""
     },
     {
-      "id": "q_001079",
+      "id": "q_001078",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "（四）综合知识和能力",
@@ -31387,7 +31398,7 @@
       "materialText": ""
     },
     {
-      "id": "q_001082",
+      "id": "q_001081",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "（四）综合知识和能力",
@@ -31435,7 +31446,7 @@
       "materialText": ""
     },
     {
-      "id": "q_001088",
+      "id": "q_001087",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "（四）综合知识和能力",
@@ -31488,7 +31499,7 @@
       "materialText": ""
     },
     {
-      "id": "q_001091",
+      "id": "q_001090",
       "type": "single",
       "typeName": "单选题",
       "chapter": "（四）综合知识和能力",
@@ -31530,7 +31541,7 @@
       "materialText": ""
     },
     {
-      "id": "q_001092",
+      "id": "q_001091",
       "type": "single",
       "typeName": "单选题",
       "chapter": "（四）综合知识和能力",
@@ -31572,7 +31583,7 @@
       "materialText": ""
     },
     {
-      "id": "q_001094",
+      "id": "q_001093",
       "type": "single",
       "typeName": "单选题",
       "chapter": "（四）综合知识和能力",
@@ -31630,7 +31641,7 @@
       "materialText": ""
     },
     {
-      "id": "q_001095",
+      "id": "q_001094",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "（四）综合知识和能力",
@@ -31678,7 +31689,7 @@
       "materialText": ""
     },
     {
-      "id": "q_001098",
+      "id": "q_001097",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "（四）综合知识和能力",
@@ -31726,7 +31737,7 @@
       "materialText": ""
     },
     {
-      "id": "q_001101",
+      "id": "q_001100",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "（四）综合知识和能力",
@@ -31773,7 +31784,7 @@
       "materialText": ""
     },
     {
-      "id": "q_001102",
+      "id": "q_001101",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "（四）综合知识和能力",
@@ -31822,7 +31833,7 @@
       "materialText": ""
     },
     {
-      "id": "q_001103",
+      "id": "q_001102",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "（四）综合知识和能力",
@@ -31869,7 +31880,7 @@
       "materialText": ""
     },
     {
-      "id": "q_001105",
+      "id": "q_001104",
       "type": "single",
       "typeName": "单选题",
       "chapter": "（四）综合知识和能力",
@@ -31911,7 +31922,7 @@
       "materialText": ""
     },
     {
-      "id": "q_001109",
+      "id": "q_001108",
       "type": "single",
       "typeName": "单选题",
       "chapter": "（四）综合知识和能力",
@@ -31953,7 +31964,7 @@
       "materialText": ""
     },
     {
-      "id": "q_001111",
+      "id": "q_001110",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "（四）综合知识和能力",
@@ -32001,7 +32012,7 @@
       "materialText": ""
     },
     {
-      "id": "q_001112",
+      "id": "q_001111",
       "type": "case",
       "typeName": "案例分析题",
       "chapter": "（四）综合知识和能力",
@@ -32031,11 +32042,11 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_047",
+      "caseId": "case_042",
       "materialText": ""
     },
     {
-      "id": "q_001117",
+      "id": "q_001116",
       "type": "case",
       "typeName": "案例分析题",
       "chapter": "（四）综合知识和能力",
@@ -32078,11 +32089,11 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_048",
+      "caseId": "case_043",
       "materialText": ""
     },
     {
-      "id": "q_001119",
+      "id": "q_001118",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "（四）综合知识和能力",
@@ -32135,7 +32146,7 @@
       "materialText": ""
     },
     {
-      "id": "q_001124",
+      "id": "q_001123",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "（四）综合知识和能力",
@@ -32184,7 +32195,7 @@
       "materialText": ""
     },
     {
-      "id": "q_001126",
+      "id": "q_001125",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "（四）综合知识和能力",
@@ -32237,7 +32248,7 @@
       "materialText": ""
     },
     {
-      "id": "q_001127",
+      "id": "q_001126",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "（四）综合知识和能力",
@@ -32286,7 +32297,7 @@
       "materialText": ""
     },
     {
-      "id": "q_001133",
+      "id": "q_001132",
       "type": "case",
       "typeName": "案例分析题",
       "chapter": "（四）综合知识和能力",
@@ -32332,11 +32343,11 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_050",
+      "caseId": "case_045",
       "materialText": ""
     },
     {
-      "id": "q_001137",
+      "id": "q_001136",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "（四）综合知识和能力",
@@ -32383,7 +32394,7 @@
       "materialText": ""
     },
     {
-      "id": "q_001140",
+      "id": "q_001139",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "（四）综合知识和能力",
@@ -32406,7 +32417,7 @@
       "materialText": ""
     },
     {
-      "id": "q_001141",
+      "id": "q_001140",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "（四）综合知识和能力",
@@ -32455,7 +32466,7 @@
       "materialText": ""
     },
     {
-      "id": "q_001154",
+      "id": "q_001153",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "（四）综合知识和能力",
@@ -32503,7 +32514,7 @@
       "materialText": ""
     },
     {
-      "id": "q_001163",
+      "id": "q_001162",
       "type": "case",
       "typeName": "案例分析题",
       "chapter": "（四）综合知识和能力",
@@ -32541,11 +32552,11 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_052",
+      "caseId": "case_047",
       "materialText": ""
     },
     {
-      "id": "q_001166",
+      "id": "q_001165",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "（四）综合知识和能力",
@@ -32592,7 +32603,7 @@
       "materialText": ""
     },
     {
-      "id": "q_001172",
+      "id": "q_001171",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "（四）综合知识和能力",
@@ -32615,7 +32626,7 @@
       "materialText": ""
     },
     {
-      "id": "q_001173",
+      "id": "q_001172",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "（四）综合知识和能力",
@@ -32663,7 +32674,7 @@
       "materialText": ""
     },
     {
-      "id": "q_001175",
+      "id": "q_001174",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "（四）综合知识和能力",
@@ -32712,7 +32723,7 @@
       "materialText": ""
     },
     {
-      "id": "q_001177",
+      "id": "q_001176",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "（四）综合知识和能力",
@@ -32761,7 +32772,7 @@
       "materialText": ""
     },
     {
-      "id": "q_001178",
+      "id": "q_001177",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "（四）综合知识和能力",
@@ -32809,7 +32820,7 @@
       "materialText": ""
     },
     {
-      "id": "q_001182",
+      "id": "q_001181",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "（四）综合知识和能力",
@@ -32857,7 +32868,7 @@
       "materialText": ""
     },
     {
-      "id": "q_001183",
+      "id": "q_001182",
       "type": "case",
       "typeName": "案例分析题",
       "chapter": "（四）综合知识和能力",
@@ -32887,11 +32898,11 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_053",
+      "caseId": "case_048",
       "materialText": ""
     },
     {
-      "id": "q_001184",
+      "id": "q_001183",
       "type": "case",
       "typeName": "案例分析题",
       "chapter": "（四）综合知识和能力",
@@ -32921,11 +32932,11 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_053",
+      "caseId": "case_048",
       "materialText": ""
     },
     {
-      "id": "q_001185",
+      "id": "q_001184",
       "type": "case",
       "typeName": "案例分析题",
       "chapter": "（四）综合知识和能力",
@@ -32955,11 +32966,11 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_053",
+      "caseId": "case_048",
       "materialText": ""
     },
     {
-      "id": "q_001186",
+      "id": "q_001185",
       "type": "case",
       "typeName": "案例分析题",
       "chapter": "（四）综合知识和能力",
@@ -32989,11 +33000,11 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_053",
+      "caseId": "case_048",
       "materialText": ""
     },
     {
-      "id": "q_001189",
+      "id": "q_001188",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "（四）综合知识和能力",
@@ -33041,7 +33052,7 @@
       "materialText": ""
     },
     {
-      "id": "q_001200",
+      "id": "q_001199",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "（四）综合知识和能力",
@@ -33093,7 +33104,7 @@
       "materialText": ""
     },
     {
-      "id": "q_001208",
+      "id": "q_001207",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "（四）综合知识和能力",
@@ -33143,7 +33154,7 @@
       "materialText": ""
     },
     {
-      "id": "q_001209",
+      "id": "q_001208",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "（四）综合知识和能力",
@@ -33192,7 +33203,7 @@
       "materialText": ""
     },
     {
-      "id": "q_001210",
+      "id": "q_001209",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "（四）综合知识和能力",
@@ -33240,7 +33251,7 @@
       "materialText": ""
     },
     {
-      "id": "q_001211",
+      "id": "q_001210",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "（四）综合知识和能力",
@@ -33287,7 +33298,7 @@
       "materialText": ""
     },
     {
-      "id": "q_001216",
+      "id": "q_001215",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "（四）综合知识和能力",
@@ -33335,7 +33346,7 @@
       "materialText": ""
     },
     {
-      "id": "q_001229",
+      "id": "q_001228",
       "type": "single",
       "typeName": "单选题",
       "chapter": "（四）综合知识和能力",
@@ -33377,7 +33388,7 @@
       "materialText": ""
     },
     {
-      "id": "q_001232",
+      "id": "q_001231",
       "type": "single",
       "typeName": "单选题",
       "chapter": "（四）综合知识和能力",
@@ -33419,7 +33430,7 @@
       "materialText": ""
     },
     {
-      "id": "q_001236",
+      "id": "q_001235",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "（四）综合知识和能力",
@@ -33468,7 +33479,7 @@
       "materialText": ""
     },
     {
-      "id": "q_001238",
+      "id": "q_001237",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "（四）综合知识和能力",
@@ -33517,7 +33528,7 @@
       "materialText": ""
     },
     {
-      "id": "q_001242",
+      "id": "q_001241",
       "type": "judge",
       "typeName": "判断题",
       "chapter": "（四）综合知识和能力",
@@ -33563,10 +33574,10 @@
       "materialText": ""
     }
   ],
-  "duplicateRemoved": 433,
+  "duplicateRemoved": 432,
   "review": [
     {
-      "id": "q_000100",
+      "id": "q_000099",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -33613,7 +33624,7 @@
       ]
     },
     {
-      "id": "q_000146",
+      "id": "q_000145",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -33657,7 +33668,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000238",
+      "id": "q_000237",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -33701,7 +33712,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000282",
+      "id": "q_000281",
       "type": "multiple",
       "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -33743,7 +33754,7 @@
       ]
     },
     {
-      "id": "q_000477",
+      "id": "q_000476",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
@@ -33783,7 +33794,7 @@
       "materialText": ""
     },
     {
-      "id": "q_000562",
+      "id": "q_000561",
       "type": "single",
       "typeName": "单选题",
       "chapter": "二、法律体系及安全法律法规",
