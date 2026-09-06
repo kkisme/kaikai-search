@@ -25,8 +25,10 @@
       border: 0; background: #1989fa; color: #fff; border-radius: 16px; padding: 0 14px; font-size: 14px;
     }
     .filters {
-      display: flex; flex-wrap: wrap; gap: 6px; padding: 10px 2px 2px;
+      display: flex; gap: 6px; overflow-x: auto; padding: 10px 2px 2px;
+      scrollbar-width: none; -webkit-overflow-scrolling: touch;
     }
+    .filters::-webkit-scrollbar { display: none; }
     .chip {
       flex: 0 0 auto; background: rgba(255,255,255,.2); color: #fff; border-radius: 14px;
       padding: 5px 12px; font-size: 13px; border: 0; cursor: pointer;
