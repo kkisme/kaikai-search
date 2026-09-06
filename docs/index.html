@@ -25,9 +25,8 @@
       border: 0; background: #1989fa; color: #fff; border-radius: 16px; padding: 0 14px; font-size: 14px;
     }
     .filters {
-      display: flex; gap: 6px; overflow-x: auto; padding: 10px 2px 2px; scrollbar-width: none;
+      display: flex; flex-wrap: wrap; gap: 6px; padding: 10px 2px 2px;
     }
-    .filters::-webkit-scrollbar { display: none; }
     .chip {
       flex: 0 0 auto; background: rgba(255,255,255,.2); color: #fff; border-radius: 14px;
       padding: 5px 12px; font-size: 13px; border: 0; cursor: pointer;
@@ -66,7 +65,7 @@
   <header>
     <h1>凯凯搜题助手</h1>
     <div class="search-wrap">
-      <input id="searchInput" type="search" placeholder="输入关键词 / 拼音首字母，如 aqsc" autocomplete="off">
+      <input id="searchInput" type="search" placeholder="输入关键词，如 安全生产" autocomplete="off">
       <button id="searchBtn">搜索</button>
     </div>
     <div class="filters" id="typeFilters"></div>
