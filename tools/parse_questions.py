@@ -35,11 +35,11 @@ QUESTION_START_RE = re.compile(
     r"\d+[、.．]\s*"
     r"|\d+题[:：]?\s*"
     r"|第\d+题[:：]?\s*"
-    r"|[（(]\d+[)）]\s*问[:：]?\s*"
+    r"|[（(]\d+[)）]\s*"
     r"|[①②③④⑤⑥⑦⑧⑨⑩]"
     r")"
 )
-CASE_SUB_RE = re.compile(r"^(?:[（(]\d+[)）]\s*问[:：]?|[①②③④⑤⑥⑦⑧⑨⑩])")
+CASE_SUB_RE = re.compile(r"^(?:[（(]\d+[)）]|[①②③④⑤⑥⑦⑧⑨⑩])")
 OPTION_RE = re.compile(r"^([A-H])[、.．]\s*(.*)$")
 ANSWER_RE = re.compile(r"^(?:正确答案|答案)\s*[:：]\s*(.+)$")
 INLINE_ANSWER_RE = re.compile(r"[（(]\s*([A-HA-H,，√×]+)\s*[)）]")
@@ -102,6 +102,25 @@ def is_question_start(line):
 def is_case_material_start(line):
     text = line["text"]
     return text.startswith("背景资料") or "印刷资料" in text[:20]
+
+
+def is_case_parent_candidate(bucket):
+    """判断一个没有答案/选项的编号段落是否是案例分析题的父题/背景。"""
+    lines = bucket["lines"]
+    if not lines:
+        return False
+    first = lines[0]["text"]
+    # 必须像“64、……”“78、……”这样的题号开头
+    if not re.match(r"^\d+[、.．]", first):
+        return False
+    # 本身不能是子题
+    if CASE_SUB_RE.match(first):
+        return False
+    # 至少包含一段背景叙述（不是单独一行）
+    if len(lines) < 3:
+        return False
+    # 既然能走到这里，说明本桶没有答案、没有选项、没有内嵌答案
+    return True
 
 
 def normalize_answer_text(ans_part):
@@ -271,6 +290,15 @@ def build_question(bucket, context, case_group):
         if ans:
             answer_info = ans
             continue
+        # 答案可能混在选项行尾：如“E.xxx 正确答案:A,B,C,E”
+        m_ans = re.search(r"(?:正确答案|答案)\s*[:：]\s*(.+)", lt)
+        if m_ans:
+            temp_ans = parse_answer_line(m_ans.group(0).strip())
+            if temp_ans:
+                answer_info = temp_ans
+                lt = lt[:m_ans.start()].strip()
+                if not lt:
+                    continue
         mo = OPTION_RE.match(lt)
         if mo:
             key = mo.group(1)
@@ -447,10 +475,24 @@ def finalize_bucket(bucket, context, case_groups, questions, knowledge_cards, ca
     if kind == "question":
         # 没有答案、没有选项、也没有括号答案的知识/背景段落不当作题
         joined = "\n".join(x["text"] for x in lines)
-        has_answer_line = bool(ANSWER_RE.search(joined))
+        # 注意：答案行/选项行可能在多行文本中间，必须用 MULTILINE
+        has_answer_line = bool(re.search(r"^(?:正确答案|答案)\s*[:：]\s*(.+)$", joined, re.M))
         has_inline = bool(re.search(r"[（(]\s*[A-H√×]+\s*[)）]", joined))
-        has_option = bool(OPTION_RE.search(joined))
+        has_option = bool(re.search(r"^[A-H][、.．]\s*(.*)$", joined, re.M))
         if not (has_answer_line or has_inline or has_option):
+            # 可能是案例父题：一个题号 + 一长段背景，后面跟（1）（2）…子题
+            if is_case_parent_candidate(bucket):
+                case_groups.append({
+                    "id": f"case_{len(case_groups)+1:03d}",
+                    "title": first_text,
+                    "type": "case",
+                    "chapter": context.get("chapter") or "案例分析题",
+                    "materialText": "\n".join(x["text"] for x in lines),
+                    "sourceParagraphStart": lines[0]["src"],
+                    "sourceParagraphEnd": lines[-1]["src"],
+                    "subQuestionIds": [],
+                })
+                return
             # 可能是知识卡片/背景资料
             knowledge_cards.append({
                 "type": "knowledge",
