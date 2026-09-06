@@ -58,10 +58,6 @@
       background: #f7f3fc; padding: 8px 10px; border-radius: 6px;
     }
     .sub-card { border-left: 3px solid #ebeef5; margin: 10px 0 0 4px !important; box-shadow: none; }
-    .copy-btn {
-      border: 1px solid #c8c9cc; background: #fff; color: #4b4b4b; border-radius: 6px;
-      padding: 4px 10px; font-size: 12px; cursor: pointer; white-space: nowrap;
-    }
     .empty { text-align: center; color: #969799; padding: 60px 20px; font-size: 14px; }
     .footer { text-align: center; color: #969799; font-size: 12px; padding: 20px 0 30px; }
   </style>
@@ -262,31 +258,6 @@
       return results.slice(0, 100).map(r => r.doc);
     }
 
-    function copyAnswer(doc) {
-      let text;
-      if (doc.type === 'knowledge') {
-        text = (doc.question || '') + '\n' + (doc.materialText || '');
-      } else {
-        const lines = ['答案：' + (doc.answerText || '')];
-        if (doc.answer && doc.answer.length) {
-          for (const k of doc.answer) {
-            const opt = (doc.options || []).find(o => o.key === k);
-            if (opt) lines.push(k + '. ' + opt.text);
-          }
-        }
-        if (doc.note) lines.push('注：' + doc.note);
-        text = lines.join('\n');
-      }
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(text).then(() => toast('已复制完整答案'));
-      } else {
-        const ta = document.createElement('textarea');
-        ta.value = text; document.body.appendChild(ta); ta.select();
-        document.execCommand('copy'); ta.remove();
-        toast('已复制完整答案');
-      }
-    }
-
     function toast(msg) {
       let t = document.getElementById('toast');
       if (!t) {
@@ -332,12 +303,9 @@
           : `<div class="note">背景：${escapeHtml(doc.materialText.slice(0, 120))}${doc.materialText.length > 120 ? '…' : ''}</div>`
       ) : '';
       const cls = nested ? 'card sub-card' : 'card';
-      // 知识卡片没有答案，不需要“复制答案”按钮
-      const copyBtn = isKnowledge ? '' : `<button class="copy-btn" data-id="${escapeHtml(doc.id)}">复制答案</button>`;
       return `<div class="${cls}">
         <div class="card-head">
           <span class="type-tag">${escapeHtml(doc.typeName || '')}${doc.sourceNo ? ' · ' + escapeHtml(doc.sourceNo) : ''}</span>
-          ${copyBtn}
         </div>
         <div class="q-text">${highlight(doc.question || '', q)}</div>
         ${optsHtml ? `<div class="options">${optsHtml}</div>` : ''}
@@ -391,14 +359,6 @@
       }
 
       listEl.innerHTML = html;
-
-      listEl.querySelectorAll('.copy-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-          const id = btn.getAttribute('data-id');
-          const doc = docs.find(d => d.id === id);
-          if (doc) copyAnswer(doc);
-        });
-      });
     }
 
     async function loadData() {
