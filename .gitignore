@@ -1,0 +1,7 @@
+data/
+dist/
+*.docx
+__pycache__/
+*.pyc
+.dsh-project-memory/
+node_modules/

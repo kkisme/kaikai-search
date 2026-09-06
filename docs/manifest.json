@@ -1,0 +1,17 @@
+{
+  "name": "凯凯搜题助手",
+  "short_name": "搜题助手",
+  "description": "交安复习题搜题助手，支持关键字、拼音首字母、模糊搜索。",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#1989fa",
+  "theme_color": "#1989fa",
+  "icons": [
+    {
+      "src": "icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
