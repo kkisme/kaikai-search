@@ -776,7 +776,11 @@ def parse():
             if LIST_ITEM_RE.match(text) and not line_has_answer_signal(text):
                 cur_no = list_item_number(text)
                 last_no = list_item_number(bucket["lines"][-1]["text"]) if bucket else None
-                continuous = cur_no is not None and last_no is not None and cur_no == last_no + 1
+                # 只有小编号(1~30, 知识列表)的连续编号才归并;139、140、141 等主题卡不合并
+                continuous = (
+                    cur_no is not None and last_no is not None
+                    and cur_no == last_no + 1 and cur_no <= 30
+                )
                 if bucket is None:
                     bucket = {"kind": "unknown", "lines": [line]}
                 elif bucket.get("kind") == "unknown":
@@ -924,26 +928,42 @@ def parse():
 
     # ---- 相邻知识卡合并：编号连续（1、2、3…），或上一卡未完结且下一卡是
     # 小编号列表项时并入同一主题（如“155、安全生产管理”+“危险源辨识的步骤：”+列表）。
+    # 规则：列表项编号只认 1~30（63、64、65、68、78、79、80 等主题卡不参与合并），
     # 已因“未完结”合并过的卡不再继续链式合并，避免把 157、158 等主题吞进来。
     knowledge_cards.sort(key=lambda k: k["sourceParagraphStart"])
+
+    def last_item_no(content):
+        for ln in reversed(content.split("\n")):
+            n = list_item_number(ln)
+            if n is not None:
+                return n
+        return None
+
     merged_k = []
     for k in knowledge_cards:
         if merged_k:
             prev = merged_k[-1]
             prev_lines = prev["content"].split("\n")
             cur_lines = k["content"].split("\n")
-            prev_no = list_item_number(prev_lines[-1])
+            prev_no = last_item_no(prev["content"])
             cur_no = list_item_number(cur_lines[0])
             prev_last = prev_lines[-1].strip()
-            continuous = prev_no is not None and cur_no is not None and cur_no == prev_no + 1
-            cur_list_only = cur_no is not None and cur_no <= 100 and len(cur_lines[0]) <= 40
+            cur_is_list = cur_no is not None and cur_no <= 30 and len(cur_lines[0]) <= 60
+            continuous = (
+                prev_no is not None and cur_no is not None
+                and cur_no == prev_no + 1 and cur_no <= 30
+            )
+            # “205、预备知识一…”这类题号式标题行即使以句号结尾，也应与其列表合并
+            m = re.match(r"^(\d+)[、.．].{1,40}$", prev_last)
+            is_title_line = bool(m and int(m.group(1)) > 30)
             open_merge = (
-                cur_list_only
-                and not prev_last.endswith(("。", "！", "？"))
+                cur_is_list
                 and not prev.get("_merged_by_open")
+                and (not prev_last.endswith(("。", "！", "？")) or is_title_line)
             )
             if continuous or open_merge:
                 prev["content"] += "\n" + k["content"]
+                prev["sourceParagraphEnd"] = k["sourceParagraphEnd"]
                 prev["_merged_by_open"] = True
                 continue
         merged_k.append(k)
