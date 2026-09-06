@@ -59,7 +59,11 @@ def option_text(question) -> str:
     return " ".join(f"{o['key']}.{o['text']}" for o in question.get("options", []))
 
 
-def make_search_doc(q) -> dict:
+def make_search_doc(q, case_map=None) -> dict:
+    case = None
+    if case_map is not None and q.get("caseId"):
+        case = case_map.get(q["caseId"])
+
     text_parts = [
         q.get("question", ""),
         option_text(q),
@@ -69,6 +73,8 @@ def make_search_doc(q) -> dict:
         q.get("section", ""),
         q.get("materialText", ""),
     ]
+    if case:
+        text_parts.append(case.get("materialText", ""))
     text = " ".join(p for p in text_parts if p)
     normalized = norm_text(text)
     return {
@@ -84,6 +90,9 @@ def make_search_doc(q) -> dict:
         "answerText": q.get("answerText", ""),
         "note": q.get("note", ""),
         "materialText": q.get("materialText", ""),
+        "caseId": q.get("caseId", ""),
+        "caseTitle": case.get("title", "") if case else "",
+        "caseMaterial": case.get("materialText", "") if case else "",
         "rawText": q.get("rawText", ""),
         "sourceParagraphStart": q.get("sourceParagraphStart"),
         "sourceParagraphEnd": q.get("sourceParagraphEnd"),
@@ -99,11 +108,12 @@ def make_search_doc(q) -> dict:
 def main() -> None:
     data = json.loads(RAW.read_text(encoding="utf-8"))
     all_qs = data["questions"]
+    case_map = {g["id"]: g for g in data.get("case_groups", [])}
     # 只有 verified 才进正式题库
     verified = [q for q in all_qs if q.get("verificationStatus") == "verified"]
     review = [q for q in all_qs if q.get("verificationStatus") != "verified"]
 
-    docs = [make_search_doc(q) for q in verified]
+    docs = [make_search_doc(q, case_map) for q in verified]
     index = {
         "version": "v0.2",
         "count": len(docs),

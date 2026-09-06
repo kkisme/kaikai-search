@@ -51,6 +51,13 @@
       font-size: 14px; border-radius: 6px;
     }
     .note { margin-top: 6px; font-size: 12px; color: #969799; }
+    .case-card { border-left: 4px solid #b37feb; }
+    .case-title { font-size: 16px; font-weight: bold; margin-top: 6px; }
+    .case-material {
+      margin-top: 6px; font-size: 13px; color: #646566; line-height: 1.7;
+      background: #f7f3fc; padding: 8px 10px; border-radius: 6px;
+    }
+    .sub-card { border-left: 3px solid #ebeef5; margin: 10px 0 0 4px !important; box-shadow: none; }
     .copy-btn {
       border: 1px solid #c8c9cc; background: #fff; color: #4b4b4b; border-radius: 6px;
       padding: 4px 10px; font-size: 12px; cursor: pointer; white-space: nowrap;
@@ -306,6 +313,28 @@
       }
     }
 
+    function renderDocCard(doc, q, nested) {
+      const optsHtml = (doc.options || []).map(o => {
+        const text = highlight(o.text, q);
+        return `<div>${escapeHtml(o.key)}. ${text}</div>`;
+      }).join('');
+      const ansText = highlight(doc.answerText || '', q);
+      const noteHtml = doc.note ? `<div class="note">注：${escapeHtml(doc.note)}</div>` : '';
+      const materialHtml = doc.materialText ? `<div class="note">背景：${escapeHtml(doc.materialText.slice(0, 120))}${doc.materialText.length > 120 ? '…' : ''}</div>` : '';
+      const cls = nested ? 'card sub-card' : 'card';
+      return `<div class="${cls}">
+        <div class="card-head">
+          <span class="type-tag">${escapeHtml(doc.typeName || '')}${doc.sourceNo ? ' · ' + escapeHtml(doc.sourceNo) : ''}</span>
+          <button class="copy-btn" data-id="${escapeHtml(doc.id)}">复制答案</button>
+        </div>
+        <div class="q-text">${highlight(doc.question || '', q)}</div>
+        ${optsHtml ? `<div class="options">${optsHtml}</div>` : ''}
+        <div class="answer-card">答案：${ansText}</div>
+        ${noteHtml}
+        ${materialHtml}
+      </div>`;
+    }
+
     function renderList() {
       const results = search();
       if (!results.length) {
@@ -315,26 +344,41 @@
       }
       statEl.textContent = `共 ${results.length} 条`;
       const q = normalize(searchInput.value);
-      listEl.innerHTML = results.map(doc => {
-        const optsHtml = (doc.options || []).map(o => {
-          const text = highlight(o.text, q);
-          return `<div>${escapeHtml(o.key)}. ${text}</div>`;
-        }).join('');
-        const ansText = highlight(doc.answerText || '', q);
-        const noteHtml = doc.note ? `<div class="note">注：${escapeHtml(doc.note)}</div>` : '';
-        const materialHtml = doc.materialText ? `<div class="note">背景：${escapeHtml(doc.materialText.slice(0, 120))}${doc.materialText.length > 120 ? '…' : ''}</div>` : '';
-        return `<div class="card">
-          <div class="card-head">
-            <span class="type-tag">${escapeHtml(doc.typeName || '')}${doc.sourceNo ? ' · ' + escapeHtml(doc.sourceNo) : ''}</span>
-            <button class="copy-btn" data-id="${escapeHtml(doc.id)}">复制答案</button>
-          </div>
-          <div class="q-text">${highlight(doc.question || '', q)}</div>
-          ${optsHtml ? `<div class="options">${optsHtml}</div>` : ''}
-          <div class="answer-card">答案：${ansText}</div>
-          ${noteHtml}
-          ${materialHtml}
-        </div>`;
-      }).join('');
+
+      const items = [];
+      const caseSeen = new Set();
+      for (const doc of results) {
+        if (doc.caseId && doc.caseId !== '') {
+          if (!caseSeen.has(doc.caseId)) {
+            caseSeen.add(doc.caseId);
+            items.push({ type: 'case', caseId: doc.caseId, caseDoc: doc, subs: [doc] });
+          } else {
+            const item = items.find(x => x.type === 'case' && x.caseId === doc.caseId);
+            if (item) item.subs.push(doc);
+          }
+        } else {
+          items.push({ type: 'single', doc });
+        }
+      }
+
+      let html = '';
+      for (const item of items) {
+        if (item.type === 'case') {
+          const d = item.caseDoc;
+          const caseTitleHtml = d.caseTitle ? `<div class="case-title">${highlight(d.caseTitle, q)}</div>` : '';
+          const caseMaterialHtml = d.caseMaterial ? `<div class="case-material">${highlight(d.caseMaterial, q)}</div>` : '';
+          html += `<div class="card case-card">
+            <div class="card-head"><span class="type-tag">案例分析题</span></div>
+            ${caseTitleHtml}
+            ${caseMaterialHtml}
+            ${item.subs.map(sub => renderDocCard(sub, q, true)).join('')}
+          </div>`;
+        } else {
+          html += renderDocCard(item.doc, q, false);
+        }
+      }
+
+      listEl.innerHTML = html;
 
       listEl.querySelectorAll('.copy-btn').forEach(btn => {
         btn.addEventListener('click', () => {
