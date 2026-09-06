@@ -332,10 +332,12 @@
           : `<div class="note">背景：${escapeHtml(doc.materialText.slice(0, 120))}${doc.materialText.length > 120 ? '…' : ''}</div>`
       ) : '';
       const cls = nested ? 'card sub-card' : 'card';
+      // 知识卡片没有答案，不需要“复制答案”按钮
+      const copyBtn = isKnowledge ? '' : `<button class="copy-btn" data-id="${escapeHtml(doc.id)}">复制答案</button>`;
       return `<div class="${cls}">
         <div class="card-head">
           <span class="type-tag">${escapeHtml(doc.typeName || '')}${doc.sourceNo ? ' · ' + escapeHtml(doc.sourceNo) : ''}</span>
-          <button class="copy-btn" data-id="${escapeHtml(doc.id)}">复制答案</button>
+          ${copyBtn}
         </div>
         <div class="q-text">${highlight(doc.question || '', q)}</div>
         ${optsHtml ? `<div class="options">${optsHtml}</div>` : ''}
