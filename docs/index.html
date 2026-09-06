@@ -137,8 +137,9 @@
     function search() {
       const nq = normalize(searchInput.value);
       if (!nq) {
-        // 删除关键字后显示全部题
-        return docs;
+        // 没有关键字时也要按当前题型筛选
+        if (currentType === '全部') return docs;
+        return docs.filter(doc => doc.typeName === currentType);
       }
       const results = [];
       for (const doc of docs) {
