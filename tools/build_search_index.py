@@ -132,13 +132,32 @@ def make_knowledge_doc(k) -> dict:
     }
 
 
+def question_key(q) -> str:
+    text = norm_text(q.get("questionClean") or q.get("question") or "")
+    # 去空格/括号，尽量让“同一题不同写法”归并
+    text = text.replace(" ", "")
+    for ch in ("（", "）", "(", ")", "【", "】", "[", "]", "，", ","):
+        text = text.replace(ch, "")
+    return text
+
+
 def main() -> None:
     data = json.loads(RAW.read_text(encoding="utf-8"))
     all_qs = data["questions"]
     case_map = {g["id"]: g for g in data.get("case_groups", [])}
-    # 只有 verified 才进正式题库
-    verified = [q for q in all_qs if q.get("verificationStatus") == "verified"]
+    # 只有 verified 才进正式题库，并按题干去重
+    verified_all = [q for q in all_qs if q.get("verificationStatus") == "verified"]
     review = [q for q in all_qs if q.get("verificationStatus") != "verified"]
+    verified = []
+    seen_keys = set()
+    duplicate_count = 0
+    for q in verified_all:
+        key = question_key(q)
+        if key in seen_keys:
+            duplicate_count += 1
+            continue
+        seen_keys.add(key)
+        verified.append(q)
 
     docs = [make_search_doc(q, case_map) for q in verified]
     knowledge_docs = [make_knowledge_doc(k) for k in data.get("knowledge_cards", [])]
@@ -148,6 +167,7 @@ def main() -> None:
         "version": "v0.2",
         "count": len(docs),
         "questionCount": len(verified),
+        "duplicateQuestionCount": duplicate_count,
         "knowledgeCount": len(knowledge_docs),
         "totalParsed": len(all_qs),
         "reviewCount": len(review),
@@ -155,7 +175,7 @@ def main() -> None:
     }
 
     OUT_QUESTIONS.write_text(
-        json.dumps({"questions": verified, "review": review}, ensure_ascii=False, indent=2),
+        json.dumps({"questions": verified, "duplicateRemoved": duplicate_count, "review": review}, ensure_ascii=False, indent=2),
         encoding="utf-8",
     )
     OUT_INDEX.write_text(

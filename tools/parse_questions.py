@@ -272,15 +272,27 @@ def build_question(bucket, context, case_group):
     # 判断是否为案例子题
     is_case_sub = bool(CASE_SUB_RE.match(text))
 
+    # 先扫描所有行中混排的答案，包括题干行
+    answer_info = None
+    for line in lines:
+        m_ans = re.search(r"(?:正确答案|答案)\s*[:：]\s*(.+)", line["text"])
+        if m_ans:
+            answer_info = parse_answer_line(m_ans.group(0).strip())
+            if answer_info:
+                break
+
     # 题干首行
     stem = strip_question_prefix(text)
+    # 题干行可能混入答案，如 “8题:...（ ）正确答案:正确”
+    m_ans_in_stem = re.search(r"(?:正确答案|答案)\s*[:：]\s*(.+)", stem)
+    if m_ans_in_stem:
+        stem = (stem[:m_ans_in_stem.start()] + stem[m_ans_in_stem.end():]).strip()
     q["question"] = stem
 
     # 后续行解析
     options = []
     orphan_pre = []   # 第一个选项出现前的非选项文本（可能是缺失标签的选项）
     orphan_post = []  # 选项出现后的非选项文本（可能是缺失中间标签/续行）
-    answer_info = None
     inline_info = None
     seen_option = False
 
@@ -391,6 +403,18 @@ def build_question(bucket, context, case_group):
                     break
         orphan_pool = orphan_pool[next_orphan_idx:]
 
+    # 完全没有显式选项标签，但答案有字母且存在多条孤立文本：按顺序补 A/B/C...
+    if not options and q.get("answer"):
+        candidates = []
+        for txt in orphan_pool:
+            if txt.startswith(("知识", "注", "（", "(")) or len(txt) > 60:
+                continue
+            candidates.append(txt)
+        if candidates and len(candidates) >= 2:
+            options = [{"key": chr(ord("A") + i), "text": txt} for i, txt in enumerate(candidates[:8])]
+            assigned_texts = set(x["text"] for x in options)
+            orphan_pool = [t for t in orphan_pool if t not in assigned_texts]
+
     # 剩余 orphan 按后续字母继续补（仅短的、像选项的）
     if options and orphan_pool:
         existing = [o["key"] for o in options]
@@ -477,9 +501,10 @@ def finalize_bucket(bucket, context, case_groups, questions, knowledge_cards, ca
         joined = "\n".join(x["text"] for x in lines)
         # 注意：答案行/选项行可能在多行文本中间，必须用 MULTILINE
         has_answer_line = bool(re.search(r"^(?:正确答案|答案)\s*[:：]\s*(.+)$", joined, re.M))
+        has_any_answer = bool(re.search(r"(?:正确答案|答案)\s*[:：]", joined))
         has_inline = bool(re.search(r"[（(]\s*[A-H√×]+\s*[)）]", joined))
         has_option = bool(re.search(r"^[A-H][、.．]\s*(.*)$", joined, re.M))
-        if not (has_answer_line or has_inline or has_option):
+        if not (has_answer_line or has_any_answer or has_inline or has_option):
             # 可能是案例父题：一个题号 + 一长段背景，后面跟（1）（2）…子题
             if is_case_parent_candidate(bucket):
                 case_groups.append({
