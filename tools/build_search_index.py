@@ -64,6 +64,17 @@ def make_search_doc(q, case_map=None) -> dict:
     if case_map is not None and q.get("caseId"):
         case = case_map.get(q["caseId"])
 
+    # 案例材料首行与标题重复（标题已单独显示），正文中去掉首行
+    case_title = case.get("title", "") if case else ""
+    case_material = case.get("materialText", "") if case else ""
+    if case_material:
+        lines = case_material.split("\n")
+        if lines and (
+            lines[0].strip() == case_title.strip()
+            or strip_qn_prefix(lines[0].strip()) == case_title.strip()
+        ):
+            case_material = "\n".join(lines[1:])
+
     text_parts = [
         q.get("question", ""),
         option_text(q),
@@ -74,7 +85,8 @@ def make_search_doc(q, case_map=None) -> dict:
         q.get("materialText", ""),
     ]
     if case:
-        text_parts.append(case.get("materialText", ""))
+        text_parts.append(case_title)
+        text_parts.append(case_material)
     text = " ".join(p for p in text_parts if p)
     normalized = norm_text(text)
     return {
@@ -91,8 +103,8 @@ def make_search_doc(q, case_map=None) -> dict:
         "note": q.get("note", ""),
         "materialText": q.get("materialText", ""),
         "caseId": q.get("caseId", ""),
-        "caseTitle": case.get("title", "") if case else "",
-        "caseMaterial": case.get("materialText", "") if case else "",
+        "caseTitle": case_title,
+        "caseMaterial": case_material,
         "rawText": q.get("rawText", ""),
         "sourceParagraphStart": q.get("sourceParagraphStart"),
         "sourceParagraphEnd": q.get("sourceParagraphEnd"),
