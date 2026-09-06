@@ -263,15 +263,20 @@
     }
 
     function copyAnswer(doc) {
-      const lines = ['答案：' + (doc.answerText || '')];
-      if (doc.answer && doc.answer.length) {
-        for (const k of doc.answer) {
-          const opt = (doc.options || []).find(o => o.key === k);
-          if (opt) lines.push(k + '. ' + opt.text);
+      let text;
+      if (doc.type === 'knowledge') {
+        text = (doc.question || '') + '\n' + (doc.materialText || '');
+      } else {
+        const lines = ['答案：' + (doc.answerText || '')];
+        if (doc.answer && doc.answer.length) {
+          for (const k of doc.answer) {
+            const opt = (doc.options || []).find(o => o.key === k);
+            if (opt) lines.push(k + '. ' + opt.text);
+          }
         }
+        if (doc.note) lines.push('注：' + doc.note);
+        text = lines.join('\n');
       }
-      if (doc.note) lines.push('注：' + doc.note);
-      const text = lines.join('\n');
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(text).then(() => toast('已复制完整答案'));
       } else {
@@ -314,13 +319,18 @@
     }
 
     function renderDocCard(doc, q, nested) {
+      const isKnowledge = doc.type === 'knowledge';
       const optsHtml = (doc.options || []).map(o => {
         const text = highlight(o.text, q);
         return `<div>${escapeHtml(o.key)}. ${text}</div>`;
       }).join('');
       const ansText = highlight(doc.answerText || '', q);
       const noteHtml = doc.note ? `<div class="note">注：${escapeHtml(doc.note)}</div>` : '';
-      const materialHtml = doc.materialText ? `<div class="note">背景：${escapeHtml(doc.materialText.slice(0, 120))}${doc.materialText.length > 120 ? '…' : ''}</div>` : '';
+      const materialHtml = doc.materialText ? (
+        isKnowledge
+          ? `<div class="case-material">${highlight(doc.materialText, q)}</div>`
+          : `<div class="note">背景：${escapeHtml(doc.materialText.slice(0, 120))}${doc.materialText.length > 120 ? '…' : ''}</div>`
+      ) : '';
       const cls = nested ? 'card sub-card' : 'card';
       return `<div class="${cls}">
         <div class="card-head">
@@ -329,7 +339,7 @@
         </div>
         <div class="q-text">${highlight(doc.question || '', q)}</div>
         ${optsHtml ? `<div class="options">${optsHtml}</div>` : ''}
-        <div class="answer-card">答案：${ansText}</div>
+        ${doc.answerText ? `<div class="answer-card">答案：${ansText}</div>` : ''}
         ${noteHtml}
         ${materialHtml}
       </div>`;

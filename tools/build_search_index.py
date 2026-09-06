@@ -105,6 +105,33 @@ def make_search_doc(q, case_map=None) -> dict:
     }
 
 
+def make_knowledge_doc(k) -> dict:
+    title = k.get("title", "")
+    content = k.get("content", "")
+    text = " ".join(x for x in [title, content] if x)
+    normalized = norm_text(text)
+    return {
+        "id": "k_" + str(k.get("sourceParagraphStart", "0")) + "_" + str(k.get("sourceParagraphEnd", "0")),
+        "type": "knowledge",
+        "typeName": "知识卡片",
+        "chapter": k.get("chapter", ""),
+        "section": "", "sourceNo": "",
+        "question": title,
+        "options": [], "answer": [], "answerText": "",
+        "note": "", "materialText": content,
+        "caseId": "", "caseTitle": "", "caseMaterial": "",
+        "rawText": content,
+        "sourceParagraphStart": k.get("sourceParagraphStart"),
+        "sourceParagraphEnd": k.get("sourceParagraphEnd"),
+        "verificationStatus": "verified",
+        "text": normalized,
+        "textRaw": text,
+        "pinyin": pinyin_full(normalized),
+        "pinyinAbbr": pinyin_abbr(normalized),
+        "grams": ngrams(normalized),
+    }
+
+
 def main() -> None:
     data = json.loads(RAW.read_text(encoding="utf-8"))
     all_qs = data["questions"]
@@ -114,9 +141,14 @@ def main() -> None:
     review = [q for q in all_qs if q.get("verificationStatus") != "verified"]
 
     docs = [make_search_doc(q, case_map) for q in verified]
+    knowledge_docs = [make_knowledge_doc(k) for k in data.get("knowledge_cards", [])]
+    docs.extend(knowledge_docs)
+
     index = {
         "version": "v0.2",
         "count": len(docs),
+        "questionCount": len(verified),
+        "knowledgeCount": len(knowledge_docs),
         "totalParsed": len(all_qs),
         "reviewCount": len(review),
         "docs": docs,
@@ -133,6 +165,7 @@ def main() -> None:
 
     print(f"总解析题目: {len(all_qs)}")
     print(f"已入库(verified): {len(verified)}")
+    print(f"知识/记录卡片: {len(knowledge_docs)}")
     print(f"待确认(review): {len(review)}")
     print(f"写出: {OUT_QUESTIONS}")
     print(f"写出: {OUT_INDEX}")
