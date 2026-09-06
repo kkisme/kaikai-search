@@ -33,12 +33,6 @@
       padding: 5px 12px; font-size: 13px; border: 0; cursor: pointer;
     }
     .chip.active { background: #fff; color: #1989fa; font-weight: bold; }
-    .chapter-bar {
-      display: flex; gap: 6px; overflow-x: auto; background: #fff; padding: 8px 10px;
-      border-bottom: 1px solid #ebedf0; scrollbar-width: none;
-    }
-    .chapter-bar::-webkit-scrollbar { display: none; }
-    .chapter-bar select { border: 0; background: #f2f3f5; border-radius: 8px; padding: 6px 8px; font-size: 13px; }
     main { padding: 10px 10px 80px; max-width: 640px; margin: 0 auto; }
     .stat { color: #969799; font-size: 12px; padding: 4px 4px 10px; }
     .card {
@@ -74,9 +68,6 @@
     </div>
     <div class="filters" id="typeFilters"></div>
   </header>
-  <div class="chapter-bar">
-    <select id="chapterSelect"></select>
-  </div>
   <main>
     <div class="stat" id="stat">正在加载题库…</div>
     <div id="list"></div>
@@ -85,12 +76,9 @@
 
   <script>
     let docs = [];
-    let allDocs = [];
     let currentType = '全部';
-    let currentChapter = '全部';
 
     const typeFilters = document.getElementById('typeFilters');
-    const chapterSelect = document.getElementById('chapterSelect');
     const searchInput = document.getElementById('searchInput');
     const searchBtn = document.getElementById('searchBtn');
     const listEl = document.getElementById('list');
@@ -155,8 +143,7 @@
       }
       const results = [];
       for (const doc of docs) {
-        if (currentType !== '全部' && doc.type !== currentType) continue;
-        if (currentChapter !== '全部' && doc.chapter !== currentChapter) continue;
+        if (currentType !== '全部' && doc.typeName !== currentType) continue;
         const score = scoreDoc(doc, nq);
         if (score > 0) results.push({ doc, score });
       }
@@ -213,14 +200,6 @@
         });
         typeFilters.appendChild(b);
       }
-      const chapters = ['全部', ...new Set(docs.map(d => d.chapter).filter(Boolean))];
-      chapterSelect.innerHTML = '';
-      for (const c of chapters) {
-        const op = document.createElement('option');
-        op.value = c; op.textContent = c;
-        if (c === currentChapter) op.selected = true;
-        chapterSelect.appendChild(op);
-      }
     }
 
     function renderList() {
@@ -268,7 +247,6 @@
         if (!res.ok) throw new Error('fetch fail ' + res.status);
         const data = await res.json();
         docs = data.docs || [];
-        allDocs = docs;
         renderFilters();
         renderList();
       } catch (e) {
@@ -286,10 +264,6 @@
       if (e.key === 'Enter') renderList();
     });
     searchBtn.addEventListener('click', renderList);
-    chapterSelect.addEventListener('change', () => {
-      currentChapter = chapterSelect.value;
-      renderList();
-    });
 
     loadData();
   </script>
