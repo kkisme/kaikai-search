@@ -32,7 +32,7 @@ HEADING_RE = re.compile(
 TYPE_HEADING_KEYWORDS = ("单选题", "多选题", "判断题", "填空题", "案例分析题", "综合知识", "法律")
 QUESTION_START_RE = re.compile(
     r"^(?:"
-    r"\d+[、.．]\s*"
+    r"\d+[、.．](?!\d)\s*"
     r"|\d+题[:：]?\s*"
     r"|第\d+题[:：]?\s*"
     r"|[（(]\d+[)）]\s*"

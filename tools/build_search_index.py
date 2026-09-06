@@ -105,10 +105,29 @@ def make_search_doc(q, case_map=None) -> dict:
     }
 
 
+# 题号前缀：91、 / 165、 / (1) / ① / 第1题
+_QN_PREFIX_RE = re.compile(
+    r"^(?:\d+[、.．](?!\d)\s*|\d+题[:：]?\s*|第\d+题[:：]?\s*|[（(]\d+[)）]\s*|[①②③④⑤⑥⑦⑧⑨⑩])"
+)
+
+
+def strip_qn_prefix(text: str) -> str:
+    return _QN_PREFIX_RE.sub("", text).strip()
+
+
 def make_knowledge_doc(k) -> dict:
     title = k.get("title", "")
     content = k.get("content", "")
-    text = " ".join(x for x in [title, content] if x)
+    # 正文首行通常与标题相同（标题已在 question 字段单独显示），去掉避免重复
+    lines = content.split("\n")
+    if lines and lines[0].strip() and (
+        lines[0].strip() == title.strip()
+        or strip_qn_prefix(lines[0].strip()) == title.strip()
+    ):
+        content_view = "\n".join(lines[1:])
+    else:
+        content_view = content
+    text = " ".join(x for x in [title, content_view] if x)
     normalized = norm_text(text)
     return {
         "id": "k_" + str(k.get("sourceParagraphStart", "0")) + "_" + str(k.get("sourceParagraphEnd", "0")),
@@ -118,7 +137,7 @@ def make_knowledge_doc(k) -> dict:
         "section": "", "sourceNo": "",
         "question": title,
         "options": [], "answer": [], "answerText": "",
-        "note": "", "materialText": content,
+        "note": "", "materialText": content_view,
         "caseId": "", "caseTitle": "", "caseMaterial": "",
         "rawText": content,
         "sourceParagraphStart": k.get("sourceParagraphStart"),
