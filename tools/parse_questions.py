@@ -37,12 +37,33 @@ QUESTION_START_RE = re.compile(
     r"|第\d+题[:：]?\s*"
     r"|[（(]\d+[)）]\s*"
     r"|[①②③④⑤⑥⑦⑧⑨⑩]"
+    r"|问[:：]"
     r")"
 )
 CASE_SUB_RE = re.compile(r"^(?:[（(]\d+[)）]|[①②③④⑤⑥⑦⑧⑨⑩])")
-OPTION_RE = re.compile(r"^([A-H])[、.．]\s*(.*)$")
+ASK_LEAD_RE = re.compile(r"^问[:：]\s*")
+# 选项标签：A. / B、 / C． / D, / E， / F 空格（原文有“B 造成重伤…”标签点丢失的情况）
+OPTION_RE = re.compile(r"^([A-H])[、.．,，\s]\s*(.*)$")
 ANSWER_RE = re.compile(r"^(?:正确答案|答案)\s*[:：]\s*(.+)$")
-INLINE_ANSWER_RE = re.compile(r"[（(]\s*([A-HA-H,，√×]+)\s*[)）]")
+# 内嵌答案：字母组合 / √ / × / X / 正确 / 错误（原文有“（正确）”“(错误)”“(X)”等写法）
+INLINE_ANSWER_RE = re.compile(
+    r"[（(]\s*((?=[A-Ha-h])[A-Ha-h,，、\s]{1,10}|√|×|[Xx]|正确|错误|对|错)\s*[)）]"
+)
+# 整行只有答案括号的“答案行”（如 (A) / （√） / (X)）
+PURE_ANSWER_LINE_RE = re.compile(
+    r"^\s*[（(]\s*(?:[A-Ha-h][A-Ha-h,，、\s]*|√|×|[Xx]|正确|错误|对|错)\s*[)）]\s*"
+    r"(?:[（(]?(?:注|解读|知识点)[:：].*)?$"
+)
+# 知识/注释引导行（“知识点:”“注:”“知识点(1)”等）
+NOTE_LEAD_RE = re.compile(r"^(?:知识点|注|解读)(?:[:：]|[（(]\d+[)）])")
+# 案例/知识中的纯标题行：第1题: / 第2题 / 第3题印刷资料
+CASE_TITLE_LINE_RE = re.compile(r"^第?\d+题[:：]?\s*(?:印刷资料)?$")
+# 编号列表项：1、2、3、或①②③ 或 (1)(2)（不匹配 13.6% 这类小数）
+LIST_ITEM_RE = re.compile(r"^[①②③④⑤⑥⑦⑧⑨⑩]|^\d+[、]|^\d+[.．](?!\d)|^[（(]\d+[)）]")
+# 知识区块标题（题号+关键词）：205、预备知识一… / 165、…的主要内容 / 240、…安全控制要求
+KNOWLEDGE_TITLE_RE = re.compile(
+    r"^\d+[、.．].{0,60}(?:预备知识|安全控制要求|主要内容|的概念|的种类|的知识|的管理)"
+)
 
 
 def split_logical_lines(paragraphs):
@@ -50,18 +71,26 @@ def split_logical_lines(paragraphs):
     lines = []
     for para in paragraphs:
         text = para["text"].replace("\r", " ").replace("\n", " ")
-        # 选项切分：A.xxxB.xxx
-        text = re.sub(r"(?=[A-H][、.．])", "\n", text)
-        # 题目号切分：D.xxx 3、xxx；不切小数点（如 A.1.5年）
-        text = re.sub(r"(?<![0-9.])(?=\d+(?:[、]|[.．](?!\d)))", "\n", text)
-        text = re.sub(r"(?<=\S)(?=\d+题[:：])", "\n", text)
+        # 选项切分：A.xxxB.xxx；不切题干括号内答案（如 (A,B)），不切答案行（正确答案:A,B）
+        text = re.sub(r"(?<![（(：:,])(?=[A-H][、.．])", "\n", text)
+        # “C,36小时”这类选项标签为逗号且选项文本是数字时也切（“A,B,C”答案列表不切）
+        text = re.sub(r"(?<![（(：:,，])(?=[A-H][,，](?![A-H]))", "\n", text)
+        # 题目号切分：D.xxx 3、xxx；不切小数点（如 A.1.5年），不切比例（1:8:25.），不拆“第1题:”
+        text = re.sub(r"(?<![0-9.:/：])(?=\d+(?:[、]|[.．](?!\d)))", "\n", text)
+        text = re.sub(r"(?<=\S)(?=(?<!\d)(?<!第)\d+题[:：])", "\n", text)
         text = re.sub(r"(?<=\S)(?=第\d+题)", "\n", text)
-        text = re.sub(r"(?<=\S)(?=[（(]\d+[)）]\s*问[:：]?)", "\n", text)
+        # “…受轻伤。 (1)问:…”：空格后也可能出现子题号，直接按子题模式切
+        text = re.sub(r"(?=[（(]\d+[)）]\s*问[:：]?)", "\n", text)
         text = re.sub(r"(?<=\S)(?=[①②③④⑤⑥⑦⑧⑨⑩])", "\n", text)
-        # 章节标题切分：E.能排水上浮三、判断题
-        text = re.sub(r"(?<=\S)(?=[一二三四五六七八九十]+、)", "\n", text)
+        # 章节标题切分：E.能排水上浮三、判断题；只按关键词切，避免切碎选项文本里的“一、预防为主”
+        text = re.sub(
+            r"(?<=\S)(?=[一二三四五六七八九十]+、(?:单选题|多选题|判断题|填空题|案例分析题|综合知识|法律))",
+            "\n", text)
         for seg in text.split("\n"):
             seg = re.sub(r"\s+", " ", seg).strip()
+            # 原文模板占位垃圾行直接丢弃
+            if re.match(r"^(?:文档标题|摘要|\[文档标题\])", seg):
+                continue
             if seg:
                 lines.append({"text": seg, "src": para["index"]})
 
@@ -77,6 +106,19 @@ def split_logical_lines(paragraphs):
             merged[-1]["text"] = merged[-1]["text"] + line["text"]
         else:
             merged.append(line)
+
+    # “A.xxx B yyy”行内混入下一条选项（原文标签点丢失）：按“ B ”拆开，保留剩余部分
+    fixed = []
+    for line in merged:
+        if OPTION_RE.match(line["text"]) and re.search(r" [B-H] ", line["text"]):
+            parts = re.split(r" (?=[B-H] )", line["text"])
+            for part in parts:
+                part = re.sub(r"\s+", " ", part).strip()
+                if part:
+                    fixed.append({"text": part, "src": line["src"]})
+        else:
+            fixed.append(line)
+    merged = fixed
     return merged
 
 
@@ -119,6 +161,10 @@ def is_case_parent_candidate(bucket):
     # 至少包含一段背景叙述（不是单独一行）
     if len(lines) < 3:
         return False
+    # 含连续编号列表项（1、2、3…）的是知识卡片列表，不是案例背景
+    list_items = [l for l in lines if LIST_ITEM_RE.match(l["text"])]
+    if len(list_items) >= 2:
+        return False
     # 既然能走到这里，说明本桶没有答案、没有选项、没有内嵌答案
     return True
 
@@ -131,40 +177,60 @@ def is_single_line_case_parent(bucket):
     first = lines[0]["text"]
     if not re.match(r"^\d+[、.．]", first):
         return False
-    if CASE_SUB_RE.match(first):
+    if CASE_SUB_RE.match(first) or ASK_LEAD_RE.match(first):
         return False
     joined = "\n".join(x["text"] for x in lines)
-    # 无答案、无选项，才可能是标题
+    # 无答案、无选项、无内嵌答案，才可能是标题
     if re.search(r"(?:正确答案|答案)\s*[:：]", joined):
         return False
-    if re.search(r"^[A-H][、.．]\s*", joined, re.M):
+    if INLINE_ANSWER_RE.search(joined):
+        return False
+    if re.search(r"^[A-H][、.．,，]\s*", joined, re.M):
         return False
     return True
 
 
 def line_has_answer_signal(text):
     """判断一行是否像“试题”：带内嵌答案、答案行、或选项。"""
-    if re.search(r"[（(]\s*[A-H√×]+\s*[)）]", text):
+    if INLINE_ANSWER_RE.search(text):
         return True
     if re.search(r"(?:正确答案|答案)\s*[:：]", text):
         return True
-    if re.search(r"^[A-H][、.．]\s*", text, re.M):
+    if OPTION_RE.match(text):
         return True
     return False
 
 
+def line_pure_answer(text):
+    """整行是否只是一个答案括号（如 (A) / （√） / (X)），可带 (注:…) 尾巴。"""
+    return bool(PURE_ANSWER_LINE_RE.match(text.strip()))
+
+
+def _strip_tail_note(txt):
+    """剥离选项文本尾部的（备注:…）/(解读:…)/(注:…) 注释。"""
+    return re.sub(r"[（(](?:备注|注|解读|知识点)[:：].*[)）]?\s*$", "", txt).strip()
+
+
+def _looks_like_option(txt, max_len=60, allow_period=False):
+    """判断孤立文本是否像一条缺标签的选项。"""
+    txt = _strip_tail_note(txt)
+    if len(txt) > max_len:
+        return False
+    if not allow_period and txt.endswith(("。", "；", "：", "）", ")")):
+        return False
+    if re.match(r"^(?:[（(]\d+[)）]|知识点[:：]|注[:：]|[一二三四五六七八九十]+、|《)", txt):
+        return False
+    return True
+
+
 def normalize_answer_text(ans_part):
-    """归一化 'A，C，E' / 'AB' / '正确' / '错误' / '√' / '×'。"""
+    """归一化 'A，C，E' / 'AB' / '正确' / '错误' / '√' / '×' / 'X'。"""
     ans_part = ans_part.strip()
     # 全角逗号/顿号/空格 -> 半角逗号
     ans_part = re.sub(r"[，、\s]+", ",", ans_part)
-    if ans_part in ("正确", "对"):
+    if ans_part in ("正确", "对", "√"):
         return {"letters": [], "answerText": "正确", "rawAnswer": ans_part}
-    if ans_part in ("错误", "错"):
-        return {"letters": [], "answerText": "错误", "rawAnswer": ans_part}
-    if ans_part == "√":
-        return {"letters": [], "answerText": "正确", "rawAnswer": ans_part}
-    if ans_part == "×":
+    if ans_part in ("错误", "错", "×", "X", "x"):
         return {"letters": [], "answerText": "错误", "rawAnswer": ans_part}
     # 字母列表：A,B,C 或 AB 或 A B C
     letters = re.findall(r"[A-Ha-h]", ans_part)
@@ -206,16 +272,17 @@ def parse_answer_line(line_text):
 
 
 def parse_inline_answer(text):
-    """从题干中提取内嵌答案，如 ( C ) / （√） / （ACD）。"""
+    """从题干中提取内嵌答案，如 ( C ) / （√） / （ACD） / (X) / （正确）。"""
     m = INLINE_ANSWER_RE.search(text)
     if not m:
         return None, None
     raw = m.group(1).strip()
     if not raw:
         return None, None
-    if raw in ("√", "×"):
-        nt = normalize_answer_text(raw)
-        return nt, m.group(0)
+    if raw in ("正确", "对", "√"):
+        return {"letters": [], "answerText": "正确", "rawAnswer": raw}, m.group(0)
+    if raw in ("错误", "错", "×", "X", "x"):
+        return {"letters": [], "answerText": "错误", "rawAnswer": raw}, m.group(0)
     # 字母
     letters = re.findall(r"[A-Ha-h]", raw)
     if not letters:
@@ -299,8 +366,8 @@ def build_question(bucket, context, case_group):
         if groups:
             q["sourceNo"] = groups[0]
 
-    # 判断是否为案例子题
-    is_case_sub = bool(CASE_SUB_RE.match(text))
+    # 判断是否为案例子题（(1)/(2)、①②③、或“问:”开头）
+    is_case_sub = bool(CASE_SUB_RE.match(text)) or bool(ASK_LEAD_RE.match(text))
 
     # 先扫描所有行中混排的答案，包括题干行
     answer_info = None
@@ -354,11 +421,7 @@ def build_question(bucket, context, case_group):
         if not seen_option:
             orphan_pre.append(lt)
         else:
-            # 选项续行片段：如“.安全第一、预防为主…”，合并到上一个选项
-            if last_option_index >= 0 and re.match(r"^[一二三四五六七八九十]+、", lt):
-                options[last_option_index]["text"] += lt
-            else:
-                orphan_post.append(lt)
+            orphan_post.append(lt)
 
     # 内嵌答案
     all_text = " ".join(x["text"] for x in lines)
@@ -422,58 +485,59 @@ def build_question(bucket, context, case_group):
 
     if orphan_post:
         for txt in orphan_post:
-            # “一、预防为主…”这类片段是上一个选项的续文，不是新选项
-            if options and re.match(r"^[一二三四五六七八九十]+、", txt):
-                options[-1]["text"] += txt
-            else:
-                orphan_pool.append(txt)
+            # “一、特别重大事故…”这类知识行不是选项续文，按孤立文本处理
+            orphan_pool.append(txt)
 
-    # 按答案中缺失的字母补选项（答案来自原文，可信）
+    # 孤儿选项补键：优先补已出现选项之间的“缺口键”（如 A,C,D,E 缺 B），
+    # 尾部孤儿再按后续字母继续（A、B 之后补 C、D…）。
+    # 原文常见“A.xxx [无标签的B文本] C.xxx”混排，不再追加到 F/H 末尾制造乱窜。
     if options and orphan_pool:
-        answer_keys = [x.upper() for x in q.get("answer") or []]
         existing_keys = {o["key"] for o in options}
-        missing_answer_keys = sorted([k for k in answer_keys if k not in existing_keys])
-        next_orphan_idx = 0
-        for key in missing_answer_keys:
-            if next_orphan_idx < len(orphan_pool):
-                txt = orphan_pool[next_orphan_idx]
-                if len(txt) <= 60 and not txt.endswith(("。", "；", "：", "）")):
-                    options.append({"key": key, "text": txt})
-                    next_orphan_idx += 1
-                else:
-                    break
-        orphan_pool = orphan_pool[next_orphan_idx:]
+        max_ord = max(ord(k) for k in existing_keys)
+        gap_keys = [chr(o) for o in range(ord("A"), max_ord) if chr(o) not in existing_keys]
+        next_ord = max_ord + 1
+        rest = []
+        answer_keys = [x.upper() for x in q.get("answer") or []]
+        missing_ans_keys = sorted(set(k for k in answer_keys if k not in existing_keys))
+        for txt in orphan_pool:
+            key = None
+            # 答案中缺失的键优先（答案来自原文，最可靠），允许句号结尾的长选项
+            if missing_ans_keys and _looks_like_option(txt, max_len=120, allow_period=True):
+                key = missing_ans_keys.pop(0)
+            elif gap_keys and _looks_like_option(txt, max_len=100):
+                key = gap_keys.pop(0)
+            elif next_ord <= ord("H") and _looks_like_option(txt, max_len=100):
+                key = chr(next_ord)
+                next_ord += 1
+            if key is None:
+                rest.append(txt)
+                continue
+            options.append({"key": key, "text": _strip_tail_note(txt)})
+        orphan_pool = rest
 
     # 完全没有显式选项标签，但答案有字母且存在多条孤立文本：按顺序补 A/B/C...
     if not options and q.get("answer"):
         candidates = []
         for txt in orphan_pool:
-            if txt.startswith(("知识", "注", "（", "(")) or len(txt) > 60:
-                continue
-            candidates.append(txt)
+            if _looks_like_option(txt, max_len=140, allow_period=True):
+                candidates.append(txt)
         if candidates and len(candidates) >= 2:
             options = [{"key": chr(ord("A") + i), "text": txt} for i, txt in enumerate(candidates[:8])]
             assigned_texts = set(x["text"] for x in options)
             orphan_pool = [t for t in orphan_pool if t not in assigned_texts]
 
-    # 剩余 orphan 按后续字母继续补（仅短的、像选项的）
-    if options and orphan_pool:
-        existing = [o["key"] for o in options]
-        next_ord = max([ord(k) for k in existing]) + 1
+    # 剩余未匹配的孤立文本：注/知识点/编号附注存入 note，其余并入题干
+    note_parts = []
+    if orphan_pool:
         for txt in orphan_pool:
-            looks_option = (
-                len(txt) <= 60
-                and not txt.endswith(("。", "；", "："))
-                and next_ord <= ord("H") + 1
-            )
-            if looks_option:
-                options.append({"key": chr(next_ord), "text": txt})
-                next_ord += 1
+            if re.match(r"^(?:[（(]\d+[)）]|知识点[:：]|注[:：])", txt) or NOTE_LEAD_RE.match(txt):
+                note_parts.append(txt)
+            elif re.fullmatch(r"^[一二三四五六七八九十]+、.*", txt):
+                note_parts.append(txt)
             else:
                 q["question"] += " " + txt
-    elif orphan_pool:
-        # 没有选项时，孤立文本并入题干
-        q["question"] += " " + " ".join(orphan_pool)
+        if note_parts:
+            q["note"] = (q.get("note") or "") + ("\n" if q.get("note") else "") + "\n".join(note_parts)
 
     # 按 key 排序，保证 A/B/C/D 顺序
     options.sort(key=lambda o: o["key"])
@@ -488,9 +552,11 @@ def build_question(bucket, context, case_group):
     q["options"] = options
 
     # 按答案/选项推断题型，避免被前一个判断题章节污染
-    if is_case_sub:
+    # 案例子题只有挂到案例组时才标为案例分析题；独立出现的 ①②③ 题目按答案推断
+    if is_case_sub and case_group:
         q["type"] = "case"
         q["typeName"] = "案例分析题"
+        q["caseId"] = case_group["id"]
     else:
         q["type"], q["typeName"] = infer_question_type(q)
 
@@ -507,12 +573,6 @@ def build_question(bucket, context, case_group):
         if q.get("type") == "single" and len(answer_keys) > 1:
             q["verificationStatus"] = "review"
             q["answerConflict"] = q.get("answerConflict") or {"multi_in_single": answer_keys}
-
-    # 案例子题挂到 case_group
-    if is_case_sub and case_group:
-        q["caseId"] = case_group["id"]
-        q["type"] = "case"
-        q["typeName"] = "案例分析题"
 
     return q
 
@@ -537,14 +597,14 @@ def finalize_bucket(bucket, context, case_groups, questions, knowledge_cards, ca
         })
         return
 
-    if kind == "question":
+    if kind in ("question", "unknown"):
         # 没有答案、没有选项、也没有括号答案的知识/背景段落不当作题
         joined = "\n".join(x["text"] for x in lines)
         # 注意：答案行/选项行可能在多行文本中间，必须用 MULTILINE
         has_answer_line = bool(re.search(r"^(?:正确答案|答案)\s*[:：]\s*(.+)$", joined, re.M))
         has_any_answer = bool(re.search(r"(?:正确答案|答案)\s*[:：]", joined))
-        has_inline = bool(re.search(r"[（(]\s*[A-H√×]+\s*[)）]", joined))
-        has_option = bool(re.search(r"^[A-H][、.．]\s*(.*)$", joined, re.M))
+        has_inline = bool(INLINE_ANSWER_RE.search(joined))
+        has_option = bool(re.search(r"^[A-H][、.．,，]\s*(.*)$", joined, re.M))
         if not (has_answer_line or has_any_answer or has_inline or has_option):
             # 可能是案例父题：一个题号 + 一长段背景，后面跟（1）（2）…子题
             if is_case_parent_candidate(bucket):
@@ -575,7 +635,7 @@ def finalize_bucket(bucket, context, case_groups, questions, knowledge_cards, ca
         questions.append(q)
         return
 
-    # unknown：当成知识/材料
+    # 其他（未知）当成知识/材料
     knowledge_cards.append({
         "type": "knowledge",
         "title": first_text[:50],
@@ -604,6 +664,36 @@ def parse():
             finalize_bucket(bucket, context, case_groups, questions, knowledge_cards, case_materials)
             bucket = None
 
+    def bucket_has_signal(bk):
+        joined = "\n".join(x["text"] for x in bk["lines"])
+        return bool(
+            re.search(r"(?:正确答案|答案)\s*[:：]", joined)
+            or INLINE_ANSWER_RE.search(joined)
+            or re.search(r"^[A-H][、.．,，]\s*", joined, re.M)
+        )
+
+    def bucket_closed(bk):
+        """桶是否已“完成”：有关闭信号，或末行以句末标点结束。"""
+        if bucket_has_signal(bk):
+            return True
+        last = bk["lines"][-1]["text"].strip()
+        return last.endswith(("。", "！", "？"))
+
+    def make_case_group(lines_in):
+        case_groups.append({
+            "id": f"case_{len(case_groups)+1:03d}",
+            "title": lines_in[0]["text"],
+            "type": "case",
+            "chapter": context.get("chapter") or "案例分析题",
+            "materialText": "\n".join(x["text"] for x in lines_in),
+            "sourceParagraphStart": lines_in[0]["src"],
+            "sourceParagraphEnd": lines_in[-1]["src"],
+            "subQuestionIds": [],
+        })
+
+    def is_option_line(text):
+        return bool(OPTION_RE.match(text))
+
     for line in logical_lines:
         text = line["text"]
 
@@ -627,32 +717,68 @@ def parse():
                 context["section"] = context.get("section") or text
             continue
 
-        if is_case_material_start(line):
+        # “第1题:”/“第2题印刷资料”这类纯标题行：与后面的“背景资料:”合并成一个案例题组
+        if CASE_TITLE_LINE_RE.match(text):
             flush()
             bucket = {"kind": "case_material", "lines": [line]}
-            # 创建 case group 由 finalize 处理；提前创建以支持题组
+            continue
+
+        if is_case_material_start(line):
+            # 上一行是“第1题:”标题行时合并，作为题组标题
+            if bucket is not None and bucket.get("kind") == "case_material" and CASE_TITLE_LINE_RE.match(bucket["lines"][0]["text"]):
+                bucket["lines"].append(line)
+                continue
+            flush()
+            bucket = {"kind": "case_material", "lines": [line]}
+            continue
+
+        # “知识点:”/“注:”引导行：与题目/知识区隔开
+        if NOTE_LEAD_RE.match(text):
+            if bucket is not None and not bucket_closed(bucket):
+                bucket["lines"].append(line)
+            else:
+                flush()
+                bucket = {"kind": "unknown", "lines": [line]}
+            continue
+
+        # 纯答案行（如单独的 (A) / （√））：归属当前题，不开新题
+        if line_pure_answer(text) and not is_option_line(text):
+            if bucket is None:
+                bucket = {"kind": "unknown", "lines": [line]}
+            else:
+                bucket["lines"].append(line)
             continue
 
         if is_question_start(line):
-            # 知识卡片里经常用 ①②③ 做列表项：没有答案/选项信号时，归并到当前卡片
-            if CASE_SUB_RE.match(text) and not line_has_answer_signal(text):
-                if bucket is not None and bucket.get("kind") == "unknown":
+            # 知识区块标题（205、预备知识一…）：即使前面是列表桶也强制开新桶，
+            # 避免把上一个知识主题的尾巴（如密闭空间焊接）并入新区块（预备知识四）
+            if LIST_ITEM_RE.match(text) and not line_has_answer_signal(text) and KNOWLEDGE_TITLE_RE.match(text):
+                flush()
+                bucket = {"kind": "unknown", "lines": [line]}
+                continue
+            # 知识卡片里经常用 1、2、3 / ①②③ / (1)(2) 做列表项：没有答案/选项信号时归并
+            if LIST_ITEM_RE.match(text) and not line_has_answer_signal(text):
+                if bucket is None:
+                    bucket = {"kind": "unknown", "lines": [line]}
+                elif bucket.get("kind") == "unknown":
+                    if bucket_has_signal(bucket):
+                        # 前面的未知桶其实是题目（带了选项/答案信号），先落题再开新列表
+                        flush()
+                        bucket = {"kind": "unknown", "lines": [line]}
+                    else:
+                        bucket["lines"].append(line)
+                elif bucket.get("kind") == "question" and not bucket_has_signal(bucket):
+                    # 无题问信号的知识候选桶 → 转未知继续归并
+                    bucket["kind"] = "unknown"
                     bucket["lines"].append(line)
-                    continue
+                else:
+                    flush()
+                    bucket = {"kind": "unknown", "lines": [line]}
+                continue
             # 单行案例标题（62、xxx）后面跟 ①②…子题时，先建成案例组
-            if CASE_SUB_RE.match(text) and bucket is not None and is_single_line_case_parent(bucket):
-                if line_has_answer_signal(text):
-                    case_lines = bucket["lines"]
-                    case_groups.append({
-                        "id": f"case_{len(case_groups)+1:03d}",
-                        "title": case_lines[0]["text"],
-                        "type": "case",
-                        "chapter": context.get("chapter") or "案例分析题",
-                        "materialText": "\n".join(x["text"] for x in case_lines),
-                        "sourceParagraphStart": case_lines[0]["src"],
-                        "sourceParagraphEnd": case_lines[-1]["src"],
-                        "subQuestionIds": [],
-                    })
+            if (CASE_SUB_RE.match(text) or ASK_LEAD_RE.match(text)) and bucket is not None and is_single_line_case_parent(bucket):
+                if ASK_LEAD_RE.match(text) or line_has_answer_signal(text):
+                    make_case_group(bucket["lines"])
                     bucket = None
                 else:
                     # 不是案例小题，而是知识卡片的编号列表项，归并到当前卡片
@@ -663,6 +789,42 @@ def parse():
             bucket = {"kind": "question", "lines": [line]}
             continue
 
+        # 带答案信号的完整行：当前桶已闭合 → 是下一道题（无题号判断/选择题）
+        if (
+            line_has_answer_signal(text)
+            and not is_option_line(text)
+            and not ANSWER_RE.match(text)
+        ):
+            if bucket is None:
+                bucket = {"kind": "question", "lines": [line]}
+                continue
+            if bucket.get("kind") == "unknown" and bucket_closed(bucket):
+                flush()
+                bucket = {"kind": "question", "lines": [line]}
+                continue
+            if bucket.get("kind") == "question" and bucket_closed(bucket):
+                flush()
+                bucket = {"kind": "question", "lines": [line]}
+                continue
+            if bucket.get("kind") == "unknown" and not bucket_has_signal(bucket):
+                # ① 列表项后跟答案行（如“① …”题干断开、答案在下一行）
+                last = bucket["lines"][-1]["text"]
+                if LIST_ITEM_RE.match(last) and not line_has_answer_signal(last):
+                    item = bucket["lines"][-1]
+                    bucket["lines"] = bucket["lines"][:-1]
+                    flush()
+                    bucket = {"kind": "question", "lines": [item, line]}
+                    continue
+            bucket["lines"].append(line)
+            continue
+
+        # 超短残片行（“补充题”等）：题目已闭合时剥离，避免粘在题干上。
+        # 只剥离明确的已知残片，短选项文本（如“B.土体强度”“一般事故”）不能剥。
+        if text in ("补充题", "第") and bucket is not None and bucket.get("kind") == "question" and bucket_has_signal(bucket):
+            flush()
+            bucket = {"kind": "unknown", "lines": [line]}
+            continue
+
         # 非题目内容
         if bucket is None:
             bucket = {"kind": "unknown", "lines": [line]}
@@ -670,6 +832,57 @@ def parse():
             bucket["lines"].append(line)
 
     flush()
+
+    # ---- 案例子题挂载重建 ----
+    # parse 过程中子题会挂在“最后创建的案例组”上，可能挂错（如知识区的 ①②③ 题）；
+    # 按源文件顺序重新归属：案例组之后紧邻的（1）/①/1./问: 子题属于该案例，
+    # 出现新的父题号（如 74、，顿号分隔）即结束当前案例。
+    sub_pat = re.compile(r"^(?:[（(]\d+[)）]|[①②③④⑤⑥⑦⑧⑨⑩]|问[:：]|\d+[.．])")
+    parent_pat = re.compile(r"^\d+[、]")
+    items = []
+    for g in case_groups:
+        items.append((g["sourceParagraphStart"], 0, g))
+    for q in questions:
+        items.append((q["sourceParagraphStart"], 1, q))
+    items.sort(key=lambda x: (x[0], x[1]))
+    current = None
+    for _, _kind, obj in items:
+        if isinstance(obj, dict) and "subQuestionIds" in obj and "materialText" in obj:
+            current = obj
+            obj["subQuestionIds"] = []
+            continue
+        first = obj["rawText"].split("\n")[0]
+        if sub_pat.match(first):
+            if current is not None:
+                obj["caseId"] = current["id"]
+                obj["type"] = "case"
+                obj["typeName"] = "案例分析题"
+                current["subQuestionIds"].append(obj["id"])
+            else:
+                obj.pop("caseId", None)
+                obj["type"], obj["typeName"] = infer_question_type(obj)
+        elif parent_pat.match(first):
+            # 新父题号：当前案例结束
+            current = None
+            obj.pop("caseId", None)
+            obj["type"], obj["typeName"] = infer_question_type(obj)
+
+    # ---- 无子题的法条类“案例”转为知识卡片 ----
+    # 如“73、《职业病防治法》…”这类带《》的标题同时没有子题，不是案例分析题
+    remain = []
+    for g in case_groups:
+        if not g["subQuestionIds"] and re.search(r"《[^》]+》", g["title"]) and not re.search(
+                r"(事故|火灾|坍塌|死亡|伤亡|坠落|爆[炸破]|倒塌)", g["title"]):
+            knowledge_cards.append({
+                "type": "knowledge",
+                "title": g["title"],
+                "content": g["materialText"],
+                "sourceParagraphStart": g["sourceParagraphStart"],
+                "sourceParagraphEnd": g["sourceParagraphEnd"],
+            })
+        else:
+            remain.append(g)
+    case_groups[:] = remain
 
     # 汇总统计
     stats = {
