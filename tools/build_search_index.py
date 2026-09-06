@@ -17,6 +17,20 @@ OUT_QUESTIONS = PROJECT / "data" / "questions.json"
 OUT_INDEX = PROJECT / "data" / "search-index.json"
 
 
+# 题型简称：界面标签去掉“题”字
+_TYPE_SHORT = {
+    "单选题": "单选",
+    "多选题": "多选",
+    "判断题": "判断",
+    "案例分析题": "案例",
+    "知识卡片": "知识卡",
+}
+
+
+def type_name_short(raw: str) -> str:
+    return _TYPE_SHORT.get(raw, raw)
+
+
 def norm_text(text: str) -> str:
     """全角转半角、去多余空格、小写。"""
     if not text:
@@ -87,7 +101,7 @@ def make_search_doc(q, case_map=None) -> dict:
     return {
         "id": q["id"],
         "type": q.get("type", ""),
-        "typeName": q.get("typeName", ""),
+        "typeName": type_name_short(q.get("typeName", "")),
         "chapter": q.get("chapter", ""),
         "section": q.get("section", ""),
         "sourceNo": q.get("sourceNo", ""),
@@ -138,7 +152,7 @@ def make_knowledge_doc(k) -> dict:
     return {
         "id": "k_" + str(k.get("sourceParagraphStart", "0")) + "_" + str(k.get("sourceParagraphEnd", "0")),
         "type": "knowledge",
-        "typeName": "知识卡片",
+        "typeName": type_name_short("知识卡片"),
         "chapter": k.get("chapter", ""),
         "section": "", "sourceNo": "",
         "question": title,

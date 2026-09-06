@@ -349,7 +349,7 @@
           const caseTitleHtml = d.caseTitle ? `<div class="case-title">${highlight(d.caseTitle, q)}</div>` : '';
           const caseMaterialHtml = d.caseMaterial ? `<div class="case-material">${highlight(d.caseMaterial, q)}</div>` : '';
           html += `<div class="card case-card">
-            <div class="card-head"><span class="type-tag">案例分析题</span></div>
+            <div class="card-head"><span class="type-tag">案例</span></div>
             ${caseTitleHtml}
             ${caseMaterialHtml}
             ${item.subs.map(sub => renderDocCard(sub, q, true)).join('')}
