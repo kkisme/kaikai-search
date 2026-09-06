@@ -8,6 +8,12 @@
 - 局域网：电脑运行 `python -m http.server 8000 --directory docs`，手机访问 `http://电脑IP:8000`
 - 支持 PWA 添加到主屏幕，支持离线缓存。
 
+## Android APK 下载
+
+- 最新版 APK：  
+  https://github.com/kkisme/kaikai-search/releases/download/v0.1.0/kaikai-search.apk
+- 每次推送 `docs/` 后，GitHub Actions 会自动重新打包 APK。
+
 ## 功能
 
 - 关键字搜索
