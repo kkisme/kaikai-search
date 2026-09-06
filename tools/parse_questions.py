@@ -295,6 +295,7 @@ def build_question(bucket, context, case_group):
     orphan_post = []  # 选项出现后的非选项文本（可能是缺失中间标签/续行）
     inline_info = None
     seen_option = False
+    last_option_index = -1
 
     for line in lines[1:]:
         lt = line["text"]
@@ -317,12 +318,17 @@ def build_question(bucket, context, case_group):
             opt_text = mo.group(2).strip()
             options.append({"key": key, "text": opt_text})
             seen_option = True
+            last_option_index = len(options) - 1
             continue
         # 非选项、非答案文本
         if not seen_option:
             orphan_pre.append(lt)
         else:
-            orphan_post.append(lt)
+            # 选项续行片段：如“.安全第一、预防为主…”，合并到上一个选项
+            if last_option_index >= 0 and re.match(r"^[一二三四五六七八九十]+、", lt):
+                options[last_option_index]["text"] += lt
+            else:
+                orphan_post.append(lt)
 
     # 内嵌答案
     all_text = " ".join(x["text"] for x in lines)
@@ -385,7 +391,12 @@ def build_question(bucket, context, case_group):
         orphan_pool = list(orphan_pre)
 
     if orphan_post:
-        orphan_pool.extend(orphan_post)
+        for txt in orphan_post:
+            # “一、预防为主…”这类片段是上一个选项的续文，不是新选项
+            if options and re.match(r"^[一二三四五六七八九十]+、", txt):
+                options[-1]["text"] += txt
+            else:
+                orphan_pool.append(txt)
 
     # 按答案中缺失的字母补选项（答案来自原文，可信）
     if options and orphan_pool:
@@ -566,7 +577,8 @@ def parse():
     for line in logical_lines:
         text = line["text"]
 
-        if is_heading(line):
+        # 当前 bucket 内出现的“一、…”很可能是选项续行，不能当章节标题切段
+        if is_heading(line) and (bucket is None or any(k in text for k in TYPE_HEADING_KEYWORDS)):
             flush()
             # 更新上下文
             if any(k in text for k in ("单选题", "多选题", "判断题", "填空题")):
