@@ -5612,7 +5612,7 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_005",
+      "caseId": "case_012",
       "materialText": ""
     },
     {
@@ -5654,7 +5654,7 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_005",
+      "caseId": "case_012",
       "materialText": ""
     },
     {
@@ -5677,7 +5677,7 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_005",
+      "caseId": "case_012",
       "materialText": ""
     },
     {
@@ -5700,7 +5700,7 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_005",
+      "caseId": "case_012",
       "materialText": ""
     },
     {
@@ -5764,7 +5764,7 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_006",
+      "caseId": "case_013",
       "materialText": ""
     },
     {
@@ -5787,7 +5787,7 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_006",
+      "caseId": "case_013",
       "materialText": ""
     },
     {
@@ -5829,7 +5829,7 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_006",
+      "caseId": "case_013",
       "materialText": ""
     },
     {
@@ -5871,7 +5871,7 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_006",
+      "caseId": "case_013",
       "materialText": ""
     },
     {
@@ -6994,13 +6994,13 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_008",
+      "caseId": "case_015",
       "materialText": ""
     },
     {
       "id": "q_000173",
-      "type": "case",
-      "typeName": "案例分析题",
+      "type": "judge",
+      "typeName": "判断题",
       "chapter": "二、法律体系及安全法律法规",
       "section": "一、综合知识和能力",
       "sourceNo": "",
@@ -7017,13 +7017,12 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_008",
       "materialText": ""
     },
     {
       "id": "q_000174",
-      "type": "case",
-      "typeName": "案例分析题",
+      "type": "multiple",
+      "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
       "section": "一、综合知识和能力",
       "sourceNo": "",
@@ -7065,13 +7064,12 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_008",
       "materialText": ""
     },
     {
       "id": "q_000175",
-      "type": "case",
-      "typeName": "案例分析题",
+      "type": "multiple",
+      "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
       "section": "一、综合知识和能力",
       "sourceNo": "",
@@ -7113,13 +7111,12 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_008",
       "materialText": ""
     },
     {
       "id": "q_000176",
-      "type": "case",
-      "typeName": "案例分析题",
+      "type": "multiple",
+      "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
       "section": "一、综合知识和能力",
       "sourceNo": "",
@@ -7162,13 +7159,12 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_008",
       "materialText": ""
     },
     {
       "id": "q_000177",
-      "type": "case",
-      "typeName": "案例分析题",
+      "type": "multiple",
+      "typeName": "多选题",
       "chapter": "二、法律体系及安全法律法规",
       "section": "一、综合知识和能力",
       "sourceNo": "",
@@ -7209,7 +7205,6 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_008",
       "materialText": ""
     },
     {
@@ -7507,7 +7502,7 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_009",
+      "caseId": "case_016",
       "materialText": ""
     },
     {
@@ -7556,7 +7551,7 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_009",
+      "caseId": "case_016",
       "materialText": ""
     },
     {
@@ -8884,7 +8879,7 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_010",
+      "caseId": "case_019",
       "materialText": ""
     },
     {
@@ -8934,7 +8929,7 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_010",
+      "caseId": "case_019",
       "materialText": ""
     },
     {
@@ -8983,7 +8978,7 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_010",
+      "caseId": "case_019",
       "materialText": ""
     },
     {
@@ -13474,7 +13469,7 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_011",
+      "caseId": "case_020",
       "materialText": ""
     },
     {
@@ -13497,7 +13492,7 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_011",
+      "caseId": "case_020",
       "materialText": ""
     },
     {
@@ -13539,7 +13534,7 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_011",
+      "caseId": "case_020",
       "materialText": ""
     },
     {
@@ -13581,7 +13576,7 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_011",
+      "caseId": "case_020",
       "materialText": ""
     },
     {
@@ -16828,7 +16823,7 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_012",
+      "caseId": "case_021",
       "materialText": ""
     },
     {
@@ -16853,7 +16848,7 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_012",
+      "caseId": "case_021",
       "materialText": ""
     },
     {
@@ -16907,7 +16902,7 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_012",
+      "caseId": "case_021",
       "materialText": ""
     },
     {
@@ -16930,7 +16925,7 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_012",
+      "caseId": "case_021",
       "materialText": ""
     },
     {
@@ -20558,7 +20553,7 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_013",
+      "caseId": "case_022",
       "materialText": ""
     },
     {
@@ -20600,7 +20595,7 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_013",
+      "caseId": "case_022",
       "materialText": ""
     },
     {
@@ -20623,7 +20618,7 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_013",
+      "caseId": "case_022",
       "materialText": ""
     },
     {
@@ -20646,7 +20641,7 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_014",
+      "caseId": "case_023",
       "materialText": ""
     },
     {
@@ -20669,7 +20664,7 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_014",
+      "caseId": "case_023",
       "materialText": ""
     },
     {
@@ -20692,7 +20687,7 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_014",
+      "caseId": "case_023",
       "materialText": ""
     },
     {
@@ -20734,7 +20729,7 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_014",
+      "caseId": "case_023",
       "materialText": ""
     },
     {
@@ -20776,7 +20771,7 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_015",
+      "caseId": "case_024",
       "materialText": ""
     },
     {
@@ -20799,7 +20794,7 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_015",
+      "caseId": "case_024",
       "materialText": ""
     },
     {
@@ -20822,7 +20817,7 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_015",
+      "caseId": "case_024",
       "materialText": ""
     },
     {
@@ -20845,7 +20840,7 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_016",
+      "caseId": "case_025",
       "materialText": ""
     },
     {
@@ -20950,7 +20945,7 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_016",
+      "caseId": "case_025",
       "materialText": ""
     },
     {
@@ -24129,7 +24124,7 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_017",
+      "caseId": "case_026",
       "materialText": ""
     },
     {
@@ -24152,7 +24147,7 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_017",
+      "caseId": "case_026",
       "materialText": ""
     },
     {
@@ -24194,7 +24189,7 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_017",
+      "caseId": "case_026",
       "materialText": ""
     },
     {
@@ -24236,7 +24231,7 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_017",
+      "caseId": "case_026",
       "materialText": ""
     },
     {
@@ -24259,7 +24254,7 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_018",
+      "caseId": "case_027",
       "materialText": ""
     },
     {
@@ -24282,7 +24277,7 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_018",
+      "caseId": "case_027",
       "materialText": ""
     },
     {
@@ -24324,7 +24319,7 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_018",
+      "caseId": "case_027",
       "materialText": ""
     },
     {
@@ -24366,7 +24361,7 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_018",
+      "caseId": "case_027",
       "materialText": ""
     },
     {
@@ -24692,7 +24687,7 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_019",
+      "caseId": "case_028",
       "materialText": ""
     },
     {
@@ -24715,7 +24710,7 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_019",
+      "caseId": "case_028",
       "materialText": ""
     },
     {
@@ -24757,7 +24752,7 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_019",
+      "caseId": "case_028",
       "materialText": ""
     },
     {
@@ -24799,7 +24794,7 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_019",
+      "caseId": "case_028",
       "materialText": ""
     },
     {
@@ -26022,7 +26017,7 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_020",
+      "caseId": "case_029",
       "materialText": ""
     },
     {
@@ -26167,7 +26162,7 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_020",
+      "caseId": "case_029",
       "materialText": ""
     },
     {
@@ -26559,7 +26554,7 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_021",
+      "caseId": "case_030",
       "materialText": ""
     },
     {
@@ -26601,7 +26596,7 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_021",
+      "caseId": "case_030",
       "materialText": ""
     },
     {
@@ -26639,7 +26634,7 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_021",
+      "caseId": "case_030",
       "materialText": ""
     },
     {
@@ -27032,7 +27027,7 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_021",
+      "caseId": "case_030",
       "materialText": ""
     },
     {
@@ -27535,7 +27530,7 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_022",
+      "caseId": "case_031",
       "materialText": ""
     },
     {
@@ -27569,7 +27564,7 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_022",
+      "caseId": "case_031",
       "materialText": ""
     },
     {
@@ -27603,7 +27598,7 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_023",
+      "caseId": "case_032",
       "materialText": ""
     },
     {
@@ -27637,7 +27632,7 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_023",
+      "caseId": "case_032",
       "materialText": ""
     },
     {
@@ -27671,7 +27666,7 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_023",
+      "caseId": "case_032",
       "materialText": ""
     },
     {
@@ -27705,7 +27700,7 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_024",
+      "caseId": "case_033",
       "materialText": ""
     },
     {
@@ -27739,7 +27734,7 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_024",
+      "caseId": "case_033",
       "materialText": ""
     },
     {
@@ -27773,7 +27768,7 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_024",
+      "caseId": "case_033",
       "materialText": ""
     },
     {
@@ -27807,7 +27802,7 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_025",
+      "caseId": "case_034",
       "materialText": ""
     },
     {
@@ -27849,7 +27844,7 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_025",
+      "caseId": "case_034",
       "materialText": ""
     },
     {
@@ -28359,7 +28354,7 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_025",
+      "caseId": "case_034",
       "materialText": ""
     },
     {
@@ -28718,7 +28713,7 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_026",
+      "caseId": "case_035",
       "materialText": ""
     },
     {
@@ -28760,7 +28755,7 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_026",
+      "caseId": "case_035",
       "materialText": ""
     },
     {
@@ -28794,7 +28789,7 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_027",
+      "caseId": "case_036",
       "materialText": ""
     },
     {
@@ -28971,7 +28966,7 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_028",
+      "caseId": "case_037",
       "materialText": ""
     },
     {
@@ -29005,7 +29000,7 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_028",
+      "caseId": "case_037",
       "materialText": ""
     },
     {
@@ -29047,7 +29042,7 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_028",
+      "caseId": "case_037",
       "materialText": ""
     },
     {
@@ -29095,7 +29090,7 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_028",
+      "caseId": "case_037",
       "materialText": ""
     },
     {
@@ -29320,7 +29315,7 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_029",
+      "caseId": "case_038",
       "materialText": ""
     },
     {
@@ -30384,7 +30379,7 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_030",
+      "caseId": "case_039",
       "materialText": ""
     },
     {
@@ -30431,7 +30426,7 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_031",
+      "caseId": "case_040",
       "materialText": ""
     },
     {
@@ -30669,7 +30664,7 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "一、特别重大事故，是指造成30人以上死亡，或者100人以上重伤，或者1亿元以上直接经济损失的事故；\n二、重大事故，是指造成10人以上30人以下死亡，或者50人以上100人以下重伤，或者5000万元以上1亿元以下直接经济损失的事故；\n三、较大事故，是指造成3人以上10人以下死亡，或者10人以上50人以下重伤，或者1000万元以上5000万元以下直接经济损失的事故；\n四、一般事故，是指造成3人以下死亡，或者10人以下重伤，或者1000万元以下直接经济损失的事故。",
-      "caseId": "case_033",
+      "caseId": "case_042",
       "materialText": ""
     },
     {
@@ -30915,7 +30910,7 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_035",
+      "caseId": "case_044",
       "materialText": ""
     },
     {
@@ -31254,7 +31249,7 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_036",
+      "caseId": "case_045",
       "materialText": ""
     },
     {
@@ -31288,7 +31283,7 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_036",
+      "caseId": "case_045",
       "materialText": ""
     },
     {
@@ -31322,7 +31317,7 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_036",
+      "caseId": "case_045",
       "materialText": ""
     },
     {
@@ -31356,7 +31351,7 @@
       "answerConfidence": "high",
       "verificationStatus": "verified",
       "note": "",
-      "caseId": "case_036",
+      "caseId": "case_045",
       "materialText": ""
     },
     {

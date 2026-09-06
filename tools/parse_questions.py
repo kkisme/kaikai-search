@@ -60,6 +60,20 @@ NOTE_LEAD_RE = re.compile(r"^(?:知识点|注|解读)(?:[:：]|[（(]\d+[)）])"
 CASE_TITLE_LINE_RE = re.compile(r"^第?\d+题[:：]?\s*(?:印刷资料)?$")
 # 编号列表项：1、2、3、或①②③ 或 (1)(2)（不匹配 13.6% 这类小数）
 LIST_ITEM_RE = re.compile(r"^[①②③④⑤⑥⑦⑧⑨⑩]|^\d+[、]|^\d+[.．](?!\d)|^[（(]\d+[)）]")
+_CN_NUM_ORDER = "①②③④⑤⑥⑦⑧⑨⑩"
+
+
+def list_item_number(text):
+    """提取列表项编号：1、2、3 / ① ② ③ / (1)(2)。不是列表项返回 None。"""
+    m = re.match(r"^([1-9]\d*)[、.．]", text)
+    if m:
+        return int(m.group(1))
+    m = re.match(r"^[（(]([1-9]\d*)[)）]", text)
+    if m:
+        return int(m.group(1))
+    if text and text[0] in _CN_NUM_ORDER:
+        return _CN_NUM_ORDER.index(text[0]) + 1
+    return None
 # 知识区块标题（题号+关键词）：205、预备知识一… / 165、…的主要内容 / 240、…安全控制要求
 KNOWLEDGE_TITLE_RE = re.compile(
     r"^\d+[、.．].{0,60}(?:预备知识|安全控制要求|主要内容|的概念|的种类|的知识|的管理)"
@@ -756,24 +770,32 @@ def parse():
                 flush()
                 bucket = {"kind": "unknown", "lines": [line]}
                 continue
-            # 知识卡片里经常用 1、2、3 / ①②③ / (1)(2) 做列表项：没有答案/选项信号时归并
+            # 知识卡片里经常用 1、2、3 / ①②③ / (1)(2) 做列表项：没有答案/选项信号时归并。
+            # 只有编号连续（2 跟在 1 后面）且当前是知识候选桶时才归并；
+            # 题目桶（492、后接 493、背景资料）必须断开，否则案例背景会被吞进上一题。
             if LIST_ITEM_RE.match(text) and not line_has_answer_signal(text):
+                cur_no = list_item_number(text)
+                last_no = list_item_number(bucket["lines"][-1]["text"]) if bucket else None
+                continuous = cur_no is not None and last_no is not None and cur_no == last_no + 1
                 if bucket is None:
                     bucket = {"kind": "unknown", "lines": [line]}
                 elif bucket.get("kind") == "unknown":
-                    if bucket_has_signal(bucket):
-                        # 前面的未知桶其实是题目（带了选项/答案信号），先落题再开新列表
+                    if bucket_has_signal(bucket) or not continuous:
+                        # 前面的未知桶其实是题目（带了选项/答案信号），或编号不连续
                         flush()
                         bucket = {"kind": "unknown", "lines": [line]}
                     else:
                         bucket["lines"].append(line)
                 elif bucket.get("kind") == "question" and not bucket_has_signal(bucket):
-                    # 无题问信号的知识候选桶 → 转未知继续归并
-                    bucket["kind"] = "unknown"
-                    bucket["lines"].append(line)
+                    # 无题问信号的知识候选桶：连续列表项归并，不连续则独立
+                    if continuous:
+                        bucket["lines"].append(line)
+                    else:
+                        flush()
+                        bucket = {"kind": "unknown", "lines": [line]}
                 else:
                     flush()
-                    bucket = {"kind": "unknown", "lines": [line]}
+                    bucket = {"kind": "question", "lines": [line]}
                 continue
             # 单行案例标题（62、xxx）后面跟 ①②…子题时，先建成案例组
             if (CASE_SUB_RE.match(text) or ASK_LEAD_RE.match(text)) and bucket is not None and is_single_line_case_parent(bucket):
@@ -836,7 +858,7 @@ def parse():
     # ---- 案例子题挂载重建 ----
     # parse 过程中子题会挂在“最后创建的案例组”上，可能挂错（如知识区的 ①②③ 题）；
     # 按源文件顺序重新归属：案例组之后紧邻的（1）/①/1./问: 子题属于该案例，
-    # 出现新的父题号（如 74、，顿号分隔）即结束当前案例。
+    # 出现新的父题号（如 74、，顿号分隔）或知识卡片即结束当前案例。
     sub_pat = re.compile(r"^(?:[（(]\d+[)）]|[①②③④⑤⑥⑦⑧⑨⑩]|问[:：]|\d+[.．])")
     parent_pat = re.compile(r"^\d+[、]")
     items = []
@@ -844,12 +866,18 @@ def parse():
         items.append((g["sourceParagraphStart"], 0, g))
     for q in questions:
         items.append((q["sourceParagraphStart"], 1, q))
+    for k in knowledge_cards:
+        items.append((k["sourceParagraphStart"], 2, k))
     items.sort(key=lambda x: (x[0], x[1]))
     current = None
     for _, _kind, obj in items:
         if isinstance(obj, dict) and "subQuestionIds" in obj and "materialText" in obj:
             current = obj
             obj["subQuestionIds"] = []
+            continue
+        if obj.get("type") == "knowledge":
+            # 知识卡片打断了案例链（如 83、案例后接工伤赔偿知识再接①②③题）
+            current = None
             continue
         first = obj["rawText"].split("\n")[0]
         if sub_pat.match(first):
@@ -867,12 +895,12 @@ def parse():
             obj.pop("caseId", None)
             obj["type"], obj["typeName"] = infer_question_type(obj)
 
-    # ---- 无子题的法条类“案例”转为知识卡片 ----
-    # 如“73、《职业病防治法》…”这类带《》的标题同时没有子题，不是案例分析题
+    # ---- 没有子题的“案例”实为知识条目时转为知识卡片 ----
+    # “73、《职业病防治法》…”“78、《安全生产许可证条例》”“80、设计单位安全责任”这类
+    # 题号+主题没有任何子题，归属于知识卡片；“83、湖南株洲高架桥坍塌”等同理。
     remain = []
     for g in case_groups:
-        if not g["subQuestionIds"] and re.search(r"《[^》]+》", g["title"]) and not re.search(
-                r"(事故|火灾|坍塌|死亡|伤亡|坠落|爆[炸破]|倒塌)", g["title"]):
+        if not g["subQuestionIds"]:
             knowledge_cards.append({
                 "type": "knowledge",
                 "title": g["title"],
@@ -880,9 +908,32 @@ def parse():
                 "sourceParagraphStart": g["sourceParagraphStart"],
                 "sourceParagraphEnd": g["sourceParagraphEnd"],
             })
-        else:
-            remain.append(g)
+            continue
+        remain.append(g)
     case_groups[:] = remain
+
+    # ---- 知识卡内容：行内还有“N、”列表项（原文一行塞多条）时拆成多行 ----
+    for k in knowledge_cards:
+        lines = []
+        for ln in k["content"].split("\n"):
+            parts = re.split(r"(?<!\d)(?=\d+[、])", ln)
+            lines.extend([p.strip() for p in parts if p.strip()])
+        if lines:
+            k["content"] = "\n".join(lines)
+            k["title"] = strip_question_prefix(lines[0]) if is_question_start({"text": lines[0]}) else lines[0]
+
+    # ---- 相邻知识卡编号连续时合并（“…选择原则：1、充分性” + “2、适应性…”拆开的情况）----
+    merged_k = []
+    for k in knowledge_cards:
+        if merged_k:
+            prev = merged_k[-1]
+            prev_no = list_item_number(prev["content"].split("\n")[-1])
+            cur_no = list_item_number(k["content"].split("\n")[0])
+            if prev_no is not None and cur_no is not None and cur_no == prev_no + 1:
+                prev["content"] += "\n" + k["content"]
+                continue
+        merged_k.append(k)
+    knowledge_cards[:] = merged_k
 
     # 汇总统计
     stats = {
