@@ -107,10 +107,48 @@
       return safe.replace(re, '<mark>$1</mark>');
     }
 
+    function levenshtein(a, b) {
+      const m = a.length, n = b.length;
+      if (!m) return n;
+      if (!n) return m;
+      let prev = new Array(n + 1);
+      for (let j = 0; j <= n; j++) prev[j] = j;
+      for (let i = 1; i <= m; i++) {
+        const cur = [i];
+        for (let j = 1; j <= n; j++) {
+          cur[j] = Math.min(
+            prev[j] + 1,
+            cur[j - 1] + 1,
+            prev[j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1)
+          );
+        }
+        prev = cur;
+      }
+      return prev[n];
+    }
+
+    function isSubsequence(needle, haystack) {
+      let i = 0;
+      for (let j = 0; j < haystack.length && i < needle.length; j++) {
+        if (haystack[j] === needle[i]) i++;
+      }
+      return i === needle.length;
+    }
+
+    function fuzzyWindowMatch(q, haystack, maxDist) {
+      const len = q.length;
+      if (len < 2 || haystack.length < len) return false;
+      for (let i = 0; i <= haystack.length - len; i++) {
+        if (levenshtein(q, haystack.slice(i, i + len)) <= maxDist) return true;
+      }
+      return false;
+    }
+
     function scoreDoc(doc, nq) {
       let score = 0;
       const q = (doc.question || '').toLowerCase();
       const text = (doc.text || '').toLowerCase();
+      const textCompact = text.replace(/\s+/g, '');
       const pinyin = (doc.pinyin || '').toLowerCase();
       const pinyinAbbr = (doc.pinyinAbbr || '').toLowerCase();
       const answerText = (doc.answerText || '').toLowerCase();
@@ -128,6 +166,18 @@
       for (let i = 0; i < nq.length - 1; i++) {
         const g = nq.slice(i, i + 2);
         if (grams.includes(g)) { score += 15; strong = true; }
+      }
+
+      // 不要求完全连续：乱序/错字也能搜到
+      if (nq.length >= 2 && isSubsequence(nq, textCompact)) {
+        score += 30;
+        strong = true;
+      }
+      // 错别字容错：允许 1~2 个字符差异
+      const maxDist = nq.length <= 4 ? 1 : 2;
+      if (nq.length >= 2 && fuzzyWindowMatch(nq, textCompact, maxDist)) {
+        score += 35;
+        strong = true;
       }
 
       // 必须至少有一个“强命中”才返回，避免只因为一个常见字就显示大量不相关题
