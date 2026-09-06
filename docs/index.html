@@ -101,10 +101,64 @@
     }
 
     function highlight(text, q) {
-      const safe = escapeHtml(text || '');
-      if (!q) return safe;
-      const re = new RegExp('(' + q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'i');
-      return safe.replace(re, '<mark>$1</mark>');
+      if (!text) return escapeHtml('');
+      if (!q) return escapeHtml(text);
+      const orig = Array.from(text);
+      const normChars = [];
+      const map = [];
+      for (let i = 0; i < orig.length; i++) {
+        let ch = orig[i];
+        const code = ch.charCodeAt(0);
+        if (code >= 0xFF01 && code <= 0xFF5E) ch = String.fromCharCode(code - 0xFEE0);
+        else if (code === 0x3000) ch = ' ';
+        ch = ch.toLowerCase();
+        if (/\s/.test(ch)) continue;
+        normChars.push(ch);
+        map.push(i);
+      }
+      const norm = normChars.join('');
+      const marked = new Set();
+
+      let pos = norm.indexOf(q);
+      if (pos >= 0) {
+        while (pos !== -1) {
+          for (let i = pos; i < pos + q.length; i++) marked.add(map[i]);
+          pos = norm.indexOf(q, pos + 1);
+        }
+      } else {
+        // 不连续匹配：把按顺序命中的字符标黄
+        const sub = [];
+        let ni = 0;
+        for (let i = 0; i < normChars.length && ni < q.length; i++) {
+          if (normChars[i] === q[ni]) { sub.push(i); ni++; }
+        }
+        if (ni === q.length) {
+          for (const i of sub) marked.add(map[i]);
+        } else {
+          // 错别字：标黄编辑距离最近的一段
+          const maxDist = q.length <= 4 ? 1 : 2;
+          let bestStart = -1;
+          for (let i = 0; i <= norm.length - q.length; i++) {
+            if (levenshtein(q, norm.slice(i, i + q.length)) <= maxDist) { bestStart = i; break; }
+          }
+          if (bestStart >= 0) {
+            for (let i = bestStart; i < bestStart + q.length; i++) marked.add(map[i]);
+          }
+        }
+      }
+
+      let html = '';
+      let inMark = false;
+      for (let i = 0; i < orig.length; i++) {
+        const isMark = marked.has(i);
+        if (isMark !== inMark) {
+          html += isMark ? '<mark>' : '</mark>';
+          inMark = isMark;
+        }
+        html += escapeHtml(orig[i]);
+      }
+      if (inMark) html += '</mark>';
+      return html;
     }
 
     function levenshtein(a, b) {
