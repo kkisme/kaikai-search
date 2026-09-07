@@ -23,6 +23,10 @@ try{
  await page.locator('#openBank').click();
  assert(await page.locator('#searchView').isVisible());
  assert.equal(await page.locator('#header .brand').innerText(),'交安复习题');
+ const filterBounds=await page.locator('#typeFilters').evaluate(el=>{const r=el.getBoundingClientRect();return {left:r.left,right:r.right,width:innerWidth,scrollable:el.scrollWidth>el.clientWidth};});
+ assert.equal(filterBounds.left,0);
+ assert.equal(filterBounds.right,filterBounds.width);
+ assert(filterBounds.scrollable);
  await page.locator('#more').click();
  assert.equal(await page.locator('.entry').count(),60);
  await search('上海莲花');
