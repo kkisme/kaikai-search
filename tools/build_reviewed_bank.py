@@ -53,6 +53,8 @@ def build(source):
  assert parent is None,'Unclosed parent'
  assert len({e['id'] for e in entries})==len(entries)
  for e in entries:
+  if e['type'] in ('案例','综合'):
+   e['blocks']=[b for b in e['blocks'] if b['kind']=='material']+[b for b in e['blocks'] if b['kind']=='question']
   texts=[]
   for b in e['blocks']:
    if b['kind']=='question':texts += [b['stem']]+[o['text'] for o in b['options']]+[b['answer']]+b['notes']

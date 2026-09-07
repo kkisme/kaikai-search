@@ -40,6 +40,9 @@ try{
  assert.equal(caseStyle.left,'1px');
  assert.notEqual(caseStyle.shadow,'none');
  assert.equal(caseStyle.material,'rgb(248, 250, 252)');
+ await search('全面风险管理');
+ const blockOrder=await page.locator('[data-entry-id="DT00187"]').evaluate(el=>[...el.children].map(child=>child.classList.contains('material')?'M':'Q').join(''));
+ assert(!blockOrder.includes('QM'));
  await search('钱某');
  assert.equal(await page.locator('[data-entry-id="DT01121"] .question').count(),4);
  assert((await page.locator('[data-entry-id="DT01121"] mark').count())>1);

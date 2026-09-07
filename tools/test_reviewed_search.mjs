@@ -18,4 +18,8 @@ assert.equal(highlight('<script>安全</script>','安全'),'&lt;script&gt;<mark>
 assert.equal(highlight('安 全Ａ','安全a'),'<mark>安 全Ａ</mark>');
 assert.equal(new Set(entries.map(e=>e.id)).size,entries.length);
 for(const e of entries){assert(e.blocks.length,e.id);for(const b of e.blocks)if(b.kind==='question')assert(b.stem,b.id);}
+for(const e of entries.filter(e=>['案例','综合'].includes(e.type))){
+ const order=e.blocks.map(b=>b.kind==='material'?'M':'Q').join('');
+ assert(!order.includes('QM'),`${e.id} has case material after a question: ${order}`);
+}
 console.log('PASS: reviewed boundaries, removals, 23 knowledge cards, search and safe highlighting');
