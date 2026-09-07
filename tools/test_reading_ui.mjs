@@ -80,6 +80,16 @@ try{
  await page.locator('#searchView').waitFor({state:'visible'});
  assert(await page.locator('#searchView').isVisible());
  assert.equal(await page.locator('#searchInput').inputValue(),'赵某与钱某');
+ assert.equal(await page.locator('#searchView').evaluate(el=>getComputedStyle(el).animationName),'none');
+ const motionContext=await browser.newContext({viewport:{width:390,height:844}});
+ const motionPage=await motionContext.newPage();
+ await motionPage.goto(base);
+ await motionPage.locator('#homeView').waitFor({state:'visible'});
+ assert.equal(await motionPage.locator('#homeView').evaluate(el=>getComputedStyle(el).animationName),'viewIn');
+ await motionPage.locator('#openBank').click();
+ assert.equal(await motionPage.locator('#searchView').evaluate(el=>getComputedStyle(el).animationName),'viewIn');
+ await motionPage.screenshot({path:'dist/home-motion-mobile.png'});
+ await motionContext.close();
  assert.deepEqual(errors,[]);
  console.log('PASS: mobile/desktop rendering, complete cases, navigation, reset, filters, offline reload, no JS errors');
 }finally{await browser.close();}
