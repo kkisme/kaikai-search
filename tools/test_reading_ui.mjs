@@ -15,7 +15,9 @@ try{
  assert(await page.locator('#homeView').isVisible());
  assert(await page.locator('#searchView').isHidden());
  assert.equal(await page.locator('#bankCount').textContent(),'1206 道');
+ assert.equal(await page.locator('#bankDate').textContent(),'2026-09-07');
  assert.equal(await page.locator('.bank-title').evaluate(el=>getComputedStyle(el).fontSize),'14px');
+ assert.equal(await page.locator('.bank-icon svg').evaluate(el=>getComputedStyle(el).width),'34px');
  const homeLayout=await page.locator('.bank-row').evaluate(el=>({height:el.getBoundingClientRect().height,radius:getComputedStyle(document.querySelector('.home-main')).borderTopLeftRadius}));
  assert(homeLayout.height<=62);
  assert.equal(homeLayout.radius,'8px');
@@ -92,7 +94,6 @@ try{
  await page.locator('.back-home').click();
  await page.locator('#homeView').waitFor({state:'visible'});
  assert(await page.locator('#homeView').isVisible());
- assert(await page.locator('#recentStudy').isVisible());
  assert(await page.locator('#matchNav').isHidden());
  await page.goBack();
  await page.locator('#searchView').waitFor({state:'visible'});

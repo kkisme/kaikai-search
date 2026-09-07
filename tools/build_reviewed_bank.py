@@ -1,5 +1,6 @@
 """Build the deployed question bank from explicit boundaries in the reviewed DOCX."""
 import argparse, hashlib, json, re
+from datetime import datetime
 from pathlib import Path
 from docx import Document
 from pypinyin import lazy_pinyin, Style
@@ -58,7 +59,7 @@ def build(source):
    else:texts += b['paragraphs']
   e['title']=next((t for t in texts if t),'')[:100]
   raw='\n'.join(texts);e['search']={'text':normalize(raw),'pinyin':normalize(''.join(lazy_pinyin(raw,style=Style.NORMAL))),'initials':normalize(''.join(lazy_pinyin(raw,style=Style.FIRST_LETTER)))}
- return {'schemaVersion':4,'source':source.name,'sourceSha256':hashlib.sha256(source.read_bytes()).hexdigest(),'entries':entries}
+ return {'schemaVersion':4,'generatedDate':datetime.now().astimezone().date().isoformat(),'source':source.name,'sourceSha256':hashlib.sha256(source.read_bytes()).hexdigest(),'entries':entries}
 if __name__=='__main__':
  parser=argparse.ArgumentParser();parser.add_argument('--source',type=Path,default=ROOT/'交安复习题全部.大题层级修正版-20260907.docx');args=parser.parse_args()
  data=build(args.source);out=ROOT/'docs/question-bank.json';out.write_text(json.dumps(data,ensure_ascii=False,separators=(',',':')),encoding='utf-8');print(f"Exported {len(data['entries'])} complete entries to {out}")

@@ -3,6 +3,7 @@ import {readFileSync} from 'node:fs';
 import {rank,highlight} from '../docs/search.js';
 const bank=JSON.parse(readFileSync(new URL('../docs/question-bank.json',import.meta.url),'utf8'));
 const entries=bank.entries;
+assert.match(bank.generatedDate,/^\d{4}-\d{2}-\d{2}$/);
 assert.equal(entries.length,1206);
 assert.equal(entries.filter(e=>e.type==='知识卡').length,23);
 for(const id of ['DT00099','DT01121'])assert.equal(entries.find(e=>e.id===id).blocks.filter(b=>b.kind==='question').length,4);

@@ -71,13 +71,8 @@ function showView() {
  view.classList.remove('view-enter');
  requestAnimationFrame(()=>view.classList.add('view-enter'));
  document.body.classList.toggle('on-home',!searching);
- if(searching){
-  try{localStorage.setItem('kaikai-recent-bank','traffic-safety');}catch{}
-  $('recentStudy').hidden=false;
- }
  window.scrollTo({top:0,behavior:'instant'});
 }
-try{$('recentStudy').hidden=localStorage.getItem('kaikai-recent-bank')!=='traffic-safety';}catch{}
 window.addEventListener('hashchange',showView);
 showView();
 $('homeRetry').onclick=loadBank;
@@ -91,6 +86,8 @@ async function loadBank(){
   if(bank.schemaVersion!==4||!Array.isArray(bank.entries))throw new Error('题库格式不兼容');
   entries=bank.entries.map(e=>({...e,type:['案例','综合'].includes(e.type)?'案例题':e.type==='案例资料'?'知识卡':e.type}));
   $('bankCount').textContent=`${entries.length} 道`;
+  $('bankDate').textContent=bank.generatedDate||'';
+  $('bankDate').dateTime=bank.generatedDate||'';
   $('typeFilters').innerHTML=types.map(t=>`<button type="button" data-type="${t}" aria-pressed="${t===type}">${t}</button>`).join('');
   $('typeFilters').onclick=e=>{const button=e.target.closest('button');if(!button)return;type=button.dataset.type;for(const item of $('typeFilters').children)item.setAttribute('aria-pressed',String(item===button));search();};
   search();
