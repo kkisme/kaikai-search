@@ -51,3 +51,19 @@ jobs:
           name: kaikai-search-apk
           path: android/app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
+
+      - name: Publish current APK to the permanent download link
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          cp android/app/build/outputs/apk/debug/app-debug.apk kaikai-search.apk
+          git tag -f app-latest "$GITHUB_SHA"
+          git push origin refs/tags/app-latest --force
+          if gh release view app-latest >/dev/null 2>&1; then
+            gh release upload app-latest kaikai-search.apk --clobber
+          else
+            gh release create app-latest kaikai-search.apk \
+              --title "凯凯搜题助手 Android 最新版" \
+              --notes "此安装包由 main 分支自动构建。" \
+              --prerelease
+          fi
