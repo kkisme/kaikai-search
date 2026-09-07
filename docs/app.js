@@ -1,7 +1,7 @@
 import {rank, highlight, escapeHtml} from './search.js';
 const $ = id => document.getElementById(id);
 const types = ['全部','单选','多选','判断','案例题','知识卡'];
-let entries = [], query = '', type = '全部', limit = 30, hits = [], active = -1;
+let entries = [], query = '', type = '全部', limit = 30, resultCards = [], active = -1;
 let debounce, composing = false;
 const h = value => highlight(value, query);
 function badge(type) { return `<span class="badge">${escapeHtml(type)}</span>`; }
@@ -24,17 +24,17 @@ function entryHtml(e) {
 }
 function updateNavigation() {
  $('matchNav').hidden=!query;
- $('matchCount').textContent=`${active+1} / ${hits.length}`;
+ $('matchCount').textContent=`${active+1} / ${resultCards.length} 题`;
  $('prevMatch').disabled=active<=0;
- $('nextMatch').disabled=active<0||active>=hits.length-1;
- $('list').querySelector('.active-match')?.classList.remove('active-match');
- hits[active]?.classList.add('active-match');
+ $('nextMatch').disabled=active<0||active>=resultCards.length-1;
+ $('list').querySelector('.active-entry')?.classList.remove('active-entry');
+ resultCards[active]?.classList.add('active-entry');
 }
 function moveMatch(delta) {
  const next=active+delta;
- if(next<0||next>=hits.length)return;
+ if(next<0||next>=resultCards.length)return;
  active=next;
- const target=hits[active];
+ const target=resultCards[active];
  updateNavigation();
  target.scrollIntoView({block:'start',behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});
 }
@@ -42,10 +42,10 @@ function render(reset=true) {
  const results=rank(entries,query,type), visible=query?results:results.slice(0,limit);
  $('list').innerHTML=visible.map(({entry})=>entryHtml(entry)).join('')||'<p class="empty">没有找到匹配题目，请缩短关键词或切换题型。</p>';
  $('more').hidden=visible.length>=results.length;
- hits=[...$('list').querySelectorAll('mark')];
- active=hits.length?0:-1;updateNavigation();
+ resultCards=[...$('list').querySelectorAll('.entry')];
+ active=resultCards.length?0:-1;updateNavigation();
  const fuzzy=results.length&&results.every(r=>r.score===10);
- $('stat').textContent=`${query?'找到':'共'} ${results.length} 条${query?` · ${hits.length} 处关键词`:` · 已展示 ${visible.length} 条`}${fuzzy?' · 以下为近似匹配':query&&results.length&&!hits.length?' · 拼音匹配':''}`;
+ $('stat').textContent=`${query?'找到':'共'} ${results.length} 条${query?'':` · 已展示 ${visible.length} 条`}${fuzzy?' · 以下为近似匹配':query&&results.length&&!$('list').querySelector('mark')?' · 拼音匹配':''}`;
  if(reset)window.scrollTo({top:0,behavior:'instant'});
 }
 function search(){clearTimeout(debounce);query=$('searchInput').value.trim();limit=30;render();}
