@@ -15,7 +15,9 @@ try{
  assert(await page.locator('#homeView').isVisible());
  assert(await page.locator('#searchView').isHidden());
  assert.equal(await page.locator('#bankCount').textContent(),'1206 道');
- assert.equal(await page.locator('.bank-title').evaluate(el=>getComputedStyle(el).fontSize),'16px');
+ assert.equal(await page.locator('.bank-title').evaluate(el=>getComputedStyle(el).fontSize),'14px');
+ assert.equal(await page.locator('.developer-logo').count(),2);
+ assert(!(await page.locator('body').innerText()).includes('本程序由凯哥开发'));
  mkdirSync('dist',{recursive:true});
  await page.screenshot({path:'dist/home-mobile.png'});
  await page.locator('#openBank').click();
