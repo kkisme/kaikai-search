@@ -101,7 +101,7 @@ mark { color: inherit; background: #ffe58f; border-radius: 2px; scroll-margin-bl
 .page-footer { padding: 30px 12px 6px; color: #aeb4bc; text-align: center; font-size: 12px; }
 .end-line { display: flex; max-width: 300px; align-items: center; justify-content: center; gap: 14px; margin: 0 auto; }
 .end-line::before, .end-line::after { height: 1px; flex: 1; background: #e1e5ea; content: ""; }
-.developer-logo { display: block; width: 84px; height: auto; margin: 14px auto 0; opacity: .68; }
+.developer-logo { display: block; width: 84px; height: auto; margin: 14px auto 0; opacity: .72; filter: drop-shadow(0 3px 5px rgba(25, 45, 70, .18)); }
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); }
 
 /* 克制的移动端动效 */
