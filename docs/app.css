@@ -137,7 +137,7 @@ mark { color: inherit; background: #ffe58f; border-radius: 2px; scroll-margin-bl
 #matchNav svg { width: 19px; height: 19px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 #matchCount { min-width: 58px; padding: 0 9px; color: #d5dfec; border-inline: 1px solid rgba(255, 255, 255, .08); text-align: center; white-space: nowrap; font-size: 11px; font-weight: 500; font-variant-numeric: tabular-nums; }
 
-#more { display: block; margin: 18px auto; padding: 8px 22px; color: #fff; background: var(--accent); border: 0; border-radius: 19px; }
+.load-sentinel { height: 1px; }
 .empty { padding: 52px 15px; color: var(--muted); text-align: center; }
 .page-footer { padding: 30px 12px 6px; color: #aeb4bc; text-align: center; font-size: 12px; }
 .end-line { display: flex; max-width: 300px; align-items: center; justify-content: center; gap: 14px; margin: 0 auto; }

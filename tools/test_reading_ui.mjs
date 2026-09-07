@@ -42,8 +42,11 @@ try{
  assert.equal(filterBounds.left,0);
  assert.equal(filterBounds.right,filterBounds.width);
  assert(filterBounds.scrollable);
- await page.locator('#more').click();
- assert.equal(await page.locator('.entry').count(),60);
+ assert.equal(await page.locator('#more').count(),0);
+ assert(await page.locator('#loadSentinel').isVisible());
+ assert(await page.locator('#searchEnd').isHidden());
+ await page.locator('#loadSentinel').scrollIntoViewIfNeeded();
+ await page.waitForFunction(()=>document.querySelectorAll('.entry').length>=60);
  await search('上海莲花');
  assert.equal(await page.locator('[data-entry-id="DT00099"] .question').count(),4);
  const caseStyle=await page.locator('[data-entry-id="DT00099"]').evaluate(el=>({left:getComputedStyle(el).borderLeftWidth,shadow:getComputedStyle(el).boxShadow,material:getComputedStyle(el.querySelector('.material')).backgroundColor}));
@@ -87,7 +90,10 @@ try{
  await search('不存在xyz123456');assert.equal(await page.locator('.entry').count(),0);
  assert(await page.locator('#nextMatch').isDisabled());
  await search('');await page.locator('[data-type="案例题"]').click();
- await page.locator('#more').click();assert.equal(await page.locator('.entry').count(),40);
+ await page.locator('#loadSentinel').scrollIntoViewIfNeeded();
+ await page.waitForFunction(()=>document.querySelectorAll('.entry').length===40);
+ assert(await page.locator('#loadSentinel').isHidden());
+ assert(await page.locator('#searchEnd').isVisible());
  await page.locator('[data-type="知识卡"]').click();assert.equal(await page.locator('.entry').count(),26);
  await page.locator('[data-type="全部"]').click();await search('赵某与钱某');
  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true,'mobile horizontal overflow');

@@ -45,8 +45,9 @@ function render(reset=true) {
   $('list').classList.remove('list-enter');
   requestAnimationFrame(()=>$('list').classList.add('list-enter'));
  }
- $('more').hidden=visible.length>=results.length;
- $('searchEnd').hidden=!$('more').hidden;
+ const exhausted=visible.length>=results.length;
+ $('loadSentinel').hidden=exhausted;
+ $('searchEnd').hidden=!exhausted;
  resultCards=[...$('list').querySelectorAll('.entry')];
  active=resultCards.length?0:-1;updateNavigation();
  const fuzzy=results.length&&results.every(r=>r.score===10);
@@ -58,7 +59,9 @@ $('searchForm').addEventListener('submit',e=>{e.preventDefault();if(!composing)s
 $('searchInput').addEventListener('compositionstart',()=>{composing=true;clearTimeout(debounce);});
 $('searchInput').addEventListener('compositionend',()=>{composing=false;search();});
 $('searchInput').addEventListener('input',()=>{if(!composing){clearTimeout(debounce);debounce=setTimeout(search,180);}});
-$('more').addEventListener('click',()=>{limit+=30;render(false);});
+new IntersectionObserver(items=>{
+ if(items.some(item=>item.isIntersecting)&&!$('loadSentinel').hidden){limit+=30;render(false);}
+},{rootMargin:'360px 0px'}).observe($('loadSentinel'));
 $('prevMatch').addEventListener('click',()=>moveMatch(-1));
 $('nextMatch').addEventListener('click',()=>moveMatch(1));
 new ResizeObserver(()=>document.documentElement.style.setProperty('--header-height',`${$('header').offsetHeight}px`)).observe($('header'));
