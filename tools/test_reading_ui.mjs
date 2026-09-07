@@ -31,6 +31,10 @@ try{
  assert.equal(await page.locator('.entry').count(),60);
  await search('上海莲花');
  assert.equal(await page.locator('[data-entry-id="DT00099"] .question').count(),4);
+ const caseStyle=await page.locator('[data-entry-id="DT00099"]').evaluate(el=>({left:getComputedStyle(el).borderLeftWidth,shadow:getComputedStyle(el).boxShadow,material:getComputedStyle(el.querySelector('.material')).backgroundColor}));
+ assert.equal(caseStyle.left,'1px');
+ assert.notEqual(caseStyle.shadow,'none');
+ assert.equal(caseStyle.material,'rgb(248, 250, 252)');
  await search('钱某');
  assert.equal(await page.locator('[data-entry-id="DT01121"] .question').count(),4);
  assert((await page.locator('[data-entry-id="DT01121"] mark').count())>1);

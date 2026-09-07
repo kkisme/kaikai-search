@@ -66,15 +66,15 @@ button:focus-visible { outline: 2px solid #b9dcff; outline-offset: 2px; }
 #searchView main { max-width: 664px; margin: auto; padding: 12px 10px 110px; }
 .result-bar { padding: 0 3px; color: var(--muted); font-size: 12px; }
 .result-bar p { margin: 0 0 10px; }
-.entry { margin: 0 0 11px; overflow: hidden; background: rgba(255,255,255,.98); border: 1px solid rgba(231, 235, 240, .92); border-radius: 13px; box-shadow: 0 3px 12px rgba(23, 42, 64, .045), inset 0 1px 0 #fff; scroll-margin-top: calc(var(--header-height) + 12px); }
-.case-entry { border-left: 3px solid #a879ed; }
+.entry { margin: 0 0 13px; overflow: hidden; background: rgba(255,255,255,.99); border: 1px solid rgba(225, 231, 238, .92); border-radius: 13px; box-shadow: 0 7px 20px rgba(28, 48, 72, .10), 0 2px 5px rgba(28, 48, 72, .05), inset 0 1px 0 #fff; scroll-margin-top: calc(var(--header-height) + 12px); }
+.case-entry { border-left-width: 1px; }
 .question { padding: 13px 14px; border-bottom: 1px solid var(--line); scroll-margin-top: calc(var(--header-height) + 12px); }
 .question:last-child { border-bottom: 0; }
 .stem { margin: 0 0 9px; overflow-wrap: anywhere; font-size: 15px; font-weight: 400; white-space: pre-wrap; }
 .badge { display: inline-block; margin-right: 7px; padding: 1px 6px; vertical-align: 1px; color: var(--accent); background: #eef6ff; border: 1px solid #d9eaff; border-radius: 5px; font-size: 11px; line-height: 1.6; white-space: nowrap; }
 .sub-number { margin-right: 5px; color: #545b65; font-weight: 650; }
 .material { padding: 14px; border-bottom: 1px solid var(--line); }
-.case-entry .material { background: #fbf8ff; }
+.case-entry .material { background: #f8fafc; }
 .material p { margin: 0 0 8px; overflow-wrap: anywhere; white-space: pre-wrap; }
 .material p:last-child { margin-bottom: 0; }
 .options { margin: 0; padding: 0; color: #49515a; font-size: 14px; list-style: none; }
