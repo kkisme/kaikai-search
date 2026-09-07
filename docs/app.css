@@ -24,7 +24,7 @@ button:focus-visible { outline: 2px solid #b9dcff; outline-offset: 2px; }
 .home-title { text-align: center; }
 .home-title h1 { margin: 0; font-size: 18px; font-weight: 650; letter-spacing: .5px; }
 .home-title p { margin: 2px 0 0; color: rgba(255,255,255,.7); font-size: 11px; }
-.home-main { position: relative; z-index: 2; display: flex; width: 100%; max-width: 680px; min-height: 360px; flex: 1; flex-direction: column; margin: -18px auto 0; padding: 20px 15px calc(20px + env(safe-area-inset-bottom)); background: #fff; border-radius: 22px 22px 0 0; box-shadow: 0 -8px 26px rgba(24,70,124,.08); }
+.home-main { position: relative; z-index: 2; display: flex; width: 100%; max-width: 680px; min-height: 360px; flex: 1; flex-direction: column; margin: -18px auto 0; padding: 20px 15px calc(20px + env(safe-area-inset-bottom)); background: #fff; border-radius: 14px 14px 0 0; box-shadow: 0 -8px 26px rgba(24,70,124,.08); }
 .library-panel { width: 100%; }
 .library-heading { display: flex; align-items: baseline; justify-content: space-between; margin: 0 3px 7px; color: #252a31; font-size: 16px; font-weight: 650; }
 .library-heading small { color: #a0a6af; font-size: 11px; font-weight: 400; }
