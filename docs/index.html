@@ -1,9 +1,10 @@
 <!doctype html>
 <html lang="zh-CN">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#1677ff"><title>凯凯搜题助手</title><link rel="manifest" href="manifest.json"><link rel="stylesheet" href="app.css?v=20260907-bank-meta"></head>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#1677ff"><title>凯凯搜题助手</title><link rel="manifest" href="manifest.json"><link rel="stylesheet" href="app.css?v=20260907-install-guide"></head>
 <body>
 <section id="homeView">
 <header class="home-hero">
+<button id="guideTrigger" class="guide-trigger" type="button" aria-haspopup="dialog" aria-controls="installGuide"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 10.8v5.1M12 7.7h.01"/></svg><span>说明</span></button>
 <div class="home-title"><h1>凯凯搜题助手</h1><p>随时搜题，高效学习</p></div>
 </header>
 <main class="home-main"><section class="library-panel"><div class="library-heading"><span>我的题库</span><small>1 个题库</small></div><a id="openBank" class="bank-row" href="#search">
@@ -12,6 +13,12 @@
 <svg class="bank-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg>
 </a><p id="homeStatus" role="status"></p><button id="homeRetry" hidden>重新加载</button></section><footer class="page-footer"><div class="end-line"><span>没有更多了</span></div><img class="developer-logo" src="icons/developer-logo.webp" alt="文刀山己几"></footer></main>
 </section>
+<dialog id="installGuide" class="guide-dialog" aria-labelledby="guideTitle"><div class="guide-card">
+<header class="guide-head"><div><span class="guide-eyebrow">使用帮助</span><h2 id="guideTitle">安装凯凯搜题助手</h2></div><button id="guideClose" class="guide-close" type="button" aria-label="关闭说明"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7 7 10 10M17 7 7 17"/></svg></button></header>
+<section class="install-card"><div class="install-card-title"><span class="install-icon browser-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M3.8 9h16.4M8 20c-1.1-2.2-1.7-5-1.7-8S6.9 6.2 8 4m8 16c1.1-2.2 1.7-5 1.7-8S17.1 6.2 16 4"/></svg></span><div><h3>通过浏览器安装</h3><p>无需下载，添加到手机桌面即可使用</p></div></div><ol><li><span>1</span>使用浏览器打开本页面</li><li><span>2</span>点击浏览器右上角的菜单按钮</li><li><span>3</span>选择“安装应用”或“添加到主屏幕”</li><li><span>4</span>确认安装，之后从桌面直接打开</li></ol></section>
+<a class="app-download" href="https://github.com/kkisme/kaikai-search/releases/latest/download/kaikai-search.apk"><span class="install-icon app-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="6.5" y="2.8" width="11" height="18.4" rx="2.3"/><path d="M10 5.7h4M11.2 18.3h1.6"/></svg></span><span><strong>下载 Android App</strong><small>点击直接下载 APK 安装包</small></span><svg class="download-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m-4-4 4 4 4-4M5 20h14"/></svg></a>
+<footer class="guide-creator"><p>本系统由 <strong>刘凯</strong> 开发</p><a class="qq-link" href="mqqapi://card/show_pslcard?src_type=internal&amp;version=1&amp;uin=1254277461&amp;card_type=person&amp;source=qrcode"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.2c-3.2 0-5.5 2.7-5.5 6.1 0 1 .2 2 .6 2.8-.7 1-1.2 2.1-1.3 3.3 0 .6.4.9.9.6l1.5-.8c.9 1.2 2.2 2 3.8 2s2.9-.8 3.8-2l1.5.8c.5.3.9 0 .9-.6-.1-1.2-.6-2.3-1.3-3.3.4-.8.6-1.8.6-2.8 0-3.4-2.3-6.1-5.5-6.1Z"/><path d="M8.4 17.1c-.6.8-.8 1.7-.4 2.1.4.5 1.4.2 2.2-.6m5.4-1.5c.6.8.8 1.7.4 2.1-.4.5-1.4.2-2.2-.6"/></svg><span><small>点击添加 QQ 好友</small><strong>1254277461</strong></span><svg class="qq-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></a><img class="guide-logo" src="icons/developer-logo.webp" alt="刘凯个人标志"></footer>
+</div></dialog>
 <div id="searchView" hidden>
 <header id="header"><div class="bank-toolbar"><a class="back-home" href="#home" aria-label="返回首页"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14 5-7 7 7 7"/></svg></a><div class="brand bank-name" title="交安复习题">交安复习题</div></div><div class="search-toolbar">
 <form id="searchForm" role="search"><label class="sr-only" for="searchInput">搜索题目、选项或案例背景</label><input id="searchInput" type="search" placeholder="输入关键词，多个关键词用空格隔开" autocomplete="off"><button type="submit">搜索</button></form></div>
@@ -19,4 +26,4 @@
 <main><div class="result-bar"><p id="stat" role="status">正在加载最新题库…</p></div><div id="list"></div><button id="more" hidden>继续加载</button><footer class="page-footer"><div id="searchEnd" class="end-line" hidden><span>没有更多了</span></div><img class="developer-logo" src="icons/developer-logo.webp" alt="文刀山己几"></footer></main>
 <aside id="matchNav" hidden aria-label="搜索结果切换"><button id="prevMatch" aria-label="上一题"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 14 6-6 6 6"/></svg></button><output id="matchCount" aria-live="polite">0 / 0 题</output><button id="nextMatch" aria-label="下一题"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 10 6 6 6-6"/></svg></button></aside>
 </div>
-<script type="module" src="app.js?v=20260907-bank-date"></script></body></html>
+<script type="module" src="app.js?v=20260907-install-guide"></script></body></html>

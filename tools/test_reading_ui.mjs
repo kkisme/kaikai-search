@@ -25,6 +25,16 @@ try{
  assert(!(await page.locator('body').innerText()).includes('本程序由凯哥开发'));
  mkdirSync('dist',{recursive:true});
  await page.screenshot({path:'dist/home-mobile.png'});
+ await page.locator('#guideTrigger').click();
+ assert(await page.locator('#installGuide').evaluate(el=>el.open));
+ assert((await page.locator('#installGuide').innerText()).includes('安装应用'));
+ assert((await page.locator('#installGuide').innerText()).includes('本系统由 刘凯 开发'));
+ assert.equal(await page.locator('.app-download').getAttribute('href'),'https://github.com/kkisme/kaikai-search/releases/latest/download/kaikai-search.apk');
+ assert((await page.locator('.qq-link').getAttribute('href')).includes('1254277461'));
+ assert.equal(await page.locator('.guide-logo').evaluate(el=>getComputedStyle(el).width),'52px');
+ await page.screenshot({path:'dist/install-guide-mobile.png'});
+ await page.locator('#guideClose').click();
+ assert(!(await page.locator('#installGuide').evaluate(el=>el.open)));
  await page.locator('#openBank').click();
  assert(await page.locator('#searchView').isVisible());
  assert.equal(await page.locator('#header .brand').innerText(),'交安复习题');

@@ -75,6 +75,13 @@ function showView() {
 }
 window.addEventListener('hashchange',showView);
 showView();
+const installGuide=$('installGuide');
+$('guideTrigger').onclick=()=>installGuide.showModal();
+$('guideClose').onclick=()=>installGuide.close();
+installGuide.addEventListener('click',event=>{
+ const bounds=installGuide.getBoundingClientRect();
+ if(event.clientX<bounds.left||event.clientX>bounds.right||event.clientY<bounds.top||event.clientY>bounds.bottom)installGuide.close();
+});
 $('homeRetry').onclick=loadBank;
 async function loadBank(){
  $('homeRetry').hidden=true;
