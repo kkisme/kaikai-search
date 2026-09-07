@@ -15,6 +15,7 @@ try{
  assert(await page.locator('#homeView').isVisible());
  assert(await page.locator('#searchView').isHidden());
  assert.equal(await page.locator('#bankCount').textContent(),'1206 道');
+ assert.equal(await page.locator('.bank-title').evaluate(el=>getComputedStyle(el).fontSize),'16px');
  mkdirSync('dist',{recursive:true});
  await page.screenshot({path:'dist/home-mobile.png'});
  await page.locator('#openBank').click();
