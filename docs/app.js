@@ -97,4 +97,13 @@ async function loadBank(){
  }catch(error){$('bankCount').textContent='加载失败';$('homeStatus').textContent='题库加载失败，请检查网络后重试。';$('homeRetry').hidden=false;$('stat').textContent='题库加载失败，请检查网络后重试。';$('list').innerHTML='<p class="empty"><button id="retry">重新加载题库</button></p>';$('retry').onclick=loadBank;console.error(error);}
 }
 loadBank();
-if('serviceWorker' in navigator&&/^https?:$/.test(location.protocol))navigator.serviceWorker.register('./sw.js').catch(error=>console.warn('离线缓存未启用',error));
+if('serviceWorker' in navigator&&/^https?:$/.test(location.protocol)){
+ const updating=Boolean(navigator.serviceWorker.controller);
+ let reloading=false;
+ if(updating)navigator.serviceWorker.addEventListener('controllerchange',()=>{
+  if(reloading)return;
+  reloading=true;
+  location.reload();
+ });
+ navigator.serviceWorker.register('./sw.js').catch(error=>console.warn('离线缓存未启用',error));
+}
