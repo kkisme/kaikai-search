@@ -1,5 +1,5 @@
-const CACHE = 'kaikai-search-v5-20260907-final-audit-fixes';
-const ASSETS = ['./','./index.html','./app.css?v=20260907-search-nav','./app.js?v=20260907-search-nav','./search.js','./question-bank.json','./manifest.json','./icons/icon.svg','./icons/developer-logo.webp'];
+const CACHE = 'kaikai-search-v6-20260907-compact-controls';
+const ASSETS = ['./','./index.html','./app.css?v=20260907-compact-controls','./app.js?v=20260907-compact-controls','./search.js','./question-bank.json','./manifest.json','./icons/icon.svg','./icons/developer-logo.webp'];
 self.addEventListener('install',event=>event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(ASSETS)).then(()=>self.skipWaiting())));
 self.addEventListener('activate',event=>event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(key=>key.startsWith('kaikai-search-')&&key!==CACHE).map(key=>caches.delete(key)))).then(()=>self.clients.claim())));
 self.addEventListener('fetch',event=>{
