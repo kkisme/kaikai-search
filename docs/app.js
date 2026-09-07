@@ -54,11 +54,13 @@ function render(reset=true) {
  $('stat').textContent=`${query?'找到':'共'} ${results.length} 条${query?'':` · 已展示 ${visible.length} 条`}${fuzzy?' · 以下为近似匹配':query&&results.length&&!$('list').querySelector('mark')?' · 拼音匹配':''}`;
  if(reset)window.scrollTo({top:0,behavior:'instant'});
 }
-function search(){clearTimeout(debounce);query=$('searchInput').value.trim();limit=30;render();}
-$('searchForm').addEventListener('submit',e=>{e.preventDefault();if(!composing)search();});
+function syncClearButton(){$('clearSearch').hidden=!$('searchInput').value;}
+function search(){clearTimeout(debounce);query=$('searchInput').value.trim();syncClearButton();limit=30;render();}
+$('searchForm').addEventListener('submit',e=>{e.preventDefault();composing=false;search();});
 $('searchInput').addEventListener('compositionstart',()=>{composing=true;clearTimeout(debounce);});
 $('searchInput').addEventListener('compositionend',()=>{composing=false;search();});
-$('searchInput').addEventListener('input',()=>{if(!composing){clearTimeout(debounce);debounce=setTimeout(search,180);}});
+$('searchInput').addEventListener('input',()=>{syncClearButton();if(!composing){clearTimeout(debounce);debounce=setTimeout(search,180);}});
+$('clearSearch').addEventListener('click',()=>{$('searchInput').value='';search();$('searchInput').focus();});
 new IntersectionObserver(items=>{
  if(items.some(item=>item.isIntersecting)&&!$('loadSentinel').hidden){limit+=30;render(false);}
 },{rootMargin:'360px 0px'}).observe($('loadSentinel'));
