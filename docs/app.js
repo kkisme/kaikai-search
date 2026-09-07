@@ -42,6 +42,7 @@ function render(reset=true) {
  const results=rank(entries,query,type), visible=query?results:results.slice(0,limit);
  $('list').innerHTML=visible.map(({entry})=>entryHtml(entry)).join('')||'<p class="empty">没有找到匹配题目，请缩短关键词或切换题型。</p>';
  $('more').hidden=visible.length>=results.length;
+ $('searchEnd').hidden=!$('more').hidden;
  resultCards=[...$('list').querySelectorAll('.entry')];
  active=resultCards.length?0:-1;updateNavigation();
  const fuzzy=results.length&&results.every(r=>r.score===10);
