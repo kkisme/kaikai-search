@@ -64,6 +64,10 @@ try{
  assert.equal(await page.locator('details, #showAnswers, .source-section, .entry-head').count(),0);
  assert.equal(await page.locator('.answer:visible').count(),4);
  assert.deepEqual(await page.locator('#typeFilters button').allTextContents(),['全部','单选','多选','判断','案例题','知识卡']);
+ const filterStyle=await page.locator('#typeFilters button').first().evaluate(el=>({tap:getComputedStyle(el).webkitTapHighlightColor,radius:getComputedStyle(el).borderRadius,overflow:getComputedStyle(el).overflow}));
+ assert.equal(filterStyle.tap,'rgba(0, 0, 0, 0)');
+ assert.equal(filterStyle.radius,'15px');
+ assert.equal(filterStyle.overflow,'hidden');
  assert(!(await page.locator('#list').innerText()).includes('原题号'));
  mkdirSync('dist',{recursive:true});
  await page.screenshot({path:'dist/reading-mobile.png',fullPage:true});
