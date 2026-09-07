@@ -12,6 +12,14 @@ async function search(text){await page.locator('#searchInput').fill(text);await 
 try{
  await page.goto(base);
  await page.waitForFunction(()=>document.querySelectorAll('.entry').length===30);
+ assert(await page.locator('#homeView').isVisible());
+ assert(await page.locator('#searchView').isHidden());
+ assert.equal(await page.locator('#bankCount').textContent(),'1206 道');
+ mkdirSync('dist',{recursive:true});
+ await page.screenshot({path:'dist/home-mobile.png'});
+ await page.locator('#openBank').click();
+ assert(await page.locator('#searchView').isVisible());
+ assert.equal(await page.locator('#header .brand').innerText(),'交安复习题');
  await page.locator('#more').click();
  assert.equal(await page.locator('.entry').count(),60);
  await search('上海莲花');
@@ -63,6 +71,15 @@ try{
  await context.setOffline(true);await page.reload();
  await page.waitForFunction(()=>document.querySelectorAll('.entry').length===30);
  await search('赵某与钱某');assert.equal(await page.locator('[data-entry-id="DT01121"] .question').count(),4);
+ await page.locator('.back-home').click();
+ await page.locator('#homeView').waitFor({state:'visible'});
+ assert(await page.locator('#homeView').isVisible());
+ assert(await page.locator('#recentStudy').isVisible());
+ assert(await page.locator('#matchNav').isHidden());
+ await page.goBack();
+ await page.locator('#searchView').waitFor({state:'visible'});
+ assert(await page.locator('#searchView').isVisible());
+ assert.equal(await page.locator('#searchInput').inputValue(),'赵某与钱某');
  assert.deepEqual(errors,[]);
  console.log('PASS: mobile/desktop rendering, complete cases, navigation, reset, filters, offline reload, no JS errors');
 }finally{await browser.close();}
