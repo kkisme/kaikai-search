@@ -1,7 +1,7 @@
 {
   "name": "凯凯搜题助手",
   "short_name": "搜题助手",
-  "description": "交安复习题搜题助手，支持关键字、拼音首字母、模糊搜索。",
+  "description": "多题库搜题助手，支持关键词、拼音首字母和模糊搜索。",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#f5f7fa",
