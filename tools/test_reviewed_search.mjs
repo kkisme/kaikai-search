@@ -1,0 +1,20 @@
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import {rank,highlight} from '../docs/search.js';
+const bank=JSON.parse(readFileSync(new URL('../docs/question-bank.json',import.meta.url),'utf8'));
+const entries=bank.entries;
+assert.equal(entries.length,1206);
+assert.equal(entries.filter(e=>e.type==='知识卡').length,23);
+for(const id of ['DT00099','DT01121'])assert.equal(entries.find(e=>e.id===id).blocks.filter(b=>b.kind==='question').length,4);
+for(const id of ['DT00163','DT00165','DT00166','DT00197','DT00234'])assert(!entries.some(e=>e.id===id));
+assert.equal(rank(entries,'赵某与钱某')[0].entry.id,'DT01121');
+assert(rank(entries,'钱某 赔偿').some(r=>r.entry.id==='DT01121'));
+assert(rank(entries,'lianhuahepan').some(r=>r.entry.id==='DT00099'));
+assert(rank(entries,'lhhp').some(r=>r.entry.id==='DT00099'));
+assert.equal(rank(entries,'绝不存在的检索词xyz').length,0);
+assert.equal(rank(entries,'','案例').length,30);
+assert.equal(highlight('<script>安全</script>','安全'),'&lt;script&gt;<mark>安全</mark>&lt;/script&gt;');
+assert.equal(highlight('安 全Ａ','安全a'),'<mark>安 全Ａ</mark>');
+assert.equal(new Set(entries.map(e=>e.id)).size,entries.length);
+for(const e of entries){assert(e.blocks.length,e.id);for(const b of e.blocks)if(b.kind==='question')assert(b.stem,b.id);}
+console.log('PASS: reviewed boundaries, removals, 23 knowledge cards, search and safe highlighting');
