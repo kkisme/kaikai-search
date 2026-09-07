@@ -43,6 +43,10 @@ try{
  await search('全面风险管理');
  const blockOrder=await page.locator('[data-entry-id="DT00187"]').evaluate(el=>[...el.children].map(child=>child.classList.contains('material')?'M':'Q').join(''));
  assert(!blockOrder.includes('QM'));
+ await search('李子沟大桥');
+ const materialParagraphs=await page.locator('[data-entry-id="DT00506"] .material p').allTextContents();
+ assert.equal(materialParagraphs.length,1);
+ assert.match(materialParagraphs[0],/总公司承建的某大道.*8 号主墩/s);
  await search('钱某');
  assert.equal(await page.locator('[data-entry-id="DT01121"] .question').count(),4);
  assert((await page.locator('[data-entry-id="DT01121"] mark').count())>1);

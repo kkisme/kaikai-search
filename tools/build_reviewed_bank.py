@@ -6,6 +6,35 @@ from docx import Document
 from pypinyin import lazy_pinyin, Style
 ROOT=Path(__file__).resolve().parents[1]
 TYPES={'单选题':'单选','多选题':'多选','判断题':'判断','案例题':'案例','综合题':'综合','知识卡':'知识卡','编号知识材料':'知识卡','案例资料':'案例资料'}
+LIST_START=re.compile(r'^(?:[①-⑳]|[（(]?[0-9一二三四五六七八九十]+(?:[）、)]|[.．](?!\d))|[A-H][.．、]|第[一二三四五六七八九十0-9]+[章节条款])')
+SENTENCE_END=re.compile(r'[。！？；;：:）)】”’」』]$')
+EDITORIAL_MARKERS=('【题内说明】','【校订说明】','【答案来源】','【待核】','【关联背景】')
+def join_fragments(left,right):
+ left=left.rstrip();right=right.lstrip()
+ if not left:return right
+ if not right:return left
+ left=re.sub(r'([”’」』])0$',r'\1。',left)
+ boundary_ascii=(left[-1].isascii() and left[-1].isalnum()) or (right[0].isascii() and right[0].isalnum())
+ return left+(' ' if boundary_ascii else '')+right
+def clean_inline(text):
+ parts=[part.strip() for part in re.split(r'[\r\n\v\f]+',text) if part.strip()]
+ result=''
+ for part in parts:result=join_fragments(result,part)
+ return result
+def looks_like_heading(text):
+ return len(text)<=32 and not re.search(r'[，,、。！？；;：:]',text) and not LIST_START.match(text)
+def should_join_material(left,right):
+ if SENTENCE_END.search(left) or looks_like_heading(left):return False
+ if LIST_START.match(right) or re.match(r'^(?:背景资料|案例(?:讨论|分析)?)[：:]',right):return False
+ if re.match(r'^\d{4}\s*年',right):return False
+ return len(left)>=20 or bool(LIST_START.match(left))
+def merge_material_paragraphs(paragraphs):
+ merged=[]
+ for paragraph in map(clean_inline,paragraphs):
+  if not paragraph:continue
+  if merged and should_join_material(merged[-1],paragraph):merged[-1]=join_fragments(merged[-1],paragraph)
+  else:merged.append(paragraph)
+ return merged
 def normalize(s):
  import unicodedata
  return re.sub(r'\s+','',unicodedata.normalize('NFKC',s)).lower()
@@ -46,7 +75,8 @@ def build(source):
    elif t.startswith('【'):question['notes'].append(t)
    elif t:question['stem']+='\n'+t
    continue
-  if t.startswith(('【题内说明】','【附注】','【校订说明】','【说明】','【答案来源】','【待核】')):flush()
+  if t.startswith(EDITORIAL_MARKERS):flush();continue
+  if t.startswith(('【附注】','【说明】')):flush()
   if not t:continue
   if material is None:material={'kind':'material','paragraphs':[]};parent['blocks'].append(material)
   material['paragraphs'].append(re.sub(r'^【(?:背景|内容)】','',t))
@@ -57,8 +87,12 @@ def build(source):
    e['blocks']=[b for b in e['blocks'] if b['kind']=='material']+[b for b in e['blocks'] if b['kind']=='question']
   texts=[]
   for b in e['blocks']:
-   if b['kind']=='question':texts += [b['stem']]+[o['text'] for o in b['options']]+[b['answer']]+b['notes']
-   else:texts += b['paragraphs']
+   if b['kind']=='question':
+    b['stem']=clean_inline(b['stem']);b['answer']=clean_inline(b['answer']);b['notes']=[clean_inline(n) for n in b['notes']]
+    for option in b['options']:option['text']=clean_inline(option['text'])
+    texts += [b['stem']]+[o['text'] for o in b['options']]+[b['answer']]+b['notes']
+   else:
+    b['paragraphs']=merge_material_paragraphs(b['paragraphs']);texts += b['paragraphs']
   e['title']=next((t for t in texts if t),'')[:100]
   raw='\n'.join(texts);e['search']={'text':normalize(raw),'pinyin':normalize(''.join(lazy_pinyin(raw,style=Style.NORMAL))),'initials':normalize(''.join(lazy_pinyin(raw,style=Style.FIRST_LETTER)))}
  return {'schemaVersion':4,'generatedDate':datetime.now().astimezone().date().isoformat(),'source':source.name,'sourceSha256':hashlib.sha256(source.read_bytes()).hexdigest(),'entries':entries}
