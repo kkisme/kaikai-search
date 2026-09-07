@@ -1,5 +1,5 @@
-const CACHE = 'kaikai-search-v7-20260907-control-opacity';
-const ASSETS = ['./','./index.html','./app.css?v=20260907-control-opacity','./app.js?v=20260907-control-opacity','./search.js','./question-bank.json','./manifest.json','./icons/icon.svg','./icons/developer-logo.webp'];
+const CACHE = 'kaikai-search-v8-20260907-black-nav';
+const ASSETS = ['./','./index.html','./app.css?v=20260907-black-nav','./app.js?v=20260907-black-nav','./search.js','./question-bank.json','./manifest.json','./icons/icon.svg','./icons/developer-logo.webp'];
 self.addEventListener('install',event=>event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(ASSETS)).then(()=>self.skipWaiting())));
 self.addEventListener('activate',event=>event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(key=>key.startsWith('kaikai-search-')&&key!==CACHE).map(key=>caches.delete(key)))).then(()=>self.clients.claim())));
 self.addEventListener('fetch',event=>{
