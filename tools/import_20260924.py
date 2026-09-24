@@ -38,6 +38,10 @@ VERIFIED_C_ANSWERS = {
     'DT00280': 'BCDE',
     'DT00282': 'ACDE',
 }
+VERIFIED_REVIEW_ANSWERS = {
+    'DT00889-S04': 'B',
+    'DT01103-Q': 'ABC',
+}
 
 
 def clean(text: str) -> str:
@@ -231,6 +235,10 @@ def main():
                 kept=[n for n in block['notes'] if not n.startswith(('【新版答案冲突】','【新版复习题答案冲突】'))]
                 changed |= len(kept)!=len(block['notes'])
                 block['notes']=kept
+                if block['id'] in VERIFIED_REVIEW_ANSWERS:
+                    assert block['answer'] == VERIFIED_REVIEW_ANSWERS[block['id']]
+                    block['notes'] = []
+                    changed = True
         if changed:
             refresh_entry_search(entry)
     by_id={e['id']:e for e in entries}
@@ -296,7 +304,7 @@ def main():
         sources=[q for q in review_parsed if ''.join(q.get('answer',[]))==source_answer and
                  len(oldgrams & grams(key(q.get('question',''))))/max(1,len(oldgrams | grams(key(q.get('question','')))))>=.85]
         assert sources, f'Missing reviewed answer conflict for {qid}'
-        if entry['id'] not in VERIFIED_C_ANSWERS:
+        if entry['id'] not in VERIFIED_C_ANSWERS and qid not in VERIFIED_REVIEW_ANSWERS:
             note=(f'【新版复习题答案冲突】2026-09-24复习题答案为{source_answer}，'
                   f'原题库答案为{oldq["answer"]}；两份材料不一致，尚未统一。')
             oldq['notes'].append(note)

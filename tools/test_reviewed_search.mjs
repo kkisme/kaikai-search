@@ -8,7 +8,7 @@ assert.equal(entries.length,2275);
 assert.equal(entries.filter(e=>e.id.startsWith('C20260924-')).length,1068);
 assert.equal(entries.filter(e=>e.id.startsWith('R20260924-')).length,1);
 assert.equal(entries.flatMap(e=>e.blocks).flatMap(b=>b.kind==='question'?b.notes:[]).filter(n=>n.startsWith('【新版答案冲突】')).length,0);
-assert.equal(entries.flatMap(e=>e.blocks).flatMap(b=>b.kind==='question'?b.notes:[]).filter(n=>n.startsWith('【新版复习题答案冲突】')).length,2);
+assert.equal(entries.flatMap(e=>e.blocks).flatMap(b=>b.kind==='question'?b.notes:[]).filter(n=>n.startsWith('【新版复习题答案冲突】')).length,0);
 const verified={DT00446:'正确',DT00093:'ACDE',DT00067:'BCDE',DT00158:'ABCE',DT00124:'BCD',DT00418:'AB',DT00422:'ABDE',DT00355:'CE','C20260924-1280':'AC',DT00280:'BCDE',DT00282:'ACDE',DT00715:'CE'};
 for(const [id,answer] of Object.entries(verified)){
  const e=entries.find(e=>e.id===id);
@@ -16,6 +16,11 @@ for(const [id,answer] of Object.entries(verified)){
  assert.equal(q.answer,answer,id);
  assert.deepEqual(q.notes,[],id);
  if(/\([A-E]{1,5}\)/.test(q.stem))assert(q.stem.includes(`(${answer})`),`${id} has an outdated answer in its stem`);
+}
+for(const [questionId,answer] of Object.entries({'DT00889-S04':'B','DT01103-Q':'ABC'})){
+ const q=entries.flatMap(e=>e.blocks).find(b=>b.kind==='question'&&b.id===questionId);
+ assert.equal(q.answer,answer,questionId);
+ assert.deepEqual(q.notes,[],questionId);
 }
 assert.equal(entries.filter(e=>e.type==='知识卡').length,23);
 for(const id of ['DT00099','DT01121'])assert.equal(entries.find(e=>e.id===id).blocks.filter(b=>b.kind==='question').length,4);
