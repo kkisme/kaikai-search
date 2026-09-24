@@ -1,6 +1,6 @@
 import {rank, highlight, escapeHtml} from './search.js';
 const $ = id => document.getElementById(id);
-const types = ['全部','单选','多选','判断','案例题','知识卡'];
+const types = ['全部','单选','多选','判断','填空','案例题','知识卡'];
 let entries = [], query = '', type = '全部', limit = 30, resultCards = [], active = -1;
 let debounce, composing = false;
 const h = value => highlight(value, query);

@@ -14,8 +14,8 @@ try{
  await page.waitForFunction(()=>document.querySelectorAll('.entry').length===30);
  assert(await page.locator('#homeView').isVisible());
  assert(await page.locator('#searchView').isHidden());
- assert.equal(await page.locator('#bankCount').textContent(),'1206 道');
- assert.equal(await page.locator('#bankDate').textContent(),'2026-09-07');
+ assert.equal(await page.locator('#bankCount').textContent(),'2275 道');
+ assert.equal(await page.locator('#bankDate').textContent(),'2026-09-24');
  assert.equal(await page.locator('.bank-title').evaluate(el=>getComputedStyle(el).fontSize),'14px');
  assert.equal(await page.locator('.bank-icon svg').evaluate(el=>getComputedStyle(el).width),'34px');
  const homeLayout=await page.locator('.bank-row').evaluate(el=>({height:el.getBoundingClientRect().height,radius:getComputedStyle(document.querySelector('.home-main')).borderTopLeftRadius}));
@@ -49,7 +49,7 @@ try{
  await page.locator('#searchInput').fill('测试');
  assert(await page.locator('#clearSearch').isVisible());
  const clearButtonStyle=await page.locator('#clearSearch').evaluate(el=>({width:getComputedStyle(el).width,height:getComputedStyle(el).height,radius:getComputedStyle(el).borderRadius}));
- assert.deepEqual(clearButtonStyle,{width:'32px',height:'32px',radius:'50%'});
+ assert.deepEqual(clearButtonStyle,{width:'16px',height:'16px',radius:'50%'});
  await page.screenshot({path:'dist/clear-search-button-mobile.png'});
  await page.locator('#clearSearch').click();
  assert.equal(await page.locator('#searchInput').inputValue(),'');
@@ -113,11 +113,13 @@ try{
  assert(await page.locator('#loadSentinel').isHidden());
  assert(await page.locator('#searchEnd').isVisible());
  await page.locator('[data-type="知识卡"]').click();assert.equal(await page.locator('.entry').count(),26);
+ await page.locator('[data-type="填空"]').click();await search('现场调查法');
+ assert.equal(await page.locator('[data-entry-id="C20260924-1419"] .answer').count(),1);
  await page.locator('[data-type="全部"]').click();await search('赵某与钱某');
  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true,'mobile horizontal overflow');
  assert.equal(await page.locator('details, #showAnswers, .source-section, .entry-head').count(),0);
  assert.equal(await page.locator('.answer:visible').count(),4);
- assert.deepEqual(await page.locator('#typeFilters button').allTextContents(),['全部','单选','多选','判断','案例题','知识卡']);
+ assert.deepEqual(await page.locator('#typeFilters button').allTextContents(),['全部','单选','多选','判断','填空','案例题','知识卡']);
  const filterStyle=await page.locator('#typeFilters button').first().evaluate(el=>({tap:getComputedStyle(el).webkitTapHighlightColor,radius:getComputedStyle(el).borderRadius,overflow:getComputedStyle(el).overflow}));
  assert.equal(filterStyle.tap,'rgba(0, 0, 0, 0)');
  assert.equal(filterStyle.radius,'15px');
