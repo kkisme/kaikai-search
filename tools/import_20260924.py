@@ -1,7 +1,7 @@
 """Import the 2026-09-24 C and review DOCX files into the deployed bank.
 
-Keeps reviewed 2026-09-07 stems and answers, annotates answer conflicts,
-deduplicates complete questions, and rejects structurally unrecoverable rows.
+Uses researched answers for the eleven C-file conflicts, deduplicates complete
+questions, and rejects structurally unrecoverable rows.
 """
 from __future__ import annotations
 
@@ -25,6 +25,19 @@ OLD_PREFIX = ('C20260924-', 'R20260924-')
 TOC = re.compile(r'TOC\s*\\o\s*"1-5"\s*\\h\s*\\z\s*')
 INLINE_ANSWER = re.compile(r'[（(]\s*(?:[A-H]{1,6}|正确|错误|对|错)\s*[)）]', re.I)
 REVIEW_NOVEL = '根据《生产安全事故报告调查处理条例》规定，对于发生特别重大事故的单位，给予罚款的最高限额为'
+VERIFIED_C_ANSWERS = {
+    'DT00446': '正确',
+    'DT00093': 'ACDE',
+    'DT00067': 'BCDE',
+    'DT00158': 'ABCE',
+    'DT00124': 'BCD',
+    'DT00418': 'AB',
+    'DT00422': 'ABDE',
+    'DT00355': 'CE',
+    'C20260924-1280': 'AC',
+    'DT00280': 'BCDE',
+    'DT00282': 'ACDE',
+}
 
 
 def clean(text: str) -> str:
@@ -109,6 +122,20 @@ def refresh_entry_search(entry):
     entry['search']={'text':normalize(raw),
                      'pinyin':normalize(''.join(lazy_pinyin(raw,style=Style.NORMAL))),
                      'initials':normalize(''.join(lazy_pinyin(raw,style=Style.FIRST_LETTER)))}
+
+
+def set_answer(entry, answer):
+    q = entry_question(entry)
+    assert q is not None
+    old_answer = q['answer']
+    q['answer'] = answer
+    if old_answer != answer:
+        q['stem'] = re.sub(r'([（(]\s*)' + re.escape(old_answer) + r'(\s*[)）])',
+                           lambda match: match.group(1) + answer + match.group(2),
+                           q['stem'], count=1)
+    q['notes'] = []
+    entry['title'] = q['stem'][:100]
+    refresh_entry_search(entry)
 
 
 def new_entry(id, number, kind, stem, options, answer, source, notes=None):
@@ -207,6 +234,15 @@ def main():
         if changed:
             refresh_entry_search(entry)
     by_id={e['id']:e for e in entries}
+    # Some reviewed base questions are repeated under different IDs. Keep each
+    # exact equivalent in sync so a search never returns the superseded answer.
+    base_targets = {id: entry_question(by_id[id]) for id in VERIFIED_C_ANSWERS if id in by_id}
+    for id, target in base_targets.items():
+        signature = full_text(target['stem'], target['options'])
+        for entry in entries:
+            q = entry_question(entry)
+            if q and full_text(q['stem'], q['options']) == signature:
+                set_answer(entry, VERIFIED_C_ANSWERS[id])
     matcher=Matcher(entries)
     counts=collections.Counter()
     held=[]
@@ -232,17 +268,14 @@ def main():
                 conflicts.append({'sourceNo':row['number'],'row':ordinal,'sourceAnswer':answer,
                                   'existingId':matched_id,'existingAnswer':previous})
                 counts['duplicate_answer_conflicts']+=1
-                note=(f'【新版答案冲突】交安C原题{row["number"]}答案为{answer}，'
-                      f'原题库答案为{previous}；两份材料不一致，尚未统一。')
-                if note not in matched['notes']:
-                    matched['notes'].append(note)
-                    refresh_entry_search(by_id[matched_id])
             continue
         id=f'C20260924-{ordinal:04d}'
         notes=[]
         if row['number']==1435:
             notes=['【校订说明】源文档将《公路工程施工安全技术规范》归为“部门规章”，此分类与规范的行业标准性质不符；原答案仅供辨认原题。']
         e=new_entry(id,row['number'],kind,stem,options,answer,C_SOURCE.name,notes)
+        if id in VERIFIED_C_ANSWERS:
+            set_answer(e, VERIFIED_C_ANSWERS[id])
         entries.append(e)
         by_id[id]=e
         matcher.add(id,e['blocks'][0])
@@ -263,10 +296,11 @@ def main():
         sources=[q for q in review_parsed if ''.join(q.get('answer',[]))==source_answer and
                  len(oldgrams & grams(key(q.get('question',''))))/max(1,len(oldgrams | grams(key(q.get('question','')))))>=.85]
         assert sources, f'Missing reviewed answer conflict for {qid}'
-        note=(f'【新版复习题答案冲突】2026-09-24复习题答案为{source_answer}，'
-              f'原题库答案为{oldq["answer"]}；两份材料不一致，尚未统一。')
-        oldq['notes'].append(note)
-        refresh_entry_search(entry)
+        if entry['id'] not in VERIFIED_C_ANSWERS:
+            note=(f'【新版复习题答案冲突】2026-09-24复习题答案为{source_answer}，'
+                  f'原题库答案为{oldq["answer"]}；两份材料不一致，尚未统一。')
+            oldq['notes'].append(note)
+            refresh_entry_search(entry)
         counts['review_answer_conflicts']+=1
     note=('【校订说明】原题答案 D=2000 万元保留。题干所引《生产安全事故报告和调查处理条例》第37条为 500 万元上限；'
           '《安全生产法》第114条对负有责任单位规定 1000 万至 2000 万元，情节特别严重、影响特别恶劣时可按该数额的 2 至 5 倍罚款。')
