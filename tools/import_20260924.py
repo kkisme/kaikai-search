@@ -43,6 +43,49 @@ VERIFIED_REVIEW_ANSWERS = {
     'DT01103-Q': 'ABC',
 }
 
+# Recovered from the numbered source bank and checked against current law,
+# official standards, or the complete equivalent already in the base bank.
+# Keep the original C paragraph ordinal as the stable entry ID.
+RECOVERED_C = {
+    1: ('填空', '公路工程施工中，重大事故隐患排查治理的责任主体是( )。', [], '施工单位'),
+    21: ('判断', '海因里希的因果连锁理论着重强调人的不安全行为和物的不安全状态在事故发生中的作用。( )', [], '正确'),
+    31: ('判断', '破窗理论告诉我们，不安全行为往往受从众心理的影响。( )', [], '正确'),
+    38: ('单选', '根据《建设工程安全生产管理条例》，总承包单位应当自行完成建设工程( )的施工。', ['整体结构', '主要结构', '所有结构', '主体结构'], 'D'),
+    85: ('单选', '事故发生后，事故现场有关人员应当立即向本单位负责人报告；单位负责人接到报告后，应当于( )小时内向事故发生地县级以上人民政府有关部门报告。', ['1', '2', '12', '24'], 'A'),
+    111: ('单选', '对因生产安全事故造成的职工死亡，一次性工亡补助金按全国上一年度城镇居民人均可支配收入的( )倍计算。', ['5', '10', '15', '20'], 'D'),
+    177: ('单选', '生产经营单位主要负责人因生产安全事故受到刑事处罚或者撤职处分的，自刑罚执行完毕或者受处分之日起，( )年内不得担任任何生产经营单位的主要负责人。', ['1', '2', '5', '10'], 'C'),
+    231: ('判断', '国务院应急管理部门和其他负有安全生产监督管理职责的部门应当根据各自的职责分工，制定相关行业、领域重大事故隐患的判定标准。( )', [], '正确'),
+    238: ('判断', '与事故无关的单位或个人不用配合事故抢救。( )', [], '错误'),
+    262: ('判断', '建设项目中的污染防治设施，应当与主体工程同时设计、同时施工、同时投产使用；设施应当符合经批准的生态环境影响报告书、生态环境影响报告表的要求，不得擅自拆除或者闲置。( )', [], '正确'),
+    288: ('判断', '施工企业的从业人员均负有危险报告义务。( )', [], '正确'),
+    318: ('判断', '建设行政主管部门或者其他有关部门不得将施工现场的监督检查委托给建设工程安全监督机构具体实施。( )', [], '错误'),
+    346: ('判断', '用人单位应当依照法律、法规要求，严格遵守国家职业卫生标准，落实职业病预防措施，从源头上控制和消除职业病危害。( )', [], '正确'),
+    426: ('单选', '生产经营单位的安全生产责任制大体可分为两个方面：一是( )方面各级人员的安全生产责任制；二是( )方面各职能部门的安全生产责任制。', ['生产；管理', '横向；纵向', '纵向；横向', '直接；间接'], 'C'),
+    478: ('单选', '风险管理包括的最后一个过程是( )。', ['风险分析与评估过程', '风险控制对策的规划过程', '实施决策过程', '风险检查过程'], 'D'),
+    501: ('判断', '从业人员发现事故隐患或者其他不安全因素，应当立即向现场人员或者本单位负责人报告。( )', [], '错误'),
+    560: ('判断', '从防止事故的角度，安全隐患应当设法排除；尽早发现事故征兆并采取措施也有可能阻止事故发生，或者及时撤离以减少伤害和损失。( )', [], '正确'),
+    567: ('判断', '某个可能发生的事件，其可能造成的损失程度和发生的概率都很大，则其风险量也越大。( )', [], '正确'),
+    692: ('单选', '某桥墩高20m，上面架设的箱梁高4m，则该高处作业属于( )。', ['一级高处作业', '二级高处作业', '三级高处作业', '特级高处作业'], 'C'),
+    693: ('单选', '高处作业人员上下应沿着( )行走。', ['立杆', '栏杆', '绳索', '扶梯'], 'D'),
+    813: ('判断', '高处作业人员不得沿立杆或栏杆攀登；项目经理部应每天安排高处作业人员体检。( )', [], '错误'),
+    824: ('判断', '作业人员在保管、加工、运输爆破器材过程中，严禁穿着化纤服装。( )', [], '正确'),
+    934: ('判断', '蓄电池室、变压器室应有良好的通风。( )', [], '正确'),
+}
+
+# The complete versions are already present. Do not import a second copy of
+# malformed Word rows merely to give them a new C-source ID.
+RECOVERED_DUPLICATES = {
+    117: 'DT00079', 491: 'C20260924-1433', 570: 'DT00564',
+    591: 'DT00551', 598: 'DT00552', 605: 'DT00604', 606: 'DT00605',
+    763: 'DT00586', 806: 'DT00494', 834: 'DT00401', 863: 'DT00661',
+    866: 'DT00299', 1222: 'DT00202', 1226: 'DT00191',
+}
+RECOVERED_DUPLICATE_ANSWERS = {
+    117: 'C', 491: '本质安全', 570: 'D', 591: 'A', 598: 'A',
+    605: 'D', 606: 'A', 763: '错误', 806: '错误', 834: '正确',
+    863: '错误', 866: '错误', 1222: 'BDE', 1226: 'ABCDE',
+}
+
 
 def clean(text: str) -> str:
     return re.sub(r'\s+', ' ', TOC.sub('', text)).strip()
@@ -256,7 +299,19 @@ def main():
     held=[]
     conflicts=[]
     for ordinal,row in enumerate(parse_c(),1):
-        candidate,reason=c_question(row)
+        if ordinal in RECOVERED_DUPLICATES:
+            assert row['number']==ordinal, f'C source paragraph moved: {ordinal}'
+            counts['recovered_duplicate']+=1
+            counts['duplicate']+=1
+            continue
+        if ordinal in RECOVERED_C:
+            assert row['number']==ordinal, f'C source paragraph moved: {ordinal}'
+            kind,stem,words,answer=RECOVERED_C[ordinal]
+            options=[{'key':chr(65+i),'text':word} for i,word in enumerate(words)]
+            candidate=(kind,stem,options,answer)
+            reason=None
+        else:
+            candidate,reason=c_question(row)
         if reason:
             counts['held']+=1
             held.append({'sourceNo':row.get('number'),'row':ordinal,'reason':reason})
@@ -289,6 +344,8 @@ def main():
         matcher.add(id,e['blocks'][0])
         counts['C_imported']+=1
         counts[f'C_{kind}']+=1
+        if ordinal in RECOVERED_C:
+            counts['recovered_imported']+=1
     review,review_parsed=parse_review_novel()
     review_conflicts={
         'DT00093-Q':'ACE',
@@ -319,6 +376,12 @@ def main():
     e=new_entry('R20260924-0001',review['sourceNo'],'单选',stem,options,'D',REVIEW_SOURCE.name,[note])
     entries.append(e)
     counts['review_imported']+=1
+    final_by_id={entry['id']:entry for entry in entries}
+    for number,id in RECOVERED_DUPLICATES.items():
+        assert any(block['kind']=='question' and block['answer']==RECOVERED_DUPLICATE_ANSWERS[number]
+                   for block in final_by_id[id]['blocks']), (number,id)
+    assert counts['recovered_imported']==len(RECOVERED_C)
+    assert counts['recovered_duplicate']==len(RECOVERED_DUPLICATES)
     bank['entries']=entries
     bank['generatedDate']=datetime.now().astimezone().date().isoformat()
     bank['sourceDocuments']=[

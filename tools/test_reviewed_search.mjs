@@ -4,9 +4,15 @@ import {rank,highlight} from '../docs/search.js';
 const bank=JSON.parse(readFileSync(new URL('../docs/question-bank.json',import.meta.url),'utf8'));
 const entries=bank.entries;
 assert.match(bank.generatedDate,/^\d{4}-\d{2}-\d{2}$/);
-assert.equal(entries.length,2275);
-assert.equal(entries.filter(e=>e.id.startsWith('C20260924-')).length,1068);
+assert.equal(entries.length,2298);
+assert.equal(entries.filter(e=>e.id.startsWith('C20260924-')).length,1091);
 assert.equal(entries.filter(e=>e.id.startsWith('R20260924-')).length,1);
+for(const [id,answer] of Object.entries({'C20260924-0001':'施工单位','C20260924-0031':'正确','C20260924-0085':'A','C20260924-0262':'正确','C20260924-0501':'错误','C20260924-0692':'C','C20260924-0813':'错误'})){
+ const q=entries.find(e=>e.id===id)?.blocks.find(b=>b.kind==='question');
+ assert.equal(q?.answer,answer,id);
+ assert.deepEqual(q.notes,[],id);
+}
+for(const number of [170,566,802,970])assert(!entries.some(e=>e.id===`C20260924-${String(number).padStart(4,'0')}`));
 assert.equal(entries.flatMap(e=>e.blocks).flatMap(b=>b.kind==='question'?b.notes:[]).filter(n=>n.startsWith('【新版答案冲突】')).length,0);
 assert.equal(entries.flatMap(e=>e.blocks).flatMap(b=>b.kind==='question'?b.notes:[]).filter(n=>n.startsWith('【新版复习题答案冲突】')).length,0);
 const verified={DT00446:'正确',DT00093:'ACDE',DT00067:'BCDE',DT00158:'ABCE',DT00124:'BCD',DT00418:'AB',DT00422:'ABDE',DT00355:'CE','C20260924-1280':'AC',DT00280:'BCDE',DT00282:'ACDE',DT00715:'CE'};
