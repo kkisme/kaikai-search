@@ -7,9 +7,13 @@
 <button id="guideTrigger" class="guide-trigger" type="button" aria-haspopup="dialog" aria-controls="installGuide"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 10.8v5.1M12 7.7h.01"/></svg><span>说明</span></button>
 <div class="home-title"><h1>凯凯搜题助手</h1><p>随时搜题，高效学习</p></div>
 </header>
-<main class="home-main"><section class="library-panel"><div class="library-heading"><span>我的题库</span><small>1 个题库</small></div><a id="openBank" class="bank-row" href="#search">
+<main class="home-main"><section class="library-panel"><div class="library-heading"><span>我的题库</span><small>2 个题库</small></div><a id="openBank" class="bank-row" href="#search" data-file="question-bank.json">
 <span class="bank-icon" aria-hidden="true"><svg viewBox="0 0 56 56"><defs><linearGradient id="bookGradient" x1="8" y1="4" x2="48" y2="52" gradientUnits="userSpaceOnUse"><stop stop-color="#45A6FF"/><stop offset="1" stop-color="#1677FF"/></linearGradient></defs><rect x="4" y="3" width="43" height="50" rx="12" fill="url(#bookGradient)"/><path d="M15 17h21M15 25h21M15 33h13" stroke="white" stroke-width="3" stroke-linecap="round"/><circle cx="43" cy="43" r="11" fill="#FFCA5C"/><path d="m39.5 43 2.4 2.5 5-5" fill="none" stroke="white" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-<span class="bank-info"><span class="bank-title">交安复习题</span><span class="bank-meta"><span id="bankCount">正在加载…</span><time id="bankDate"></time></span></span>
+<span class="bank-info"><span class="bank-title">交安复习题</span><span class="bank-meta"><span id="bankCount" class="bank-count">正在加载…</span><time id="bankDate"></time></span></span>
+<svg class="bank-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg>
+</a><a id="openRoadSkills" class="bank-row" href="#search/road-skills" data-file="road-skills-bank.json">
+<span class="bank-icon" aria-hidden="true"><svg viewBox="0 0 56 56"><rect x="4" y="3" width="43" height="50" rx="12" fill="url(#bookGradient)"/><path d="M15 17h21M15 25h21M15 33h13" stroke="white" stroke-width="3" stroke-linecap="round"/><circle cx="43" cy="43" r="11" fill="#FFCA5C"/><path d="m39.5 43 2.4 2.5 5-5" fill="none" stroke="white" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+<span class="bank-info"><span class="bank-title">公路试验-技能提升试题题库</span><span class="bank-meta"><span class="bank-count">正在加载…</span><time></time></span></span>
 <svg class="bank-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg>
 </a><p id="homeStatus" role="status"></p><button id="homeRetry" hidden>重新加载</button></section><footer class="page-footer"><div class="end-line"><span>没有更多了</span></div><img class="developer-logo" src="icons/developer-logo.webp" alt="文刀山己几"></footer></main>
 </section>
@@ -20,10 +24,10 @@
 <footer class="guide-creator"><p>本系统由 <strong>刘凯&amp;AI</strong> 开发</p><a class="qq-link" href="mqqapi://card/show_pslcard?src_type=internal&amp;version=1&amp;uin=1254277461&amp;card_type=person&amp;source=qrcode"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.2c-3.2 0-5.5 2.7-5.5 6.1 0 1 .2 2 .6 2.8-.7 1-1.2 2.1-1.3 3.3 0 .6.4.9.9.6l1.5-.8c.9 1.2 2.2 2 3.8 2s2.9-.8 3.8-2l1.5.8c.5.3.9 0 .9-.6-.1-1.2-.6-2.3-1.3-3.3.4-.8.6-1.8.6-2.8 0-3.4-2.3-6.1-5.5-6.1Z"/><path d="M8.4 17.1c-.6.8-.8 1.7-.4 2.1.4.5 1.4.2 2.2-.6m5.4-1.5c.6.8.8 1.7.4 2.1-.4.5-1.4.2-2.2-.6"/></svg><span><small>点击添加 QQ 好友</small><strong>1254277461</strong></span><svg class="qq-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></a><img class="guide-logo" src="icons/developer-logo.webp" alt="刘凯个人标志"></footer>
 </div></dialog>
 <div id="searchView" hidden>
-<header id="header"><div class="bank-toolbar"><a class="back-home" href="#home" aria-label="返回首页"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14 5-7 7 7 7"/></svg></a><div class="brand bank-name" title="交安复习题">交安复习题</div></div><div class="search-toolbar">
+<header id="header"><div class="bank-toolbar"><a class="back-home" href="#home" aria-label="返回首页"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14 5-7 7 7 7"/></svg></a><div id="currentBankName" class="brand bank-name"></div></div><div class="search-toolbar">
 <form id="searchForm" role="search"><label class="sr-only" for="searchInput">搜索题目、选项或案例背景</label><input id="searchInput" type="search" placeholder="输入关键词，多个关键词用空格隔开" autocomplete="off"><button id="clearSearch" class="clear-search" type="button" aria-label="清除搜索内容" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 8 8 8M16 8l-8 8"/></svg></button><button class="search-submit" type="submit">搜索</button></form></div>
 <nav id="typeFilters" aria-label="题型筛选"></nav></header>
 <main><div class="result-bar"><p id="stat" role="status">正在加载最新题库…</p></div><div id="list"></div><div id="loadSentinel" class="load-sentinel" hidden aria-hidden="true"></div><footer class="page-footer"><div id="searchEnd" class="end-line" hidden><span>没有更多了</span></div><img class="developer-logo" src="icons/developer-logo.webp" alt="文刀山己几"></footer></main>
 </div>
 <aside id="matchNav" hidden aria-label="搜索结果切换"><button id="prevMatch" aria-label="上一题"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 14 6-6 6 6"/></svg></button><output id="matchCount" aria-live="polite">0 / 0 题</output><button id="nextMatch" aria-label="下一题"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 10 6 6 6-6"/></svg></button></aside>
-<script type="module" src="app.js?v=20260924-new-banks"></script></body></html>
+<script type="module" src="app.js?v=20261110-road-skills"></script></body></html>
