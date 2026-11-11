@@ -221,9 +221,9 @@ try{
  assert.match(await page.locator('.entry').first().locator('.stem mark').innerText(),/《?普通混凝土配合比设计规程》JGJ 55-2011中/);
  assert.doesNotMatch(await page.locator('#stat').innerText(),/近似匹配/);
  const searchInput=page.locator('#searchInput');
- const pastePrefix='第12题：';
- const pasteSuffix=' 参考答案：C';
- const pastedQuestion='【单选题】普通混凝土配合比设计规程 JGJ 55-2011 中；预应力混凝土拌合物中水溶性氯离子最大含量是____？\r\nＡ．0.04\r\nＢ．0.05\r\nＣ．0.06\r\nＤ．0.07';
+ const pastePrefix='第987题：';
+ const pasteSuffix=' 参考答案：B';
+ const pastedQuestion='【单选题】普通混凝土配合比设计规程 JGJ 55-2011 中；预应力混凝土拌合物中水溶性氯离子最大含量是____？\r\nＡ．0.07\r\nＢ．0.06\r\nＣ．0.04\r\nＤ．0.05';
  await search(pastePrefix+'替换这里'+pasteSuffix);
  assert.equal(await page.locator('.entry').count(),0);
  await searchInput.evaluate((input,{prefix,text})=>{

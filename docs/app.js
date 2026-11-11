@@ -1,4 +1,4 @@
-import {rank, highlight, highlightRanges, escapeHtml} from './search.js?v=20261111-fragment-search';
+import {rank, highlight, highlightRanges, escapeHtml} from './search.js?v=20261111-shuffled-options';
 const $ = id => document.getElementById(id);
 const types = ['全部','单选','多选','判断','填空','案例题','知识卡'];
 const banks = new Map([...document.querySelectorAll('.bank-row')].map(row=>[row.hash,{

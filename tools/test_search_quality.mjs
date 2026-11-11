@@ -70,8 +70,42 @@ check('shuffled choices with new option letters still distinguish same-stem ques
   const shuffled = [...roadVariant.options].reverse().map((option, index) =>
     `${String.fromCharCode(65 + index)}．${option.text}`
   ).join(' ');
-  const pasted = `23. [单选题] ${roadVariant.stem} ${shuffled} 参考答案：D`;
+  const pasted = `23. [单选题] ${roadVariant.stem} ${shuffled} 参考答案：B`;
   first(rank(road, pasted, '单选'), 'ROAD0589');
+});
+
+check('shuffled choices survive common pasted number and choice formats', () => {
+  const shuffled = [...roadVariant.options].reverse();
+  const newKey = index => String.fromCharCode(65 + index);
+  for (const {name, prefix, separator, choice} of [
+    {name: 'bare number and comma separators', prefix: '23 单选题 ', separator: '，',
+      choice: (option, index) => `${newKey(index)}、${option.text}`},
+    {name: 'compact choices', prefix: '23. ', separator: '',
+      choice: (option, index) => `${newKey(index)}.${option.text}`},
+    {name: 'exported choices with original labels', prefix: '23. ', separator: '\n',
+      choice: (option, index) => `${newKey(index)}. ${option.key}. ${option.text}`},
+  ]) {
+    const choices = shuffled.map(choice).join(separator);
+    const pasted = `${prefix}${roadVariant.stem}${separator}${choices}\n答案：A`;
+    const results = rank(road, pasted, '单选');
+    assert.equal(results[0]?.entry.id, 'ROAD0589', name);
+  }
+});
+
+check('an attached answer label does not consume the last distinguishing choice', () => {
+  const traceability = question(road, 'ROAD0525');
+  const choices = [2, 0, 1, 3].map((index, letter) =>
+    `${String.fromCharCode(65 + letter)}. ${traceability.options[index].text}`
+  ).join('\n');
+  const pasted = `51、${traceability.stem}\n${choices}正确答案：A`;
+  first(rank(road, pasted, '单选'), 'ROAD0525');
+});
+
+check('a year at the start of the question remains part of the stem', () => {
+  const block = question(safety, 'DT00003');
+  const pasted = `${block.stem}\n${options(block, '. ')}`;
+  first(rank(safety, pasted, '单选'), 'DT00003');
+  excludes(rank(safety, pasted.replace(/^2002/u, '2022'), '单选'), ['DT00003']);
 });
 
 check('submitted answer labels do not consume the last choice', () => {

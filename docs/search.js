@@ -49,14 +49,67 @@ function indexedEntry(entry) {
 }
 
 const byScore=(a,b)=>b.score-a.score;
-const questionType='(?:单项选择|多项选择|不定项选择|单选|多选|判断|填空|案例分析|案例|综合|简答)(?:题)?';
-const numberPrefix=/^(?:第\s*\d{1,5}\s*题\s*[:.、]?|\[\s*\d{1,5}\s*\]|\(\s*\d{1,5}\s*\)|\d{1,5}\s*[.、)](?!\d))\s*/u;
-const typePrefix=new RegExp(`^(?:[【\\[(]\\s*${questionType}\\s*[】\\])]|${questionType}\\s*:)\\s*`,'u');
-const answerLabel='(?:参考|正确|标准|我的|你的|您的)?答案';
+const questionTypes='(?:单项选择|多项选择|不定项选择|单选|多选|判断|填空|案例分析|案例|综合|简答)';
+const questionType=`${questionTypes}(?:题)?`;
+const numberPrefix=new RegExp(String.raw`^(?:第\s*\d{1,5}\s*题\s*[:.、]?|[【\[(]\s*(?:第\s*)?\d{1,5}\s*(?:题\s*)?[】\])]|题号\s*:\s*\d{1,5}(?!\d)\s*[:.、)]?|\d{1,5}\s*[.、)](?!\d)|\d{1,5}(?=[ \t]*(?:\r?\n)|\s+${questionTypes}题(?:\s|:)))\s*`,'u');
+const typePrefix=new RegExp(String.raw`^(?:[【\[(]\s*${questionType}\s*[】\])]|${questionType}\s*:|${questionTypes}题(?=\s))\s*`,'u');
+const answerLabel='(?:(?:参考|正确|标准|我的|你的|您的)?答案|正确选项)';
+const answerValue='(?:[a-h]{1,8}(?![a-z])|正确|错误|[√×])';
 const metadataLabel=`(?:${answerLabel}|(?:答案|题目|试题)?解析|难度|分值)`;
-const metadata=new RegExp(`(?:\\s+|(?<=[。!?]))(?:[【\\[]\\s*${metadataLabel}\\s*[】\\]]|${metadataLabel}\\s*:|${answerLabel}\\s+(?=[A-H]{1,8}(?![A-Za-z])|正确|错误|[√×]))`,'u');
+const metadata=new RegExp(String.raw`(?:\s+|(?<=[。!?]))(?:[【\[]\s*${metadataLabel}\s*[】\]]|${metadataLabel}\s*:|${answerLabel}\s*(?=${answerValue}(?:[\s(,.;:。!?]|$)))`,'iu');
+const compactAnswer=new RegExp(String.raw`${answerLabel}\s*(?::|(?=${answerValue}(?:\s*\([^)]*\))?\s*$))`,'iu');
 const originalNumber=new RegExp(`\\s+原卷\\s*${questionType}\\s*第\\s*\\d+\\s*题(?=\\s|$)`,'gu');
-const optionMarker=/(?:^|[\s。!?;])(?:([a-h])[.、:)]|\(([a-h])\)|\[([a-h])\])\s*(?=\S)/giu;
+const choiceLabel=String.raw`(?:([A-H])[.、:)]|\(([A-H])\)|\[([A-H])\])`;
+// Some exports show a display label and an original label side by side (for example, A. D.).
+const printedChoice=String.raw`${choiceLabel}(?:[ \t]+(?:[A-H][.、:)]|\([A-H]\)|\[[A-H]\])(?=[ \t]))?`;
+const optionMarker=new RegExp(String.raw`(?:^|[\s。!?;,、])${printedChoice}\s*(?=\S)`,'giu');
+const compactOptionMarker=new RegExp(String.raw`(?<![A-Za-z])${printedChoice}\s*(?=\S)`,'gu');
+const bareOptionMarker=/(?:^|[\s。!?;,、])([A-H])\s+(?=\S)/gu;
+
+function optionKey(marker){
+ return (marker[1]||marker[2]||marker[3]).toUpperCase();
+}
+
+// Weaker separators are allowed only when a sequence of labels clearly identifies the options.
+function sequentialOptionMarkers(text,pattern){
+ let best=[], current=[];
+ for(const marker of text.matchAll(pattern)){
+  if(optionKey(marker)==='A'&&marker.index>0)current=[marker];
+  else if(current.length&&optionKey(marker)===String.fromCharCode(65+current.length))current.push(marker);
+  else current=[];
+  if(current.length>=3&&current.length>best.length)best=[...current];
+ }
+ return best;
+}
+
+function pastedOptions(text){
+ let markers=[...text.matchAll(optionMarker)];
+ // A filled answer slot such as (C) may occur in the stem before the real A/B/C labels.
+ const keys=new Set();
+ for(let i=markers.length-1;i>=0;i--){
+  const key=optionKey(markers[i]);
+  if(keys.has(key)){markers.splice(0,i+1);break;}
+  keys.add(key);
+ }
+ for(const pattern of [compactOptionMarker,bareOptionMarker]){
+  const alternative=sequentialOptionMarkers(text,pattern);
+  if(alternative.length>markers.length)markers=alternative;
+ }
+ const first=markers[0]?.index;
+ if(!(first>0)||markers.length<2)return null;
+ const options=new Set();
+ for(let i=0;i<markers.length;i++){
+  const marker=markers[i];
+  let value=text.slice(marker.index+marker[0].length,markers[i+1]?.index);
+  if(i===markers.length-1){
+   const tail=value.search(compactAnswer);
+   if(tail>=0)value=value.slice(0,tail);
+  }
+  const folded=relaxed(normalize(value));
+  if(folded)options.add(folded);
+ }
+ return options.size?{text:text.slice(0,first).trim(),options}:null;
+}
 
 function parseQuery(query) {
  const input=query.trim().normalize('NFKC');
@@ -64,21 +117,8 @@ function parseQuery(query) {
  const stemWithTail=input.replace(typePrefix,'').replace(numberPrefix,'').replace(typePrefix,'').replace(originalNumber,'');
  const tail=stemWithTail.search(metadata);
  const text=(tail<0?stemWithTail:stemWithTail.slice(0,tail)).trim();
- const markers=[...text.matchAll(optionMarker)];
- // A filled answer slot such as (C) may occur in the stem before the real A/B/C labels.
- const keys=new Set();
- for(let i=markers.length-1;i>=0;i--){
-  const key=(markers[i][1]||markers[i][2]||markers[i][3]).toLowerCase();
-  if(keys.has(key)){markers.splice(0,i+1);break;}
-  keys.add(key);
- }
- const first=markers[0]?.index;
- if(first>0&&markers.length>=2){
-  const options=new Set(markers.map((marker,i)=>relaxed(normalize(
-   text.slice(marker.index+marker[0].length,markers[i+1]?.index)
-  ))).filter(Boolean));
-  if(options.size)return {text:text.slice(0,first).trim(),options,pasted:true,cleaned:true};
- }
+ const choices=pastedOptions(text);
+ if(choices)return {...choices,pasted:true,cleaned:true};
  return {text:text||input,options:new Set(),pasted:tail>0,cleaned:input!==(text||input)};
 }
 
