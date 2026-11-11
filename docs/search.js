@@ -163,8 +163,10 @@ export function rank(entries, query, type = '全部') {
  const matches=rankText(pool,phrase,terms,parsed);
  if(matches.length)return matches;
  const similar=rankSimilar(pool,phrase.folded,parsed.options);
- if(similar.length||parsed.pasted)return similar;
- return rankSimilarKeywords(pool,terms);
+ if(similar.length)return similar;
+ const similarKeywords=rankSimilarKeywords(pool,terms);
+ if(similarKeywords.length)return similarKeywords;
+ return rankFragments(pool,phrase,parsed.options);
 }
 
 function grams(text,size){
@@ -189,13 +191,28 @@ function overlap(text,size,queryGrams,onMatch){
 }
 
 const criticalPattern=/[a-z0-9.,:/+%‰*~×÷=<>≤≥±-]+|大于|小于|高于|低于|多于|少于|不少|至少|至多|最大|最小|最高|最低|正确|错误|严禁|禁止|[不未无非]/gu;
+// These distinctions cannot be resolved from spelling similarity alone.
+const contrasts=[
+ [/以上/u,/以下/u],[/以内/u,/以外/u],[/应当|必须/u,/可以/u],[/直接/u,/间接/u],
+ [/水溶性氯离子/u,/酸溶性氯离子/u,/游离(?:性)?氯离子/u],[/连续级配/u,/间断级配/u],
+ [/抗压强度/u,/抗拉强度/u,/抗折强度/u,/抗剪强度/u],[/施工企业/u,/监理企业/u],
+];
+
+function contrastTerms(query){
+ return contrasts.map(group=>({group,terms:group.filter(term=>term.test(query))})).filter(({terms})=>terms.length);
+}
+
+function contrastConflicts(queryTerms,field){
+ return queryTerms.some(({group,terms})=>group.some(term=>term.test(field))&&!terms.some(term=>term.test(field)));
+}
+
 function criticalText(text){
  const fixed=new Uint8Array(text.length), terms=[];
  for(const match of text.matchAll(criticalPattern)){
   terms.push(match[0]);
   fixed.fill(1,match.index,match.index+match[0].length);
  }
- return {fixed,signature:terms.join('|')};
+ return {fixed,terms,signature:terms.join('|')};
 }
 
 // Score a whole field or its best substring. Record the alignment only for displayed results.
@@ -242,7 +259,7 @@ function similarQuery(query,minLength=4){
  const length=query.length;
  if(length<minLength||length>480||!han.test(query))return null;
  return {query,budget:Math.max(1,Math.min(8,Math.floor((length+1)/7))),
-  bigrams:grams(query,2),trigrams:length>=22?grams(query,3):null,critical:criticalText(query)};
+  bigrams:grams(query,2),trigrams:length>=22?grams(query,3):null,critical:criticalText(query),contrasts:contrastTerms(query)};
 }
 
 function similarMatch(field, spec){
@@ -250,6 +267,7 @@ function similarMatch(field, spec){
  if(stem.length<length-budget)return null;
  const shared=overlap(stem,2,bigrams), minShared=length-1-2*budget;
  if(shared<minShared&&(!trigrams||shared<(length-2)*.8))return null;
+ if(contrastConflicts(spec.contrasts,stem))return null;
  const whole=stem.length<=length+budget;
  const fieldCritical=field.critical??=criticalText(stem);
  const sameCritical=fieldCritical.signature===critical.signature;
@@ -369,6 +387,133 @@ function rankSimilarKeywords(pool,terms){
   }
  }
  return matches.sort(byScore).slice(0,12).map(similarResult);
+}
+
+const fragmentSize=4;
+const hanFragment=/^\p{Script=Han}{4}$/u;
+const standardCode=/^(?:gb(?:\/[tz])?|jgj(?:\/t)?|jtg(?:\/t)?|jt\/t)[a-z]?\d+(?:[./-]\d+)*$/u;
+
+function fragmentConditionsAgree(query,field){
+ if(query.signature===field.signature)return true;
+ // A citation may be left out, but an explicitly supplied citation or measurement must agree.
+ if(query.terms.some(term=>standardCode.test(term)))return false;
+ return query.signature===field.terms.filter(term=>!standardCode.test(term)).join('|');
+}
+
+// A shared book title is context, not evidence that the question is about the same thing.
+function fragmentBody(field){
+ if(field.fragmentBody)return field.fragmentBody;
+ const titles=[...field.literal.matchAll(/《[^》]+》/gu)];
+ if(!titles.length)return {text:field.folded,titles:[]};
+ const removed=new Uint8Array(field.literal.length), offsets=new Uint16Array(field.literal.length+1);
+ relaxed(field.literal,(start,length)=>removed.fill(1,start,start+length));
+ for(let i=0;i<removed.length;i++)offsets[i+1]=offsets[i]+1-removed[i];
+ const ranges=titles.map(title=>[offsets[title.index],offsets[title.index+title[0].length]]);
+ const text=field.folded.split('');
+ for(const [start,end] of ranges)text.fill('\0',start,end);
+ return field.fragmentBody={text:text.join(''),titles:ranges};
+}
+
+function fragmentIndex(text){
+ const index=new Map();
+ for(let start=0;start<=text.length-fragmentSize;start++){
+  const gram=text.slice(start,start+fragmentSize);
+  if(!hanFragment.test(gram))continue;
+  if(!index.has(gram))index.set(gram,[]);
+  index.get(gram).push(start);
+ }
+ return index;
+}
+
+// Find an ordered chain of non-overlapping phrases. Noise between phrases is allowed.
+function orderedFragments(query,index,field,frequency,rareLimit){
+ const runs=[];
+ for(let start=0;start<=field.length-fragmentSize;start++){
+  const locations=index.get(field.slice(start,start+fragmentSize));
+  if(!locations||locations.length>8)continue;
+  for(const queryStart of locations){
+   if(start>0&&queryStart>0&&field[start-1]===query[queryStart-1]&&han.test(field[start-1]))continue;
+   let size=fragmentSize;
+   while(field[start+size]&&field[start+size]===query[queryStart+size]&&han.test(field[start+size]))size++;
+   let rare=0;
+   for(let i=0;i<=size-fragmentSize;i++){
+    const gram=query.slice(queryStart+i,queryStart+i+fragmentSize);
+    if(frequency.get(gram)<=rareLimit)rare++;
+   }
+   runs.push({start,queryStart,size,rare,weight:size+rare*.75});
+  }
+ }
+ // Bound the chain work for unusually repetitive text, keeping the strongest runs.
+ if(runs.length>96)runs.sort((a,b)=>b.weight-a.weight).splice(96);
+ runs.sort((a,b)=>a.start-b.start||a.queryStart-b.queryStart);
+ let best;
+ for(let i=0;i<runs.length;i++){
+  const run=runs[i];
+  run.total=run.weight;
+  for(let j=0;j<i;j++){
+   const previous=runs[j];
+   if(previous.start+previous.size>run.start||previous.queryStart+previous.size>run.queryStart)continue;
+   if(previous.total+run.weight>run.total){
+    run.total=previous.total+run.weight;
+    run.previous=previous;
+   }
+  }
+  if(!best||run.total>best.total)best=run;
+ }
+ const chain=[];
+ for(let run=best;run;run=run.previous)chain.push(run);
+ return chain;
+}
+
+function rankFragments(pool,phrase,options){
+ if(phrase.folded.length<22||phrase.folded.length>480)return [];
+ const query=fragmentBody(phrase).text;
+ const hanLength=query.match(/\p{Script=Han}/gu)?.length??0;
+ if(hanLength<16)return [];
+ const index=fragmentIndex(query), critical=criticalText(phrase.folded), queryTerms=contrastTerms(phrase.folded);
+ const frequency=new Map(), candidates=[];
+ for(const entry of pool){
+  const seenInEntry=new Set();
+  for(const field of indexedEntry(entry).stems){
+   const body=fragmentBody(field);
+   const seen=new Set();
+   for(let i=0;i<=body.text.length-fragmentSize;i++){
+    const gram=body.text.slice(i,i+fragmentSize);
+    if(index.has(gram))seen.add(gram);
+   }
+   for(const gram of seen)seenInEntry.add(gram);
+   if(seen.size<6)continue;
+   const fieldCritical=field.critical??=criticalText(field.folded);
+   if(fragmentConditionsAgree(critical,fieldCritical)&&!contrastConflicts(queryTerms,field.folded))candidates.push({entry,field,body});
+  }
+  for(const gram of seenInEntry)frequency.set(gram,(frequency.get(gram)||0)+1);
+ }
+ const rareLimit=Math.max(3,Math.floor(pool.length*.01));
+ const minCoverage=Math.max(12,Math.ceil(hanLength*.48));
+ const matches=new Map();
+ for(const {entry,field,body} of candidates){
+  const chain=orderedFragments(query,index,body.text,frequency,rareLimit);
+  const covered=chain.reduce((sum,run)=>sum+run.size,0);
+  const rare=chain.reduce((sum,run)=>sum+run.rare,0);
+  if(covered<minCoverage||rare<2||chain.length<2&&(covered<17||rare<4))continue;
+  const score=covered+rare*.75+4*covered/field.folded.length+optionMatches(field,options);
+  if(!matches.has(entry)||matches.get(entry).score<score)matches.set(entry,{entry,field,body,score,chain});
+ }
+ const ranked=[...matches.values()].sort(byScore);
+ const minScore=(ranked[0]?.score??0)*.78;
+ const technicalTerms=new Set(critical.terms.filter(term=>digit.test(term)));
+ return ranked.filter(match=>match.score>=minScore).slice(0,6).map(({entry,field,body,score,chain})=>{
+  const positions=new Uint8Array(field.folded.length);
+  for(const run of chain)positions.fill(1,run.start,run.start+run.size);
+  // Show matching technical identifiers and titles without using them as question evidence.
+  for(const term of field.folded.matchAll(criticalPattern)){
+   if(technicalTerms.has(term[0]))positions.fill(1,term.index,term.index+term[0].length);
+  }
+  for(const [start,end] of body.titles){
+   if(phrase.folded.includes(field.folded.slice(start,end)))positions.fill(1,start,end);
+  }
+  return {entry,score,kind:'similar',similarHighlights:new Map([[field.source,originalRanges(field,positions)]])};
+ });
 }
 export function escapeHtml(value){return String(value??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));}
 export function highlightRanges(text,ranges=[]){

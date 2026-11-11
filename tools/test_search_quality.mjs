@@ -220,6 +220,80 @@ check('keyword fallback highlights the exact anchor and shared part of the missp
   expectHighlight(match, stem, '数', false);
 });
 
+check('a heavily corrupted pasted stem still finds both forms of the original question', () => {
+  const query = '《普通混凝土配合比设计规程》JGJ 55-2011 预应力混凝土拌合物按时打算都是性氯离子最大含量是（  ）';
+  const results = rank(road, query);
+  for (const id of ['ROAD0001', 'ROAD1984']) {
+    const match = results.slice(0, 3).find(result => result.entry.id === id);
+    assert.equal(match?.kind, 'similar', id);
+    const stem = question(road, id).stem;
+    expectHighlight(match, stem, 'JGJ 55-2011');
+    expectHighlight(match, stem, '预应力混凝土拌合物');
+    expectHighlight(match, stem, '氯离子最大含量');
+    expectHighlight(match, stem, '水溶', false);
+  }
+});
+
+check('strong stem phrases can find the question with the citation omitted', () => {
+  const query = '预应力混凝土拌合物按时打算都是性氯离子最大含量是（  ）';
+  const match = rank(road, query).slice(0, 3).find(result => result.entry.id === 'ROAD0001');
+  assert.equal(match?.kind, 'similar');
+  const stem = question(road, 'ROAD0001').stem;
+  expectHighlight(match, stem, '氯离子最大含量');
+  expectHighlight(match, stem, 'JGJ 55-2011', false);
+  excludes(rank(road, 'JGJ 55-2012 ' + query), ['ROAD0001', 'ROAD1984']);
+});
+
+check('the closest stem ranks first when two results share much of the same wording', () => {
+  const original = question(safety, 'C20260924-0330').stem;
+  const query = original.replace('全生产设施或者安全生产条', '按时打算都已经写在里面');
+  assert.notEqual(query, original);
+  const results = rank(safety, query, '判断');
+  first(results, 'C20260924-0330');
+  assert.equal(results[0].kind, 'similar');
+  assert.ok(results.some(result => result.entry.id === 'C20260924-0279'));
+});
+
+const rewrittenConcrete = '《普通混凝土配合比设计规程》JGJ 55-2011 试验室进行配合比设计时对材料选型和检验都有专门规定，粗骨料宜采用连续级配，最大公称粒径不宜大于40.0mm，含泥量不得大于（ ），泥块含量不得大于（ ）。';
+
+check('a rewritten stem can be found by several unchanged technical phrases', () => {
+  const match = rank(road, rewrittenConcrete, '单选').slice(0, 3).find(result => result.entry.id === 'ROAD0002');
+  assert.equal(match?.kind, 'similar');
+  expectHighlight(match, concrete.stem, '粗骨料宜采用连续级配');
+  expectHighlight(match, concrete.stem, '最大公称粒径不宜大于40.0mm');
+});
+
+for (const {name, before, after} of [
+  {name: 'standard edition', before: '55-2011', after: '55-2012'},
+  {name: 'measurement', before: '40.0mm', after: '60.0mm'},
+  {name: 'negation', before: '不宜大于', after: '宜大于'},
+  {name: 'comparison direction', before: '大于40.0mm', after: '小于40.0mm'},
+  {name: 'contrasting technical term', before: '连续级配', after: '间断级配'},
+]) {
+  check(`shared phrases do not override a changed ${name} in a rewritten stem`, () => {
+    assert.ok(rewrittenConcrete.includes(before));
+    excludes(rank(road, rewrittenConcrete.replace(before, after), '单选'), ['ROAD0002']);
+  });
+}
+
+check('sharing a standard heading does not match an unrelated question', () => {
+  const query = '《普通混凝土配合比设计规程》JGJ 55-2011中，试验机构的门卫访客登记记录保存时间是（ ）。';
+  excludes(rank(road, query), ['ROAD0001', 'ROAD1984', 'ROAD0002']);
+});
+
+check('abridged case material can match several surviving phrases in the full case', () => {
+  const query = '赵某与钱某因琐事发生口角，赵乘钱不备将钱的头部击伤。在赶往医院途中，钱某不慎跌入未设防护的涵洞内，造成左腿开放性骨折。';
+  const match = rank(safety, query, '案例').slice(0, 3).find(result => result.entry.id === 'DT01121');
+  assert.equal(match?.kind, 'similar');
+  const material = match.entry.blocks.find(block => block.kind === 'material')?.paragraphs[0];
+  assert.ok(material);
+  expectHighlight(match, material, '赵某与钱某因琐事发生口角');
+  expectHighlight(match, material, '未设防护的涵洞内');
+  expectHighlight(match, material, '造成左腿开放性骨折');
+  expectHighlight(match, material, '在一下坡路上', false);
+  assert.equal(match.entry.blocks.filter(block => block.kind === 'question').length, 4);
+});
+
 check('range highlighting escapes HTML inside and outside UTF-16 ranges', () => {
   const original = '🧪<script>安全 &</script>';
   const start = original.indexOf('安全');

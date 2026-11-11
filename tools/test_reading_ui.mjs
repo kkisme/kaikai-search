@@ -248,6 +248,19 @@ try{
  assert.match(originalStem,/水溶性氯离子最大含量是/);
  assert.doesNotMatch(stemHighlights,/[溶是]/);
  assert.equal(await similarResult.locator('.options mark, .answer mark, .note mark').count(),0);
+ await search('《普通混凝土配合比设计规程》JGJ 55-2011 预应力混凝土拌合物按时打算都是性氯离子最大含量是（  ）');
+ const fragmentResult=page.locator('.entry').first();
+ assert.equal(await fragmentResult.getAttribute('data-entry-id'),'ROAD0001');
+ assert.match(await page.locator('#stat').innerText(),/近似匹配，请核对题干/);
+ const fragmentMarks=await fragmentResult.locator('.stem mark').allTextContents();
+ for(const phrase of ['JGJ 55-2011','预应力混凝土拌合物','氯离子最大含量']){
+  assert(fragmentMarks.some(mark=>mark.includes(phrase)),phrase+' should be highlighted');
+ }
+ assert.match(await fragmentResult.locator('.stem').innerText(),/水溶性氯离子最大含量/);
+ assert.doesNotMatch(fragmentMarks.join(''),/[水溶]/);
+ await search('《普通混凝土配合比设计规程》JGJ 55-2011中，试验机构的门卫访客登记记录保存时间是（ ）。');
+ assert.equal(await page.locator('.entry').count(),0);
+ assert.match(await page.locator('#stat').innerText(),/^找到 0 条$/);
  const motionContext=await browser.newContext({viewport:{width:390,height:844}});
  const motionPage=await motionContext.newPage();
  await motionPage.goto(base);
@@ -257,5 +270,5 @@ try{
  await motionPage.screenshot({path:'dist/home-motion-mobile.png'});
  await motionContext.close();
  assert.deepEqual(errors,[]);
- console.log('PASS: mobile/desktop rendering, multiline question paste, complete cases, navigation, reset, filters, offline reload, no JS errors');
+ console.log('PASS: mobile/desktop rendering, multiline question paste, approximate fragments, complete cases, navigation, reset, filters, offline reload, no JS errors');
 }finally{await browser.close();}
