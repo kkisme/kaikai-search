@@ -9,6 +9,7 @@ const page=await context.newPage(),errors=[];
 page.on('pageerror',error=>errors.push(error.message));
 const base=process.env.TEST_BASE_URL||'http://localhost:8000/';
 const safety=JSON.parse(readFileSync(new URL('../docs/question-bank.json',import.meta.url),'utf8'));
+const road=JSON.parse(readFileSync(new URL('../docs/road-skills-bank.json',import.meta.url),'utf8'));
 async function search(text){await page.locator('#searchInput').fill(text);await page.locator('#searchForm').evaluate(form=>form.requestSubmit());await page.waitForTimeout(250);}
 try{
  await page.goto(base);
@@ -18,7 +19,7 @@ try{
  assert.equal(await page.locator('#bankCount').textContent(),`${safety.entries.length} 道`);
  assert.equal(await page.locator('#bankDate').textContent(),safety.generatedDate);
  assert.equal(await page.locator('#openRoadSkills .bank-title').textContent(),'公路试验-技能提升试题题库');
- assert.equal(await page.locator('#openRoadSkills .bank-count').textContent(),'2256 道');
+ assert.equal(await page.locator('#openRoadSkills .bank-count').textContent(),`${road.entries.length} 道`);
  assert.equal(await page.locator('#openBank .bank-title').evaluate(el=>getComputedStyle(el).fontSize),'14px');
  assert.equal(await page.locator('#openBank .bank-icon svg').evaluate(el=>getComputedStyle(el).width),'34px');
  const homeLayout=await page.locator('#openBank').evaluate(el=>({height:el.getBoundingClientRect().height,radius:getComputedStyle(document.querySelector('.home-main')).borderTopLeftRadius}));
@@ -170,6 +171,10 @@ try{
  await page.locator('[data-entry-id="ROAD0001"]').waitFor({state:'visible'});
  await search('终凝时间 截面积');
  assert.match(await page.locator('[data-entry-id="ROAD0468"] .stem').innerText(),/mm²/);
+ await search('接触式孔径仪 被测孔径');
+ const added=page.locator('[data-entry-id="ROAD2257"]');
+ assert.match(await added.locator('.stem').innerText(),/测量允许误差/);
+ assert.equal(await added.locator('.answer strong').innerText(),'C');
  const motionContext=await browser.newContext({viewport:{width:390,height:844}});
  const motionPage=await motionContext.newPage();
  await motionPage.goto(base);

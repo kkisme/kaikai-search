@@ -1,4 +1,4 @@
-"""Generate the road testing bank from the reviewed Word document."""
+"""Generate the road testing bank from the reviewed Word document and supplement."""
 
 import argparse
 import hashlib
@@ -19,6 +19,9 @@ from build_reviewed_bank import join_fragments, normalize
 ROOT = Path(__file__).resolve().parents[1]
 NAME = '公路试验-技能提升试题题库'
 TYPES = {'单项选择题': '单选', '多项选择题': '多选', '判断题': '判断', '填空题': '填空'}
+SECTIONS = {kind: section for section, kind in TYPES.items()}
+DEFAULT_SOURCE = ROOT / '公路-技能提升试题题库（核对修订版）.docx'
+DEFAULT_SUPPLEMENT = ROOT / 'data' / 'road-skills-2026-supplement.json'
 SUPERSCRIPT = str.maketrans('0123456789+-', '⁰¹²³⁴⁵⁶⁷⁸⁹⁺⁻')
 SUBSCRIPT = str.maketrans('0123456789+-', '₀₁₂₃₄₅₆₇₈₉₊₋')
 
@@ -142,13 +145,49 @@ def build(source, date):
             'sourceSha256': hashlib.sha256(source_bytes).hexdigest(), 'entries': entries}
 
 
+def append_supplement(bank, path):
+    supplement_bytes = path.read_bytes()
+    supplement = json.loads(supplement_bytes)
+    entries = bank['entries']
+    source_numbers = set()
+    for row in supplement['questions']:
+        source_no = row['sourceNo']
+        kind = row['type']
+        if source_no in source_numbers or not row['stem'].strip() or not row['locations']:
+            raise ValueError(f'补充题 {source_no} 的题干、来源或题号无效')
+        source_numbers.add(source_no)
+        number = len(entries) + 1
+        entry_id = f'ROAD{number:04d}'
+        question = {
+            'kind': 'question', 'id': f'{entry_id}-Q', 'type': kind, 'stem': row['stem'],
+            'options': [{'key': key, 'text': text} for key, text in row['options'].items()],
+            'answer': row['answer'], 'notes': [f'解析：{row["explanation"]}'],
+        }
+        entry = {
+            'id': entry_id, 'sourceNo': str(number), 'type': kind, 'section': SECTIONS[kind],
+            'blocks': [question], 'supplementSource': {'sourceNo': source_no, 'locations': row['locations']},
+        }
+        finalize(entry)
+        entries.append(entry)
+    bank['supplement'] = {
+        'source': supplement['source'], 'sourceSha256': supplement['sourceSha256'],
+        'file': path.name, 'sha256': hashlib.sha256(supplement_bytes).hexdigest(),
+        'count': len(source_numbers),
+    }
+
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--source', type=Path, default=ROOT / '公路-技能提升试题题库（核对修订版）.docx')
+    parser.add_argument('--source', type=Path, default=DEFAULT_SOURCE)
+    parser.add_argument('--supplement', type=Path, help='补充题 JSON 文件')
+    parser.add_argument('--output', type=Path, default=ROOT / 'docs' / 'road-skills-bank.json')
     parser.add_argument('--date', default=datetime.now().astimezone().date().isoformat())
     args = parser.parse_args()
     data = build(args.source, args.date)
-    output = ROOT / 'docs' / 'road-skills-bank.json'
+    supplement = args.supplement or (DEFAULT_SUPPLEMENT if args.source == DEFAULT_SOURCE else None)
+    if supplement is not None:
+        append_supplement(data, supplement)
+    output = args.output
     with NamedTemporaryFile(dir=output.parent, mode='w', encoding='utf-8', delete=False) as file:
         temporary = Path(file.name)
     try:
