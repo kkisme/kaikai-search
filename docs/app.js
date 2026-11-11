@@ -107,13 +107,15 @@ function showView() {
 }
 window.addEventListener('hashchange',showView);
 showView();
-const installGuide=$('installGuide');
-$('guideTrigger').onclick=()=>installGuide.showModal();
-$('guideClose').onclick=()=>installGuide.close();
-installGuide.addEventListener('click',event=>{
- const bounds=installGuide.getBoundingClientRect();
- if(event.clientX<bounds.left||event.clientX>bounds.right||event.clientY<bounds.top||event.clientY>bounds.bottom)installGuide.close();
-});
+for(const trigger of document.querySelectorAll('.guide-trigger')){
+ const dialog=$(trigger.getAttribute('aria-controls'));
+ trigger.addEventListener('click',()=>dialog.showModal());
+ dialog.querySelector('.guide-close').addEventListener('click',()=>dialog.close());
+ dialog.addEventListener('click',event=>{
+  const bounds=dialog.getBoundingClientRect();
+  if(event.clientX<bounds.left||event.clientX>bounds.right||event.clientY<bounds.top||event.clientY>bounds.bottom)dialog.close();
+ });
+}
 $('typeFilters').onclick=event=>{
  const button=event.target.closest('button');
  if(!button)return;
