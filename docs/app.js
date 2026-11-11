@@ -1,4 +1,4 @@
-import {rank, highlight, escapeHtml} from './search.js?v=20261111-mixed-search';
+import {rank, highlight, escapeHtml} from './search.js?v=20261111-stem-search';
 const $ = id => document.getElementById(id);
 const types = ['全部','单选','多选','判断','填空','案例题','知识卡'];
 const banks = new Map([...document.querySelectorAll('.bank-row')].map(row=>[row.hash,{
@@ -44,9 +44,9 @@ function moveMatch(delta) {
 }
 function render(reset=true) {
  const results=rank(entries,query,type), visible=query?results:results.slice(0,limit);
- const highlightQuery=results[0]?.matchedWords??query;
- const h=value=>highlight(value,highlightQuery);
- $('list').innerHTML=visible.map(({entry})=>entryHtml(entry,h)).join('')||'<p class="empty">没有找到匹配题目，请缩短关键词或切换题型。</p>';
+ $('list').innerHTML=visible.map(({entry,kind,matchedWords})=>entryHtml(entry,
+  kind==='similar'||kind==='pinyin'?escapeHtml:value=>highlight(value,matchedWords??query,kind==='format')
+ )).join('')||'<p class="empty">没有找到匹配题目，可用题干里的几个关键词重试，或切换题型。</p>';
  if(reset){
   $('list').classList.remove('list-enter');
   requestAnimationFrame(()=>$('list').classList.add('list-enter'));
@@ -56,8 +56,9 @@ function render(reset=true) {
  $('searchEnd').hidden=!exhausted;
  resultCards=[...$('list').querySelectorAll('.entry')];
  active=resultCards.length?0:-1;updateNavigation();
- const fuzzy=results.length&&results.every(r=>r.score===10);
- $('stat').textContent=`${query?'找到':'共'} ${results.length} 条${query?'':` · 已展示 ${visible.length} 条`}${fuzzy?' · 以下为近似匹配':query&&results.length&&!$('list').querySelector('mark')?' · 拼音匹配':''}`;
+ const matchKind=results[0]?.kind;
+ const label=matchKind==='similar'?' · 近似匹配，请核对题干':matchKind==='pinyin'?' · 拼音匹配':'';
+ $('stat').textContent=`${query?'找到':'共'} ${results.length} 条${query?label:` · 已展示 ${visible.length} 条`}`;
  if(reset&&!$('searchView').hidden)window.scrollTo({top:0,behavior:'instant'});
 }
 function syncClearButton(){$('clearSearch').hidden=!$('searchInput').value;}

@@ -175,6 +175,14 @@ try{
  const added=page.locator('[data-entry-id="ROAD2257"]');
  assert.match(await added.locator('.stem').innerText(),/测量允许误差/);
  assert.equal(await added.locator('.answer strong').innerText(),'C');
+ await search('第12题：普通混凝土配合比设计规程 JGJ 55-2011 中；预应力混凝土拌合物中水溶性氯离子最大含量是____？');
+ assert.equal(await page.locator('.entry').first().getAttribute('data-entry-id'),'ROAD0001');
+ assert.match(await page.locator('.entry').first().locator('.stem mark').innerText(),/《?普通混凝土配合比设计规程》JGJ 55-2011中/);
+ assert.doesNotMatch(await page.locator('#stat').innerText(),/近似匹配/);
+ await search('普通混凝土配合比设计规程 JGJ 55-2011 中；预应力混凝土拌合物中水容性氯离子最大允许含量为____？');
+ assert.equal(await page.locator('.entry').first().getAttribute('data-entry-id'),'ROAD0001');
+ assert.match(await page.locator('#stat').innerText(),/近似匹配，请核对题干/);
+ assert.equal(await page.locator('.entry').first().locator('mark').count(),0);
  const motionContext=await browser.newContext({viewport:{width:390,height:844}});
  const motionPage=await motionContext.newPage();
  await motionPage.goto(base);
