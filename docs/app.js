@@ -1,4 +1,4 @@
-import {rank, highlight, escapeHtml} from './search.js?v=20261111-standard-search';
+import {rank, highlight, escapeHtml} from './search.js?v=20261111-search-guide';
 const $ = id => document.getElementById(id);
 const types = ['全部','单选','多选','判断','填空','案例题','知识卡'];
 const banks = new Map([...document.querySelectorAll('.bank-row')].map(row=>[row.hash,{
@@ -76,6 +76,15 @@ $('searchForm').addEventListener('submit',e=>{e.preventDefault();composing=false
 $('searchInput').addEventListener('compositionstart',()=>{composing=true;clearTimeout(debounce);});
 $('searchInput').addEventListener('compositionend',()=>{composing=false;search();});
 $('searchInput').addEventListener('input',()=>{syncClearButton();if(!composing){clearTimeout(debounce);debounce=setTimeout(search,180);}});
+$('searchInput').addEventListener('paste',event=>{
+ const text=event.clipboardData?.getData('text/plain');
+ if(!text||!/[\r\n\u2028\u2029]/u.test(text))return;
+ // A search input drops line breaks. Preserve boundaries between the stem and options.
+ event.preventDefault();
+ const input=event.currentTarget;
+ input.setRangeText(text.replace(/[\r\n\u2028\u2029]+/gu,' '),input.selectionStart,input.selectionEnd,'end');
+ input.dispatchEvent(new Event('input',{bubbles:true}));
+});
 $('clearSearch').addEventListener('click',()=>{$('searchInput').value='';search();$('searchInput').focus();});
 new IntersectionObserver(items=>{
  if(items.some(item=>item.isIntersecting)&&!$('loadSentinel').hidden){limit+=30;render(false);}

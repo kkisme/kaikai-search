@@ -43,7 +43,7 @@ try{
  const searchGuide=page.getByRole('dialog',{name:'搜索说明',exact:true});
  await searchGuideTrigger.click();
  assert(await searchGuide.isVisible());
- assert.deepEqual(await searchGuide.locator('dt').allTextContents(),['粘贴整道题干','用关键词查找','用全拼或拼音首字母','近似匹配','查看结果']);
+ assert.deepEqual(await searchGuide.locator('dt').allTextContents(),['粘贴整题','搜关键词','搜拼音','核对近似匹配','查看结果']);
  await page.screenshot({path:'dist/search-guide-mobile.png'});
  await searchGuide.getByRole('button',{name:'关闭搜索说明'}).click();
  assert(await searchGuide.isHidden());
@@ -212,6 +212,24 @@ try{
  assert.equal(await page.locator('.entry').first().getAttribute('data-entry-id'),'ROAD0001');
  assert.match(await page.locator('.entry').first().locator('.stem mark').innerText(),/《?普通混凝土配合比设计规程》JGJ 55-2011中/);
  assert.doesNotMatch(await page.locator('#stat').innerText(),/近似匹配/);
+ const searchInput=page.locator('#searchInput');
+ const pastePrefix='第12题：';
+ const pasteSuffix=' 参考答案：C';
+ const pastedQuestion='【单选题】普通混凝土配合比设计规程 JGJ 55-2011 中；预应力混凝土拌合物中水溶性氯离子最大含量是____？\r\nＡ．0.04\r\nＢ．0.05\r\nＣ．0.06\r\nＤ．0.07';
+ await search(pastePrefix+'替换这里'+pasteSuffix);
+ assert.equal(await page.locator('.entry').count(),0);
+ await searchInput.evaluate((input,{prefix,text})=>{
+  input.setSelectionRange(prefix.length,prefix.length+'替换这里'.length);
+  const clipboardData=new DataTransfer();
+  clipboardData.setData('text/plain',text);
+  input.dispatchEvent(new ClipboardEvent('paste',{bubbles:true,cancelable:true,clipboardData}));
+ },{prefix:pastePrefix,text:pastedQuestion});
+ assert.equal(await searchInput.inputValue(),pastePrefix+pastedQuestion.replaceAll('\r\n',' ')+pasteSuffix);
+ await page.waitForFunction(()=>document.querySelector('#list .entry')?.dataset.entryId==='ROAD0001');
+ const pastedResult=page.locator('.entry').first();
+ assert.match(await pastedResult.locator('.stem mark').innerText(),/预应力混凝土拌合物中水溶性氯离子最大含量/);
+ assert.equal(await pastedResult.locator('.answer strong').innerText(),'C');
+ assert.doesNotMatch(await page.locator('#stat').innerText(),/近似匹配/);
  await search('普通混凝土配合比设计规程 JGJ 55-2011 中；预应力混凝土拌合物中水容性氯离子最大允许含量为____？');
  assert.equal(await page.locator('.entry').first().getAttribute('data-entry-id'),'ROAD0001');
  assert.match(await page.locator('#stat').innerText(),/近似匹配，请核对题干/);
@@ -225,5 +243,5 @@ try{
  await motionPage.screenshot({path:'dist/home-motion-mobile.png'});
  await motionContext.close();
  assert.deepEqual(errors,[]);
- console.log('PASS: mobile/desktop rendering, complete cases, navigation, reset, filters, offline reload, no JS errors');
+ console.log('PASS: mobile/desktop rendering, multiline question paste, complete cases, navigation, reset, filters, offline reload, no JS errors');
 }finally{await browser.close();}
