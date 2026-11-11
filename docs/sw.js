@@ -1,5 +1,5 @@
-const CACHE = 'kaikai-search-v21-20261111-shuffled-options';
-const ASSETS = ['./','./index.html','./app.css?v=20261111-home-search-guide','./app.js?v=20261111-shuffled-options','./search.js?v=20261111-shuffled-options','./question-bank.json','./road-skills-bank.json','./manifest.json','./icons/icon.svg','./icons/developer-logo.webp'];
+const CACHE = 'kaikai-search-v22-20261111-install-guide';
+const ASSETS = ['./','./index.html','./app.css?v=20261111-install-guide','./app.js?v=20261111-install-guide','./search.js?v=20261111-shuffled-options','./question-bank.json','./road-skills-bank.json','./manifest.json','./icons/icon.svg','./icons/developer-logo.webp','./icons/qq.svg'];
 self.addEventListener('install',event=>event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(ASSETS)).then(()=>self.skipWaiting())));
 self.addEventListener('activate',event=>event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(key=>key.startsWith('kaikai-search-')&&key!==CACHE).map(key=>caches.delete(key)))).then(()=>self.clients.claim())));
 self.addEventListener('fetch',event=>{

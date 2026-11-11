@@ -118,6 +118,10 @@ function showView() {
 }
 window.addEventListener('hashchange',showView);
 showView();
+const qqLink = document.querySelector('.qq-link');
+const isMobile = navigator.userAgentData?.mobile || /Android|iPhone|iPad|iPod/.test(navigator.userAgent)
+ || (/Macintosh/.test(navigator.userAgent) && navigator.maxTouchPoints > 1);
+if(!isMobile)qqLink.href=qqLink.dataset.desktopHref;
 for(const trigger of document.querySelectorAll('.guide-trigger')){
  const dialog=$(trigger.getAttribute('aria-controls'));
  trigger.addEventListener('click',()=>dialog.showModal());

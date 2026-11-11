@@ -68,6 +68,7 @@ button:focus-visible { outline: 2px solid #b9dcff; outline-offset: 2px; }
 .install-icon { display: grid; width: 38px; height: 38px; flex: none; place-items: center; border-radius: 11px; }
 .install-icon svg { width: 21px; height: 21px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
 .browser-icon { color: var(--accent); background: #e5f1ff; }
+.browser-icon svg { width: 25px; height: 25px; fill: currentColor; stroke: none; }
 .install-card h3 { margin: 0; font-size: 14px; }
 .install-card-title p { margin: 1px 0 0; color: #9098a3; font-size: 10px; }
 .install-card ol { display: grid; gap: 8px; margin: 13px 0 0; padding: 0; color: #59616c; font-size: 12px; list-style: none; }
@@ -84,7 +85,7 @@ button:focus-visible { outline: 2px solid #b9dcff; outline-offset: 2px; }
 .guide-creator > p { margin: 0 0 9px; color: #89919b; font-size: 11px; }
 .guide-creator > p strong { color: #525a64; font-weight: 650; }
 .qq-link { display: flex; max-width: 250px; align-items: center; gap: 9px; margin: 0 auto; padding: 8px 11px; color: #4f5965; text-align: left; text-decoration: none; background: #f7f9fb; border: 1px solid #edf0f4; border-radius: 12px; -webkit-tap-highlight-color: transparent; }
-.qq-link > svg:first-child { width: 25px; height: 25px; fill: #2d9cff; stroke: #2d9cff; stroke-width: 1.2; stroke-linecap: round; }
+.qq-icon { display: block; width: 30px; height: 30px; flex: none; }
 .qq-link > span { display: flex; flex: 1; flex-direction: column; }
 .qq-link small { color: #9aa1aa; font-size: 9px; }
 .qq-link strong { color: #3d4650; font-size: 12px; font-variant-numeric: tabular-nums; }
