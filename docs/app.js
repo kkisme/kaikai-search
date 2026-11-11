@@ -1,4 +1,4 @@
-import {rank, highlight, escapeHtml} from './search.js';
+import {rank, highlight, escapeHtml} from './search.js?v=20261111-mixed-search';
 const $ = id => document.getElementById(id);
 const types = ['全部','单选','多选','判断','填空','案例题','知识卡'];
 const banks = new Map([...document.querySelectorAll('.bank-row')].map(row=>[row.hash,{
@@ -8,9 +8,8 @@ const banks = new Map([...document.querySelectorAll('.bank-row')].map(row=>[row.
 let activeBank;
 let entries = [], query = '', type = '全部', limit = 30, resultCards = [], active = -1;
 let debounce, composing = false;
-const h = value => highlight(value, query);
 function badge(type) { return `<span class="badge">${escapeHtml(type)}</span>`; }
-function questionHtml(b, index, grouped, label) {
+function questionHtml(b, index, grouped, label, h) {
  const keys = b.answer.trim().match(/^[A-H]+(?=$|[（(])/u)?.[0] || '';
  return `<section class="question" data-question-id="${escapeHtml(b.id)}">
  <p class="stem">${badge(label || b.type)}${grouped ? `<span class="sub-number">${index}.</span>` : ''}${h(b.stem)}</p>
@@ -18,12 +17,12 @@ function questionHtml(b, index, grouped, label) {
  ${b.answer ? `<div class="answer">答案：<strong>${h(b.answer)}</strong></div>` : ''}
  ${b.notes.length ? `<div class="note">${b.notes.map(n=>`<p>${h(n)}</p>`).join('')}</div>` : ''}</section>`;
 }
-function entryHtml(e) {
+function entryHtml(e, h) {
  const grouped=e.blocks.filter(b=>b.kind==='question').length>1||e.type==='案例题';
  let index=0, first=true;
  return `<article class="entry ${grouped?'case-entry':''}" data-entry-id="${escapeHtml(e.id)}">${e.blocks.map(b=>{
   const label=first?e.type:'';first=false;
-  if(b.kind==='question')return questionHtml(b,++index,grouped,label);
+  if(b.kind==='question')return questionHtml(b,++index,grouped,label,h);
   return `<section class="material">${b.paragraphs.map((p,i)=>`<p>${i===0&&label?badge(label):''}${h(p)}</p>`).join('')}</section>`;
  }).join('')}</article>`;
 }
@@ -45,7 +44,9 @@ function moveMatch(delta) {
 }
 function render(reset=true) {
  const results=rank(entries,query,type), visible=query?results:results.slice(0,limit);
- $('list').innerHTML=visible.map(({entry})=>entryHtml(entry)).join('')||'<p class="empty">没有找到匹配题目，请缩短关键词或切换题型。</p>';
+ const highlightQuery=results[0]?.matchedWords??query;
+ const h=value=>highlight(value,highlightQuery);
+ $('list').innerHTML=visible.map(({entry})=>entryHtml(entry,h)).join('')||'<p class="empty">没有找到匹配题目，请缩短关键词或切换题型。</p>';
  if(reset){
   $('list').classList.remove('list-enter');
   requestAnimationFrame(()=>$('list').classList.add('list-enter'));
