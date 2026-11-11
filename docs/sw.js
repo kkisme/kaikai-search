@@ -1,4 +1,4 @@
-const CACHE = 'kaikai-search-v19-20261111-fragment-search';
+const CACHE = 'kaikai-search-v20-20261111-guide-ranking';
 const ASSETS = ['./','./index.html','./app.css?v=20261111-home-search-guide','./app.js?v=20261111-fragment-search','./search.js?v=20261111-fragment-search','./question-bank.json','./road-skills-bank.json','./manifest.json','./icons/icon.svg','./icons/developer-logo.webp'];
 self.addEventListener('install',event=>event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(ASSETS)).then(()=>self.skipWaiting())));
 self.addEventListener('activate',event=>event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(key=>key.startsWith('kaikai-search-')&&key!==CACHE).map(key=>caches.delete(key)))).then(()=>self.clients.claim())));
