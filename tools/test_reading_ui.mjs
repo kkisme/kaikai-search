@@ -169,6 +169,12 @@ try{
  await page.goto(new URL('#search/road-skills',base).href);
  await page.reload();
  await page.locator('[data-entry-id="ROAD0001"]').waitFor({state:'visible'});
+ for(const query of ['混凝土2026 GB','混凝土2026GB']){
+  await search(query);
+  const result=page.locator('[data-entry-id="ROAD2650"]');
+  assert(await result.isVisible());
+  assert.deepEqual(await result.locator('mark').allTextContents(),['GB','2026','GB','混凝土','GB']);
+ }
  await search('终凝时间 截面积');
  assert.match(await page.locator('[data-entry-id="ROAD0468"] .stem').innerText(),/mm²/);
  await search('接触式孔径仪 被测孔径');

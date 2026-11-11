@@ -69,13 +69,14 @@ export function rank(entries, query, type = '全部') {
   if(matches.length)return matches.sort((a,b)=>b.score-a.score);
  }
 
- // Split at Han/ASCII boundaries in tokens containing a number. Keep codes and decimals intact.
+ // Split mixed keywords at Han/ASCII boundaries and between a year and a standard prefix.
  const splitWords=words.flatMap(word=>/[0-9]/.test(word)
   ? word.replace(/(\p{Script=Han})(?=[a-z0-9])|([a-z0-9])(?=\p{Script=Han})/gu,'$1$2 ').split(' ')
   : [word]);
- if(splitWords.length>words.length){
-  const splitMatches=rankExact(pool,splitWords,compact);
-  if(splitMatches.length)return splitMatches.map(match=>({...match,matchedWords:splitWords}));
+ const keywords=splitWords.flatMap(word=>word.replace(/^((?:19|20)\d{2})(?=(?:gb(?:\/[tz])?|jtg(?:\/t)?|jt\/t)(?:$|\d))/u,'$1 ').split(' '));
+ if(keywords.length>words.length){
+  const splitMatches=rankExact(pool,keywords,compact);
+  if(splitMatches.length)return splitMatches.map(match=>({...match,matchedWords:keywords}));
  }
 
  return rankSimilar(pool,folded);

@@ -59,6 +59,15 @@ assert.equal(caseResults[0]?.entry.id,'DT01121');
 assert.equal(caseResults[0]?.entry.blocks.filter(b=>b.kind==='question').length,4);
 
 const road=JSON.parse(readFileSync(new URL('../docs/road-skills-bank.json',import.meta.url),'utf8')).entries;
+const spacedStandards=rank(road,'混凝土2026 GB','判断');
+assert.equal(spacedStandards[0]?.entry.id,'ROAD2650');
+for(const query of ['混凝土2026GB','混凝土２０２６ｇｂ','2026GB 混凝土']){
+ const results=rank(road,query,'判断');
+ assert.deepEqual(results.map(r=>r.entry.id),spacedStandards.map(r=>r.entry.id),query);
+ assert.match(highlight(results[0].entry.title,results[0].matchedWords),/<mark>GB<\/mark>.*<mark>2026<\/mark>/u);
+}
+assert.equal(rank(road,'混凝土2026GB/T8076-2025','判断')[0]?.entry.id,'ROAD2650');
+assert(!rank(road,'混凝土2026GB/T8076-2024','判断').some(r=>r.entry.id==='ROAD2650'));
 const concrete=road.find(e=>e.id==='ROAD0002').blocks[0].stem;
 for(const q of [concrete.replace('40.0mm','400mm'),concrete.replace('大于40.0mm','小于40.0mm'),concrete.replace('55-2011','55-2012')]){
  assert(!rank(road,q).some(r=>['ROAD0002','ROAD1639'].includes(r.entry.id)),q);
