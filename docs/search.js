@@ -24,7 +24,7 @@ function relaxed(text, onRemove) {
 const entryIndex = new WeakMap();
 function searchField(value, main = false) {
  const literal=normalize(value);
- return {literal,folded:relaxed(literal),main};
+ return {source:value,literal,folded:relaxed(literal),main};
 }
 
 function indexedEntry(entry) {
@@ -176,14 +176,14 @@ function grams(text,size){
  return counts;
 }
 
-function overlap(text,size,queryGrams){
+function overlap(text,size,queryGrams,onMatch){
  const found=new Map();
  let shared=0;
  for(let i=0;i<=text.length-size;i++){
   const gram=text.slice(i,i+size), max=queryGrams.get(gram);
   if(!max)continue;
   const count=found.get(gram)||0;
-  if(count<max){found.set(gram,count+1);shared++;}
+  if(count<max){found.set(gram,count+1);shared++;onMatch?.(i,i+size);}
  }
  return shared;
 }
@@ -198,11 +198,13 @@ function criticalText(text){
  return {fixed,signature:terms.join('|')};
 }
 
-// Edit distance against a whole field or the best substring of a longer field.
-// Technical values and meaning-changing qualifiers cannot be edited.
-function editDistance(query,field,queryFixed,fieldFixed,whole){
+// Score a whole field or its best substring. Record the alignment only for displayed results.
+function editDistance(query,field,queryFixed,fieldFixed,whole,matched){
  const n=field.length;
- let prev=new Float64Array(n+1), next=new Float64Array(n+1);
+ const width=n+1;
+ const steps=matched?new Uint8Array((query.length+1)*width):null;
+ const equal=1, replace=2, skipQuery=3, skipField=4;
+ let prev=new Float64Array(width), next=new Float64Array(width);
  if(whole){
   for(let j=1;j<=n;j++)prev[j]=fieldFixed[j-1]?Infinity:prev[j-1]+1;
  }
@@ -210,15 +212,30 @@ function editDistance(query,field,queryFixed,fieldFixed,whole){
   next[0]=queryFixed[i-1]?Infinity:prev[0]+1;
   for(let j=1;j<=n;j++){
    const fixedQuery=queryFixed[i-1], fixedField=fieldFixed[j-1];
-   next[j]=Math.min(
-    query[i-1]===field[j-1]?prev[j-1]:fixedQuery||fixedField?Infinity:prev[j-1]+1,
-    fixedQuery?Infinity:prev[j]+1,
-    fixedField?Infinity:next[j-1]+1,
-   );
+   const same=query[i-1]===field[j-1];
+   // Technical values and meaning-changing qualifiers cannot be edited.
+   const diagonal=same?prev[j-1]:fixedQuery||fixedField?Infinity:prev[j-1]+1;
+   const withoutQuery=fixedQuery?Infinity:prev[j]+1;
+   const withoutField=fixedField?Infinity:next[j-1]+1;
+   const best=next[j]=Math.min(diagonal,withoutQuery,withoutField);
+   if(steps)steps[i*width+j]=best===diagonal?(same?equal:replace):best===withoutQuery?skipQuery:skipField;
   }
   [prev,next]=[next,prev];
  }
- return whole?prev[n]:prev.reduce((best,distance)=>Math.min(best,distance),Infinity);
+ let end=n;
+ if(!whole){
+  end=0;
+  for(let j=1;j<=n;j++)if(prev[j]<prev[end])end=j;
+ }
+ if(steps&&Number.isFinite(prev[end])){
+  for(let i=query.length,j=end;i>0&&j>0;){
+   const step=steps[i*width+j];
+   if(step===equal)matched[j-1]=1;
+   if(step!==skipField)i--;
+   if(step!==skipQuery)j--;
+  }
+ }
+ return prev[end];
 }
 
 function similarQuery(query,minLength=4){
@@ -228,25 +245,81 @@ function similarQuery(query,minLength=4){
   bigrams:grams(query,2),trigrams:length>=22?grams(query,3):null,critical:criticalText(query)};
 }
 
-function similarScore(field, spec){
+function similarMatch(field, spec){
  const {query,budget,bigrams,trigrams,critical}=spec, length=query.length, stem=field.folded;
- if(stem.length<length-budget)return 0;
+ if(stem.length<length-budget)return null;
  const shared=overlap(stem,2,bigrams), minShared=length-1-2*budget;
- if(shared<minShared&&(!trigrams||shared<(length-2)*.8))return 0;
+ if(shared<minShared&&(!trigrams||shared<(length-2)*.8))return null;
  const whole=stem.length<=length+budget;
  const fieldCritical=field.critical??=criticalText(stem);
  const sameCritical=fieldCritical.signature===critical.signature;
- if(whole&&!sameCritical)return 0;
+ if(whole&&!sameCritical)return null;
  if(shared>=minShared){
   const distance=editDistance(query,stem,critical.fixed,fieldCritical.fixed,whole);
-  if(distance<=budget)return 50-3*distance+2*shared/(length-1)+2*Math.min(1,length/stem.length)+(whole?2:0);
+  if(distance<=budget){
+   const score=50-3*distance+2*shared/(length-1)+2*Math.min(1,length/stem.length)+(whole?2:0);
+   return {field,spec,score,whole,method:'edit'};
+  }
  }
  // A rearranged sentence can still have most of the same three-character phrases.
  if(trigrams&&sameCritical&&stem.length<=length*1.25&&stem.length>=length*.8){
   const similarity=overlap(stem,3,trigrams)/(Math.max(length,stem.length)-2);
-  if(similarity>=.8)return 10+similarity;
+  if(similarity>=.8)return {field,spec,score:10+similarity,method:'phrases'};
  }
- return 0;
+ return null;
+}
+
+// Map the folded UTF-16 positions back to whole characters in the bank's original text.
+function originalRanges(field, matched){
+ const normalized=[], offsets=[];
+ let start=0;
+ for(const character of field.source){
+  const end=start+character.length;
+  const chunk=normalize(character);
+  normalized.push(chunk);
+  const span=[start,end];
+  for(let i=0;i<chunk.length;i++)offsets.push(span);
+  start=end;
+ }
+ // Skip highlighting if normalization across character boundaries changed the positions.
+ if(normalized.join('')!==field.literal)return [];
+ const removed=new Uint8Array(offsets.length);
+ relaxed(field.literal,(offset,length)=>removed.fill(1,offset,offset+length));
+ const foldedOffsets=offsets.filter((_,i)=>!removed[i]);
+ const ranges=[];
+ for(let i=0;i<foldedOffsets.length;){
+  const span=foldedOffsets[i];
+  let hit=true;
+  do{hit=Boolean(matched[i])&&hit;i++;}while(foldedOffsets[i]===span);
+  if(!hit)continue;
+  const last=ranges.at(-1);
+  if(last&&/^\s*$/u.test(field.source.slice(last[1],span[0])))last[1]=span[1];
+  else ranges.push([...span]);
+ }
+ return ranges;
+}
+
+function similarResult({entry,score,match,exactTerms=[]}){
+ const {field:bestField,spec,whole,method}=match;
+ const bestPositions=new Uint8Array(bestField.folded.length);
+ if(method==='edit')editDistance(spec.query,bestField.folded,spec.critical.fixed,bestField.critical.fixed,whole,bestPositions);
+ else overlap(bestField.folded,3,spec.trigrams,(start,end)=>bestPositions.fill(1,start,end));
+
+ const similarHighlights=new Map();
+ const fields=exactTerms.length?indexedEntry(entry).stems:[bestField];
+ for(const field of fields){
+  const positions=field===bestField?bestPositions:new Uint8Array(field.folded.length);
+  for(const term of exactTerms){
+   let start=field.folded.indexOf(term);
+   while(start!==-1){
+    positions.fill(1,start,start+term.length);
+    start=field.folded.indexOf(term,start+term.length);
+   }
+  }
+  const ranges=originalRanges(field,positions);
+  if(ranges.length)similarHighlights.set(field.source,ranges);
+ }
+ return {entry,score,kind:'similar',similarHighlights};
 }
 
 function rankSimilar(pool,query,options){
@@ -254,14 +327,16 @@ function rankSimilar(pool,query,options){
  if(!spec)return [];
  const matches=[];
  for(const entry of pool){
-  let best=0;
+  let best;
   for(const field of indexedEntry(entry).stems){
-   const score=similarScore(field,spec);
-   if(score)best=Math.max(best,score+optionMatches(field,options));
+   const match=similarMatch(field,spec);
+   if(!match)continue;
+   match.score+=optionMatches(field,options);
+   if(!best||match.score>best.score)best=match;
   }
-  if(best)matches.push({entry,score:best,kind:'similar'});
+  if(best)matches.push({entry,score:best.score,match:best});
  }
- return matches.sort(byScore).slice(0,12);
+ return matches.sort(byScore).slice(0,12).map(similarResult);
 }
 
 // Only one keyword may contain a typo; all other words must be present in the same entry.
@@ -283,13 +358,27 @@ function rankSimilarKeywords(pool,terms){
    else missing=i;
   }
   if(missing===-1)continue;
-  let best=0;
-  for(const field of stems)best=Math.max(best,similarScore(field,specs[missing]));
-  if(best)matches.push({entry,score:best+anchors/terms.length,kind:'similar'});
+  let best;
+  for(const field of stems){
+   const match=similarMatch(field,specs[missing]);
+   if(match&&(!best||match.score>best.score))best=match;
+  }
+  if(best){
+   const exactTerms=terms.filter((_,i)=>i!==missing).map(term=>term.folded);
+   matches.push({entry,score:best.score+anchors/terms.length,match:best,exactTerms});
+  }
  }
- return matches.sort(byScore).slice(0,12);
+ return matches.sort(byScore).slice(0,12).map(similarResult);
 }
 export function escapeHtml(value){return String(value??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));}
+export function highlightRanges(text,ranges=[]){
+ let html='', offset=0;
+ for(const [start,end] of ranges){
+  html+=escapeHtml(text.slice(offset,start))+`<mark>${escapeHtml(text.slice(start,end))}</mark>`;
+  offset=end;
+ }
+ return html+escapeHtml(text.slice(offset));
+}
 export function highlight(text,queryOrWords,ignoreFormat=false){
  const words=Array.isArray(queryOrWords)?queryOrWords:tokens(queryOrWords);
  if(!words.length)return escapeHtml(text);

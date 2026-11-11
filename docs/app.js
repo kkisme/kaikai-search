@@ -1,4 +1,4 @@
-import {rank, highlight, escapeHtml} from './search.js?v=20261111-search-guide';
+import {rank, highlight, highlightRanges, escapeHtml} from './search.js?v=20261111-similar-highlight';
 const $ = id => document.getElementById(id);
 const types = ['全部','单选','多选','判断','填空','案例题','知识卡'];
 const banks = new Map([...document.querySelectorAll('.bank-row')].map(row=>[row.hash,{
@@ -9,21 +9,21 @@ let activeBank;
 let entries = [], query = '', type = '全部', limit = 30, resultCards = [], active = -1;
 let debounce, composing = false;
 function badge(type) { return `<span class="badge">${escapeHtml(type)}</span>`; }
-function questionHtml(b, index, grouped, label, h) {
+function questionHtml(b, index, grouped, label, highlightStem, highlightDetails) {
  const keys = b.answer.trim().match(/^[A-H]+(?=$|[（(])/u)?.[0] || '';
  return `<section class="question" data-question-id="${escapeHtml(b.id)}">
- <p class="stem">${badge(label || b.type)}${grouped ? `<span class="sub-number">${index}.</span>` : ''}${h(b.stem)}</p>
- ${b.options.length ? `<ul class="options">${b.options.map(o=>`<li class="${keys.includes(o.key)?'correct':''}"><span class="option-key">${escapeHtml(o.key)}.</span><span>${h(o.text)}</span></li>`).join('')}</ul>` : ''}
- ${b.answer ? `<div class="answer">答案：<strong>${h(b.answer)}</strong></div>` : ''}
- ${b.notes.length ? `<div class="note">${b.notes.map(n=>`<p>${h(n)}</p>`).join('')}</div>` : ''}</section>`;
+ <p class="stem">${badge(label || b.type)}${grouped ? `<span class="sub-number">${index}.</span>` : ''}${highlightStem(b.stem)}</p>
+ ${b.options.length ? `<ul class="options">${b.options.map(o=>`<li class="${keys.includes(o.key)?'correct':''}"><span class="option-key">${escapeHtml(o.key)}.</span><span>${highlightDetails(o.text)}</span></li>`).join('')}</ul>` : ''}
+ ${b.answer ? `<div class="answer">答案：<strong>${highlightDetails(b.answer)}</strong></div>` : ''}
+ ${b.notes.length ? `<div class="note">${b.notes.map(n=>`<p>${highlightDetails(n)}</p>`).join('')}</div>` : ''}</section>`;
 }
-function entryHtml(e, h) {
+function entryHtml(e, highlightStem, highlightDetails=highlightStem) {
  const grouped=e.blocks.filter(b=>b.kind==='question').length>1||e.type==='案例题';
  let index=0, first=true;
  return `<article class="entry ${grouped?'case-entry':''}" data-entry-id="${escapeHtml(e.id)}">${e.blocks.map(b=>{
   const label=first?e.type:'';first=false;
-  if(b.kind==='question')return questionHtml(b,++index,grouped,label,h);
-  return `<section class="material">${b.paragraphs.map((p,i)=>`<p>${i===0&&label?badge(label):''}${h(p)}</p>`).join('')}</section>`;
+  if(b.kind==='question')return questionHtml(b,++index,grouped,label,highlightStem,highlightDetails);
+  return `<section class="material">${b.paragraphs.map((p,i)=>`<p>${i===0&&label?badge(label):''}${highlightStem(p)}</p>`).join('')}</section>`;
  }).join('')}</article>`;
 }
 function updateNavigation() {
@@ -44,9 +44,11 @@ function moveMatch(delta) {
 }
 function render(reset=true) {
  const results=rank(entries,query,type), visible=query?results:results.slice(0,limit);
- $('list').innerHTML=visible.map(({entry,kind,matchedWords})=>entryHtml(entry,
-  kind==='similar'||kind==='pinyin'?escapeHtml:value=>highlight(value,matchedWords??query,kind==='format')
- )).join('')||'<p class="empty">没有找到匹配题目，可用题干里的几个关键词重试，或切换题型。</p>';
+ $('list').innerHTML=visible.map(({entry,kind,matchedWords,similarHighlights})=>{
+  if(kind==='similar')return entryHtml(entry,value=>highlightRanges(value,similarHighlights?.get(value)??[]),escapeHtml);
+  const highlightValue=kind==='pinyin'?escapeHtml:value=>highlight(value,matchedWords??query,kind==='format');
+  return entryHtml(entry,highlightValue);
+ }).join('')||'<p class="empty">没有找到匹配题目，可用题干里的几个关键词重试，或切换题型。</p>';
  if(reset){
   $('list').classList.remove('list-enter');
   requestAnimationFrame(()=>$('list').classList.add('list-enter'));

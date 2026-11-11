@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
-import {rank} from '../docs/search.js';
+import {highlightRanges, rank} from '../docs/search.js';
 
 function readBank(file) {
   return JSON.parse(readFileSync(new URL(`../docs/${file}.json`, import.meta.url), 'utf8')).entries;
@@ -25,6 +25,18 @@ function first(results, expected) {
 
 function excludes(results, ids) {
   assert.ok(!results.some(result => ids.includes(result.entry.id)), `Unexpected result: ${results.map(result => result.entry.id).join(', ')}`);
+}
+
+function expectHighlight(result, field, text, marked = true) {
+  const start = field.indexOf(text);
+  assert.ok(start >= 0, `Fixture does not contain ${text}`);
+  const ranges = result.similarHighlights?.get(field);
+  assert.ok(ranges?.length, 'The matching field should have highlight ranges');
+  for (let offset = start; offset < start + text.length; offset++) {
+    if (/\s/u.test(field[offset])) continue;
+    const covered = ranges.some(([from, to]) => from <= offset && offset < to);
+    assert.equal(covered, marked, `Unexpected highlight at ${offset} within ${text}`);
+  }
 }
 
 let passed = 0;
@@ -158,6 +170,61 @@ check('multi-keyword typo recovery still requires the other term', () => {
   const results = rank(road, '细度模术|外加剂', '单选');
   assert.ok(results.slice(0, 3).some(result => ['ROAD0379', 'ROAD0589'].includes(result.entry.id) && result.kind === 'similar'));
   assert.equal(rank(road, '细度模术|无关词xyz').length, 0);
+});
+
+check('near matches highlight the shared wording and measurements around multiple edits', () => {
+  const query = concrete.stem.replace('普通混凝土', '普通混泥土').replace('粗骨料宜采用', '粗骨料采用');
+  const results = rank(road, query, '单选');
+  first(results, 'ROAD0002');
+  const [match] = results;
+  assert.equal(match.kind, 'similar');
+  expectHighlight(match, concrete.stem, 'JGJ 55-2011');
+  expectHighlight(match, concrete.stem, '40.0mm');
+  expectHighlight(match, concrete.stem, '粗骨料');
+  expectHighlight(match, concrete.stem, '采用');
+  expectHighlight(match, concrete.stem, '凝', false);
+  expectHighlight(match, concrete.stem, '宜', false);
+});
+
+check('a reordered question highlights shared phrases in their original order', () => {
+  const query = '减少人员伤亡，防止事故扩大，妥善保护现场。法律规定施工单位负责人接到事故报告后，应当迅速组织抢救，不得（ ）';
+  const match = rank(safety, query, '多选').find(result => result.entry.id === 'DT00011');
+  assert.equal(match?.kind, 'similar');
+  const block = question(safety, 'DT00011');
+  expectHighlight(match, block.stem, '法律规定施工单位负责人接到事故报告后');
+  expectHighlight(match, block.stem, '应当迅速组织抢救');
+  expectHighlight(match, block.stem, '减少人员伤亡');
+  expectHighlight(match, block.stem, '妥善保护现场');
+  assert.ok(!match.similarHighlights.has(block.options[0].text));
+});
+
+check('a similar case subquestion highlights its matched words in the complete case', () => {
+  const results = rank(safety, '钱某的死亡赔偿则任主要应该由（ ）承担', '案例');
+  first(results, 'DT01121');
+  const [match] = results;
+  assert.equal(match.kind, 'similar');
+  const block = match.entry.blocks.find(block => block.kind === 'question' && block.stem.includes('死亡赔偿责任'));
+  assert.ok(block);
+  expectHighlight(match, block.stem, '钱某的死亡赔偿');
+  expectHighlight(match, block.stem, '任主要应该由');
+  expectHighlight(match, block.stem, '责', false);
+  assert.ok(!match.similarHighlights.has(match.entry.title));
+});
+
+check('keyword fallback highlights the exact anchor and shared part of the misspelled keyword', () => {
+  const match = rank(road, '细度模术|外加剂', '单选').find(result => result.entry.id === 'ROAD0379');
+  assert.equal(match?.kind, 'similar');
+  const stem = question(road, 'ROAD0379').stem;
+  expectHighlight(match, stem, '外加剂');
+  expectHighlight(match, stem, '细度模');
+  expectHighlight(match, stem, '数', false);
+});
+
+check('range highlighting escapes HTML inside and outside UTF-16 ranges', () => {
+  const original = '🧪<script>安全 &</script>';
+  const start = original.indexOf('安全');
+  const end = original.indexOf('</script>');
+  assert.equal(highlightRanges(original, [[start, end]]), '🧪&lt;script&gt;<mark>安全 &amp;</mark>&lt;/script&gt;');
 });
 
 check('existing pinyin search remains within the bank', () => {
